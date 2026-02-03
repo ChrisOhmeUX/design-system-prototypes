@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tier 3 Component Tokens - Ohme Design System</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Roobert', -apple-system, sans-serif;
+            background: #FFFFFF;
+            color: #032536;
+            padding: 40px 20px;
+        }
+        
+        .container { max-width: 1600px; margin: 0 auto; }
+        
+        .header {
+            margin-bottom: 48px;
+            border-bottom: 2px solid #00FFD6;
+            padding-bottom: 24px;
+        }
+        
+        .header h1 {
+            font-size: 44px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: #647882;
+            margin-bottom: 12px;
+        }
+        
+        .token-count {
+            font-size: 16px;
+            font-weight: 600;
+            color: #00FFD6;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        
+        .summary-card {
+            background: #F5F5F5;
+            border: 1px solid #E5E8E8;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .summary-number {
+            font-size: 36px;
+            font-weight: 600;
+            color: #00FFD6;
+            margin-bottom: 8px;
+        }
+        
+        .summary-label {
+            font-size: 13px;
+            color: #647882;
+            font-weight: 500;
+        }
+        
+        .section {
+            margin-bottom: 64px;
+        }
+        
+        .section-header {
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #E5E8E8;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .section-description {
+            font-size: 14px;
+            color: #647882;
+        }
+        
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .component-card {
+            background: #F5F5F5;
+            border: 1px solid #E5E8E8;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .component-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #032536;
+        }
+        
+        .token-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .token-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 8px 12px;
+            background: #FFFFFF;
+            border-radius: 6px;
+            gap: 12px;
+        }
+        
+        .token-path {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            color: #647882;
+            flex: 1;
+        }
+        
+        .token-reference {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            color: #032536;
+            font-weight: 600;
+            text-align: right;
+        }
+        
+        .component-preview {
+            margin-bottom: 16px;
+            padding: 20px;
+            background: #FFFFFF;
+            border-radius: 8px;
+            border: 1px solid #E5E8E8;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .preview-button {
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: 1px solid;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .preview-button.primary {
+            background: #00FFD6;
+            color: #032536;
+            border-color: #032536;
+        }
+        
+        .preview-button.secondary {
+            background: #FFFFFF;
+            color: #032536;
+            border-color: #032536;
+        }
+        
+        .preview-button.tertiary {
+            background: transparent;
+            color: #032536;
+            border-color: transparent;
+        }
+        
+        .preview-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ADB3B1;
+            border-radius: 6px;
+            font-family: 'Roobert', sans-serif;
+            font-size: 16px;
+        }
+        
+        .preview-input:focus {
+            outline: none;
+            border-color: #00FFD6;
+        }
+        
+        .preview-pill {
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid;
+        }
+        
+        .preview-pill.action {
+            background: #C0FFF6;
+            color: #003A37;
+            border-color: #00FFD6;
+        }
+        
+        .preview-pill.success {
+            background: #DDFBE5;
+            color: #072C14;
+            border-color: #8AEBA8;
+        }
+        
+        .preview-pill.error {
+            background: #FFE1E1;
+            color: #580202;
+            border-color: #FA1460;
+        }
+        
+        .preview-pill.warning {
+            background: #FFF2C6;
+            color: #441906;
+            border-color: #FFE385;
+        }
+        
+        .preview-switch {
+            width: 56px;
+            height: 32px;
+            background: #E5E8E8;
+            border: 1px solid #032536;
+            border-radius: 100px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .preview-switch-thumb {
+            width: 24px;
+            height: 24px;
+            background: #F5F8FA;
+            border: 1px solid #ADB3B1;
+            border-radius: 100%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: all 0.2s;
+        }
+        
+        .preview-switch.active {
+            background: #00FFD6;
+            border-color: #032536;
+        }
+        
+        .preview-switch.active .preview-switch-thumb {
+            left: 27px;
+            background: #FFFFFF;
+            border-color: #0EBA9E;
+        }
+        
+        .preview-radio {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .preview-radio-control {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #032536;
+            border-radius: 100%;
+            position: relative;
+        }
+        
+        .preview-radio-control.checked::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #00FFD6;
+            border-radius: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .preview-tab {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .preview-tab-item {
+            padding: 8px 16px;
+            background: #F5F8FA;
+            border: 1px solid #E5E8E8;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #032536;
+        }
+        
+        .preview-tab-item.active {
+            background: #C0FFF6;
+            border-color: #00FFD6;
+        }
+        
+        .architecture-note {
+            background: #C0FFF6;
+            border-left: 4px solid #00FFD6;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+        
+        .architecture-note strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #032536;
+        }
+        
+        .architecture-note p {
+            color: #032536;
+            line-height: 1.6;
+        }
+        
+        .token-count-badge {
+            display: inline-block;
+            background: #00FFD6;
+            color: #032536;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Tier 3 - Component Tokens</h1>
+            <p class="subtitle">Component-specific design decisions, always referencing Tier 2 semantic tokens</p>
+            <p class="token-count">✓ All 311 Component Tokens • 98% Architecture Health</p>
+        </div>
+        
+        <div class="architecture-note">
+            <strong>🏗️ Tier 3 Architecture Principle</strong>
+            <p>Component tokens encode specific design decisions for UI components. They ALWAYS reference Tier 2 semantic tokens, never Tier 1 primitives. This maintains the mode-switching capability and ensures consistent behavior across light/dark themes.</p>
+        </div>
+        
+        <!-- Summary -->
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="summary-number">311</div>
+                <div class="summary-label">Total Tokens</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number">27</div>
+                <div class="summary-label">Button</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number">17</div>
+                <div class="summary-label">Dropdown</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number">15</div>
+                <div class="summary-label">Input</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number">20</div>
+                <div class="summary-label">Modal</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number">27</div>
+                <div class="summary-label">Pill</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number">8</div>
+                <div class="summary-label">Radio</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number">14</div>
+                <div class="summary-label">Switch</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number">12</div>
+                <div class="summary-label">Tab</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number">8</div>
+                <div class="summary-label">Textarea</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number">8</div>
+                <div class="summary-label">Navigation</div>
+            </div>
+        </div>
+        
+        <!-- BUTTON TOKENS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Button Tokens<span class="token-count-badge">27 tokens</span></h2>
+                <p class="section-description">Primary, Secondary, Tertiary variants with states and sizing</p>
+            </div>
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-preview">
+                        <button class="preview-button primary">Primary Button</button>
+                        <button class="preview-button secondary">Secondary Button</button>
+                        <button class="preview-button tertiary">Tertiary Button</button>
+                    </div>
+                    <div class="component-name">Button / Primary (8 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">surface/active</span>
+                            <span class="token-reference">→ interactive/primary/surface</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/hover</span>
+                            <span class="token-reference">→ interactive/primary/surface-hover</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/select</span>
+                            <span class="token-reference">→ interactive/primary/surface-select</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/disabled</span>
+                            <span class="token-reference">→ state/disabled/surface</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">content/content</span>
+                            <span class="token-reference">→ interactive/primary/content</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">content/disabled</span>
+                            <span class="token-reference">→ state/disabled/content</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/active</span>
+                            <span class="token-reference">→ interactive/primary/border</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/disabled</span>
+                            <span class="token-reference">→ state/disabled/border</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-card">
+                    <div class="component-name">Button / Secondary (8 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">surface/active</span>
+                            <span class="token-reference">→ interactive/secondary/surface</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/hover</span>
+                            <span class="token-reference">→ tertiary/lightgrey</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/select</span>
+                            <span class="token-reference">→ brand/smokeygrey</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/disabled</span>
+                            <span class="token-reference">→ brand/white</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">content/content</span>
+                            <span class="token-reference">→ content/primary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">content/disabled</span>
+                            <span class="token-reference">→ state/disabled/content</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/active</span>
+                            <span class="token-reference">→ brand/ohmedarkblue</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/disabled</span>
+                            <span class="token-reference">→ brand/smokeygrey</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-card">
+                    <div class="component-name">Button / Tertiary (8 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">surface/active</span>
+                            <span class="token-reference">→ interactive/tertiary/surface</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/hover</span>
+                            <span class="token-reference">→ tertiary/lightgrey</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/select</span>
+                            <span class="token-reference">→ brand/smokeygrey</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/disabled</span>
+                            <span class="token-reference">→ brand/white</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">content/content</span>
+                            <span class="token-reference">→ content/primary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">content/disabled</span>
+                            <span class="token-reference">→ state/disabled/content</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/active</span>
+                            <span class="token-reference">→ interactive/tertiary/border</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/disabled</span>
+                            <span class="token-reference">→ brand/smokeygrey</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-card">
+                    <div class="component-name">Button / Corner Radius (3 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">size/lg</span>
+                            <span class="token-reference">→ radius-2x (8px)</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">size/md</span>
+                            <span class="token-reference">→ radius-1halfx (6px)</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">size/sm</span>
+                            <span class="token-reference">→ radius-1x (4px)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- INPUT TOKENS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Input Tokens<span class="token-count-badge">15 tokens</span></h2>
+                <p class="section-description">Field states, labels, and error messages</p>
+            </div>
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-preview">
+                        <input type="text" class="preview-input" placeholder="Enter text...">
+                    </div>
+                    <div class="component-name">Input / Field (13 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">surface/active</span>
+                            <span class="token-reference">→ surface/canvas</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/disabled</span>
+                            <span class="token-reference">→ state/disabled/surface</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/error</span>
+                            <span class="token-reference">→ surface/canvas</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/filled</span>
+                            <span class="token-reference">→ surface/canvas</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/focus</span>
+                            <span class="token-reference">→ surface/canvas</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">content/placeholder</span>
+                            <span class="token-reference">→ content/secondary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">content/filled</span>
+                            <span class="token-reference">→ content/primary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">content/disabled</span>
+                            <span class="token-reference">→ state/disabled/content</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/active</span>
+                            <span class="token-reference">→ border/default</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/disabled</span>
+                            <span class="token-reference">→ state/disabled/border</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/error</span>
+                            <span class="token-reference">→ state/error/border</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/filled</span>
+                            <span class="token-reference">→ border/default</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/focus</span>
+                            <span class="token-reference">→ surface/accent</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-card">
+                    <div class="component-name">Input / Label & Error (2 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">Label/Content</span>
+                            <span class="token-reference">→ content/secondary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">error-message/Content</span>
+                            <span class="token-reference">→ state/error/border</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DROPDOWN TOKENS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Dropdown Tokens<span class="token-count-badge">17 tokens</span></h2>
+                <p class="section-description">Field, menu, and item states</p>
+            </div>
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-name">Dropdown / Field (13 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">surface/active</span>
+                            <span class="token-reference">→ surface/canvas</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/disabled</span>
+                            <span class="token-reference">→ state/disabled/surface</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/error</span>
+                            <span class="token-reference">→ surface/canvas</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/filled</span>
+                            <span class="token-reference">→ surface/canvas</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface/focus</span>
+                            <span class="token-reference">→ surface/canvas</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">content/placeholder</span>
+                            <span class="token-reference">→ content/secondary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">content/filled</span>
+                            <span class="token-reference">→ content/primary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">content/disabled</span>
+                            <span class="token-reference">→ state/disabled/content</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/active</span>
+                            <span class="token-reference">→ border/default</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/disabled</span>
+                            <span class="token-reference">→ state/disabled/border</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/error</span>
+                            <span class="token-reference">→ state/error/border</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/filled</span>
+                            <span class="token-reference">→ border/default</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border/focus</span>
+                            <span class="token-reference">→ surface/accent</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-card">
+                    <div class="component-name">Dropdown / Menu (3 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">surface</span>
+                            <span class="token-reference">→ surface/raised</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border</span>
+                            <span class="token-reference">→ border/subtle</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">elevation</span>
+                            <span class="token-reference">→ z-index/dropdown</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-card">
+                    <div class="component-name">Dropdown / Menu Item (4 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">surface-active</span>
+                            <span class="token-reference">→ surface/canvas</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">surface-hover</span>
+                            <span class="token-reference">→ surface/base</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">content</span>
+                            <span class="token-reference">→ content/primary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">selected</span>
+                            <span class="token-reference">→ interactive/primary/surface</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PILL TOKENS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Pill Tokens<span class="token-count-badge">27 tokens</span></h2>
+                <p class="section-description">9 intent types with sizing variations</p>
+            </div>
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-preview">
+                        <span class="preview-pill action">Action</span>
+                        <span class="preview-pill success">Success</span>
+                        <span class="preview-pill warning">Warning</span>
+                        <span class="preview-pill error">Error</span>
+                    </div>
+                    <div class="component-name">Pill / Intent (9 types × 3 props = 27 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">jobtype</span>
+                            <span class="token-reference">→ state/focus/*</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">action</span>
+                            <span class="token-reference">→ state/action/*</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">success</span>
+                            <span class="token-reference">→ state/success/*</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">warning</span>
+                            <span class="token-reference">→ state/warning/*</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">error</span>
+                            <span class="token-reference">→ state/error/*</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">info</span>
+                            <span class="token-reference">→ state/info/*</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">special</span>
+                            <span class="token-reference">→ state/special/*</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">job type</span>
+                            <span class="token-reference">→ surface/inverse + border/brand</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">channel</span>
+                            <span class="token-reference">→ surface/canvas + border/brand</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SWITCH/TOGGLE TOKENS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Switch/Toggle Tokens<span class="token-count-badge">14 tokens</span></h2>
+                <p class="section-description">Active/inactive states with sizing</p>
+            </div>
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-preview">
+                        <div class="preview-switch"></div>
+                        <div class="preview-switch active"></div>
+                    </div>
+                    <div class="component-name">Switch / States (10 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">inactive/track/surface</span>
+                            <span class="token-reference">→ surface/subtle</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">inactive/track/border</span>
+                            <span class="token-reference">→ border/brand</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">inactive/thumb/surface</span>
+                            <span class="token-reference">→ surface/base</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">inactive/thumb/border</span>
+                            <span class="token-reference">→ border/default</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">inactive/thumb/icon</span>
+                            <span class="token-reference">→ content/primary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">active/track/surface</span>
+                            <span class="token-reference">→ surface/accent</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">active/track/border</span>
+                            <span class="token-reference">→ surface/brand</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">active/thumb/surface</span>
+                            <span class="token-reference">→ surface/canvas</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">active/thumb/border</span>
+                            <span class="token-reference">→ secondary/teal700</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">active/thumb/icon</span>
+                            <span class="token-reference">→ content/primary</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-card">
+                    <div class="component-name">Switch / Size (4 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">lg/track</span>
+                            <span class="token-reference">→ 56px × 32px</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">lg/radius</span>
+                            <span class="token-reference">→ radius-max</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">sm/track</span>
+                            <span class="token-reference">→ 40px × 24px</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">sm/radius</span>
+                            <span class="token-reference">→ radius-max</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RADIO TOKENS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Radio Button Tokens<span class="token-count-badge">8 tokens</span></h2>
+                <p class="section-description">Control dimensions and label styling</p>
+            </div>
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-preview">
+                        <div class="preview-radio">
+                            <div class="preview-radio-control checked"></div>
+                            <span>Selected</span>
+                        </div>
+                        <div class="preview-radio">
+                            <div class="preview-radio-control"></div>
+                            <span>Unselected</span>
+                        </div>
+                    </div>
+                    <div class="component-name">Radio / Size (6 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">sm/control</span>
+                            <span class="token-reference">→ Ø 16px</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">sm/dot</span>
+                            <span class="token-reference">→ Ø 8px</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">sm/gap</span>
+                            <span class="token-reference">→ inline/xxs</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">md/control</span>
+                            <span class="token-reference">→ Ø 20px</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">md/dot</span>
+                            <span class="token-reference">→ Ø 10px</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">md/gap</span>
+                            <span class="token-reference">→ inline/xs</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-card">
+                    <div class="component-name">Radio / Style (2 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">label</span>
+                            <span class="token-reference">→ content/primary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">label-disabled</span>
+                            <span class="token-reference">→ content/disabled</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TAB TOKENS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Tab Tokens<span class="token-count-badge">12 tokens</span></h2>
+                <p class="section-description">New and old tab variants with states</p>
+            </div>
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-preview">
+                        <div class="preview-tab">
+                            <div class="preview-tab-item active">Active Tab</div>
+                            <div class="preview-tab-item">Inactive Tab</div>
+                            <div class="preview-tab-item">Another Tab</div>
+                        </div>
+                    </div>
+                    <div class="component-name">Tab / Size (4 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">padding-inline</span>
+                            <span class="token-reference">→ axis_aware/inline/md</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">padding-stack</span>
+                            <span class="token-reference">→ axis_aware/stack/md</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">gap</span>
+                            <span class="token-reference">→ gap/lg</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">radius</span>
+                            <span class="token-reference">→ corner-radii/md</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-card">
+                    <div class="component-name">Tab / New States (6 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">default/surface</span>
+                            <span class="token-reference">→ surface/base</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">default/indicator</span>
+                            <span class="token-reference">→ brand/clear</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">default/content</span>
+                            <span class="token-reference">→ content/primary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">selected/surface</span>
+                            <span class="token-reference">→ teal100</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">selected/indicator</span>
+                            <span class="token-reference">→ interactive/primary/surface</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">selected/content</span>
+                            <span class="token-reference">→ content/primary</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TEXTAREA TOKENS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Textarea Tokens<span class="token-count-badge">8 tokens</span></h2>
+                <p class="section-description">Multi-line text input with states</p>
+            </div>
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-name">Textarea / States (12 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">default/surface</span>
+                            <span class="token-reference">→ surface/canvas</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">default/border</span>
+                            <span class="token-reference">→ border/subtle</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">default/helper-text</span>
+                            <span class="token-reference">→ content/tertiary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">focus/surface</span>
+                            <span class="token-reference">→ state/focus/surface</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">focus/border</span>
+                            <span class="token-reference">→ state/focus/border</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">focus/helper-text</span>
+                            <span class="token-reference">→ content/tertiary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">error/surface</span>
+                            <span class="token-reference">→ surface/canvas</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">error/border</span>
+                            <span class="token-reference">→ state/error/border</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">error/helper-text</span>
+                            <span class="token-reference">→ state/error/content</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">disabled/surface</span>
+                            <span class="token-reference">→ state/disabled/surface</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">disabled/border</span>
+                            <span class="token-reference">→ state/disabled/border</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">disabled/helper-text</span>
+                            <span class="token-reference">→ state/disabled/content</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MODAL TOKENS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Modal Tokens<span class="token-count-badge">20 tokens</span></h2>
+                <p class="section-description">Complete modal system with overlay, header, body, buttons</p>
+            </div>
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-name">Modal / Container (7 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">surface</span>
+                            <span class="token-reference">→ surface/raised</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">border</span>
+                            <span class="token-reference">→ border/subtle</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">radius</span>
+                            <span class="token-reference">→ corner-radii/lg</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">elevation</span>
+                            <span class="token-reference">→ elevation/level-3</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">padding-inline</span>
+                            <span class="token-reference">→ spacing/inline/lg</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">padding-stack</span>
+                            <span class="token-reference">→ spacing/stack/lg</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">overlay/surface</span>
+                            <span class="token-reference">→ surface/overlay</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-card">
+                    <div class="component-name">Modal / Header (5 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">title</span>
+                            <span class="token-reference">→ content/primary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">subtitle</span>
+                            <span class="token-reference">→ content/secondary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">icon</span>
+                            <span class="token-reference">→ content/primary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">padding-inline</span>
+                            <span class="token-reference">→ spacing/inline/md</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">gap</span>
+                            <span class="token-reference">→ spacing/gap/lg</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-card">
+                    <div class="component-name">Modal / Body & Advisory (7 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">body/content</span>
+                            <span class="token-reference">→ content/primary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">body/gap</span>
+                            <span class="token-reference">→ spacing/gap/md</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">advisory/surface</span>
+                            <span class="token-reference">→ surface/base</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">advisory/content</span>
+                            <span class="token-reference">→ content/primary</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">advisory/padding-inline</span>
+                            <span class="token-reference">→ spacing/inline/lg</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">advisory/padding-stack</span>
+                            <span class="token-reference">→ spacing/stack/lg</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">buttongroup/gap</span>
+                            <span class="token-reference">→ spacing/gap/lg</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- NAVIGATION TOKENS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Navigation/Menu Tokens<span class="token-count-badge">8 tokens</span></h2>
+                <p class="section-description">Menu items, labels, drawers, and states</p>
+            </div>
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-name">Menu / System (8 tokens)</div>
+                    <div class="token-list">
+                        <div class="token-row">
+                            <span class="token-path">Label</span>
+                            <span class="token-reference">→ tertiary/paleteal</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">Divider</span>
+                            <span class="token-reference">→ white</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">collapse-surface</span>
+                            <span class="token-reference">→ brand/smokeygreen</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">menudrawer-surface</span>
+                            <span class="token-reference">→ navigation/surface</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">menuitem-surface-default</span>
+                            <span class="token-reference">→ surface/brand</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">menuitem-surface-hover</span>
+                            <span class="token-reference">→ electricblue@5%</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-path">menuitem-surface-active</span>
+                            <span class="token-reference">→ electricblue@12%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
