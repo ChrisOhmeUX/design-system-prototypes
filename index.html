@@ -170,9 +170,7 @@
         
         .card-meta {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 12px;
         }
         
@@ -198,7 +196,6 @@
         .last-updated {
             font-size: 12px;
             color: #666;
-            white-space: nowrap;
         }
         
         .card-actions {
@@ -457,7 +454,11 @@
                             month: 'short', 
                             year: 'numeric' 
                         });
-                        dateElement.textContent = `Updated ${formattedDate}`;
+                        const formattedTime = date.toLocaleTimeString('en-GB', {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+                        dateElement.textContent = `Updated ${formattedDate} at ${formattedTime}`;
                     } else {
                         dateElement.textContent = '';
                     }
