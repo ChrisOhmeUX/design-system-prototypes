@@ -232,3 +232,188 @@
             text-align: center;
             padding: 80px 40px;
             background: rgba(26, 26, 26, 0.4);
+            border: 2px dashed #333;
+            border-radius: 12px;
+        }
+        
+        .empty-state-icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+            opacity: 0.3;
+        }
+        
+        .empty-state h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        
+        .empty-state p {
+            font-size: 16px;
+            color: #555;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 36px;
+            }
+            
+            .tab-navigation {
+                flex-wrap: nowrap;
+                overflow-x: scroll;
+            }
+            
+            .prototype-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Ohme Design System Prototypes</h1>
+        <p class="subtitle">Interactive prototypes for design system components and patterns</p>
+    </div>
+    
+    <!-- Tab Navigation -->
+    <div class="tab-navigation">
+        <button class="tab-btn active" onclick="switchTab('connect')">Connect</button>
+        <button class="tab-btn" onclick="switchTab('hub')">Hub</button>
+        <button class="tab-btn" onclick="switchTab('park-charge')">Park & Charge</button>
+        <button class="tab-btn" onclick="switchTab('dealer')">Dealer Portal</button>
+        <button class="tab-btn" onclick="switchTab('customer')">Customer Portal</button>
+    </div>
+    
+    <!-- Connect Tab -->
+    <div id="connect" class="tab-content active">
+        <div class="empty-state">
+            <div class="empty-state-icon">⚡</div>
+            <h3>No Connect prototypes yet</h3>
+            <p>Installation partner portal prototypes will appear here</p>
+        </div>
+    </div>
+    
+    <!-- Hub Tab -->
+    <div id="hub" class="tab-content">
+        <div class="prototype-grid">
+        
+            <!-- Hub users table filter -->
+            <div class="prototype-card">
+                <div class="card-header">
+                    <h2>Users Table Filter</h2>
+                    <p>Filter for sorting results on users table</p>
+                </div>
+                <div class="card-footer">
+                    <div class="tags">
+                        <span class="tag">Table</span>
+                        <span class="tag">Filter</span>
+                        <span class="tag">Users</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="Prototypes/hub-users-filter/index.html" class="action-btn btn-primary">View Prototype</a>
+                        <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/hub-users-filter/README.md" 
+                           class="action-btn btn-secondary" 
+                           target="_blank">Documentation</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- Park & Charge Tab -->
+    <div id="park-charge" class="tab-content">
+        <div class="prototype-grid">
+            
+            <!-- PC Self Billing Prototype -->
+            <div class="prototype-card">
+                <div class="card-header">
+                    <h2>Self Billing Dashboard</h2>
+                    <p>Billing dashboard interface supporting self-billing finance model with quarterly payment cycles</p>
+                </div>
+                <div class="card-footer">
+                    <div class="tags">
+                        <span class="tag">Dashboard</span>
+                        <span class="tag">Billing</span>
+                        <span class="tag">Finance</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="Prototypes/pc-self-billing/index.html" class="action-btn btn-primary">View Prototype</a>
+                        <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/pc-self-billing/README.md" 
+                           class="action-btn btn-secondary" 
+                           target="_blank">Documentation</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PC Self Billing Invoice -->
+            <div class="prototype-card">
+                <div class="card-header">
+                    <h2>Self Billing Invoice</h2>
+                    <p>Invoice template for self billing with quarterly payment tracking and financial reconciliation</p>
+                </div>
+                <div class="card-footer">
+                    <div class="tags">
+                        <span class="tag">Invoice</span>
+                        <span class="tag">Billing</span>
+                        <span class="tag">Template</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="Prototypes/pc-self-billing-invoice/index.html" class="action-btn btn-primary">View Prototype</a>
+                        <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/pc-self-billing-invoice/README.md" 
+                           class="action-btn btn-secondary" 
+                           target="_blank">Documentation</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- Dealer Portal Tab -->
+    <div id="dealer" class="tab-content">
+        <div class="empty-state">
+            <div class="empty-state-icon">🚗</div>
+            <h3>No Dealer Portal prototypes yet</h3>
+            <p>Dealer management prototypes will appear here</p>
+        </div>
+    </div>
+    
+    <!-- Customer Portal Tab -->
+    <div id="customer" class="tab-content">
+        <div class="empty-state">
+            <div class="empty-state-icon">👤</div>
+            <h3>No Customer Portal prototypes yet</h3>
+            <p>Customer-facing prototypes will appear here</p>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            // Hide all tab contents
+            const allContents = document.querySelectorAll('.tab-content');
+            allContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            const allButtons = document.querySelectorAll('.tab-btn');
+            allButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
