@@ -98,7 +98,7 @@
     <div class="prototype-grid">
         
         <!-- PC Self Billing Prototype -->
-        <a href="Prototypes/PC SElf billing/index.html" class="prototype-card">
+        <a href="Prototypes/pc-self-billing/index.html" class="prototype-card">
             <h2>Park & Charge Self Billing</h2>
             <p>Billing dashboard interface supporting self-billing finance model with quarterly payment cycles</p>
             <div class="meta">
