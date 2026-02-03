@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Component - Ohme Design System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Design tokens - Light mode */
+        :root {
+            --color-brand-highlighterteal: #00FFD6;
+            --color-brand-teal500: #01E6C1;
+            --color-brand-teal300: #00FFD6;
+            --color-brand-ohmedarkblue: #032536;
+            --color-brand-white: #FFFFFF;
+            --color-brand-smokeygrey: #D1D1D1;
+            --color-brand-lightgrey: #E9E9E9;
+            --color-brand-grey700: #647882;
+            --color-brand-grey300: #ADB3B1;
+            --color-brand-clear: transparent;
+            
+            --color-content-primary: #032536;
+            --color-surface-canvas: #FFFFFF;
+            --color-surface-panel: #F5F5F5;
+            --color-interactive-secondary-surface: #FFFFFF;
+            --color-state-disabled-surface: #D1D1D1;
+            --color-state-disabled-content: #647882;
+            --color-state-disabled-border: #D1D1D1;
+            
+            /* Button tokens */
+            --button-primary-surface-active: var(--color-brand-highlighterteal);
+            --button-primary-surface-hover: var(--color-brand-teal500);
+            --button-primary-surface-select: var(--color-brand-teal300);
+            --button-primary-surface-disabled: var(--color-state-disabled-surface);
+            --button-primary-content-content: var(--color-brand-ohmedarkblue);
+            --button-primary-content-disabled: var(--color-state-disabled-content);
+            --button-primary-border-active: var(--color-brand-ohmedarkblue);
+            --button-primary-border-disabled: var(--color-state-disabled-border);
+            
+            --button-secondary-surface-active: var(--color-interactive-secondary-surface);
+            --button-secondary-surface-hover: var(--color-brand-lightgrey);
+            --button-secondary-surface-select: var(--color-brand-smokeygrey);
+            --button-secondary-surface-disabled: var(--color-brand-white);
+            --button-secondary-content-content: var(--color-content-primary);
+            --button-secondary-content-disabled: var(--color-state-disabled-content);
+            --button-secondary-border-active: var(--color-brand-ohmedarkblue);
+            --button-secondary-border-disabled: var(--color-brand-smokeygrey);
+            
+            --button-tertiary-surface-active: var(--color-brand-clear);
+            --button-tertiary-surface-hover: var(--color-brand-lightgrey);
+            --button-tertiary-surface-select: var(--color-brand-smokeygrey);
+            --button-tertiary-surface-disabled: var(--color-brand-clear);
+            --button-tertiary-content-content: var(--color-content-primary);
+            --button-tertiary-content-disabled: var(--color-state-disabled-content);
+            --button-tertiary-border-active: var(--color-brand-clear);
+            --button-tertiary-border-disabled: var(--color-brand-clear);
+        }
+
+        /* Dark mode tokens */
+        [data-theme="dark"] {
+            --color-content-primary: #FFFFFF;
+            --color-surface-canvas: #032536;
+            --color-surface-panel: #0a3a50;
+            --color-interactive-secondary-surface: #032536;
+            --color-state-disabled-surface: #647882;
+            --color-state-disabled-content: #ADB3B1;
+            --color-state-disabled-border: #647882;
+            
+            --button-secondary-content-content: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Roobert', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-surface-canvas);
+            color: var(--color-content-primary);
+            transition: background-color 0.3s, color 0.3s;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .mode-toggle {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .mode-toggle button {
+            padding: 8px 16px;
+            border: 1px solid var(--color-content-primary);
+            background: var(--color-surface-canvas);
+            color: var(--color-content-primary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .mode-toggle button.active {
+            background: var(--color-content-primary);
+            color: var(--color-surface-canvas);
+        }
+
+        /* Controls */
+        .controls {
+            background: var(--color-surface-panel);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .control-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .control-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            padding: 8px 16px;
+            border: 1px solid #ccc;
+            background: white;
+            color: #333;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .control-btn.active {
+            background: var(--color-brand-highlighterteal);
+            color: var(--color-brand-ohmedarkblue);
+            border-color: var(--color-brand-highlighterteal);
+        }
+
+        /* Demo area */
+        .demo-area {
+            background: var(--color-surface-panel);
+            border-radius: 12px;
+            padding: 80px 40px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+
+        /* Button component styles */
+        .button {
+            font-family: 'Roobert', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-weight: 600;
+            text-align: center;
+            white-space: nowrap;
+            border-width: 1px;
+            border-style: solid;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Sizes */
+        .button--large {
+            height: 48px;
+            padding: 8px;
+            font-size: 18px;
+            line-height: 24px;
+            border-radius: 8px;
+        }
+
+        .button--medium {
+            height: 40px;
+            padding: 8px;
+            font-size: 18px;
+            line-height: 24px;
+            border-radius: 6px;
+        }
+
+        .button--small {
+            height: 32px;
+            padding: 8px;
+            font-size: 16px;
+            line-height: 24px;
+            border-radius: 4px;
+        }
+
+        /* Primary */
+        .button--primary {
+            background: var(--button-primary-surface-active);
+            color: var(--button-primary-content-content);
+            border-color: var(--button-primary-border-active);
+        }
+
+        .button--primary:hover:not(:disabled) {
+            background: var(--button-primary-surface-hover);
+        }
+
+        .button--primary:active:not(:disabled) {
+            background: var(--button-primary-surface-select);
+        }
+
+        .button--primary:disabled {
+            background: var(--button-primary-surface-disabled);
+            color: var(--button-primary-content-disabled);
+            border-color: var(--button-primary-border-disabled);
+            cursor: not-allowed;
+        }
+
+        /* Secondary */
+        .button--secondary {
+            background: var(--button-secondary-surface-active);
+            color: var(--button-secondary-content-content);
+            border-color: var(--button-secondary-border-active);
+        }
+
+        .button--secondary:hover:not(:disabled) {
+            background: var(--button-secondary-surface-hover);
+        }
+
+        .button--secondary:active:not(:disabled) {
+            background: var(--button-secondary-surface-select);
+        }
+
+        .button--secondary:disabled {
+            background: var(--button-secondary-surface-disabled);
+            color: var(--button-secondary-content-disabled);
+            border-color: var(--button-secondary-border-disabled);
+            cursor: not-allowed;
+        }
+
+        /* Tertiary */
+        .button--tertiary {
+            background: var(--button-tertiary-surface-active);
+            color: var(--button-tertiary-content-content);
+            border-color: var(--button-tertiary-border-active);
+        }
+
+        .button--tertiary:hover:not(:disabled) {
+            background: var(--button-tertiary-surface-hover);
+        }
+
+        .button--tertiary:active:not(:disabled) {
+            background: var(--button-tertiary-surface-select);
+        }
+
+        .button--tertiary:disabled {
+            background: var(--button-tertiary-surface-disabled);
+            color: var(--button-tertiary-content-disabled);
+            border-color: var(--button-tertiary-border-disabled);
+            cursor: not-allowed;
+        }
+
+        /* Icon only */
+        .button--iconOnly {
+            padding: 8px;
+            aspect-ratio: 1;
+        }
+
+        .button--iconOnly.button--large {
+            width: 48px;
+        }
+
+        .button--iconOnly.button--medium {
+            width: 40px;
+        }
+
+        .button--iconOnly.button--small {
+            width: 32px;
+        }
+
+        /* Icon */
+        .button-icon {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+        }
+
+        .button--small .button-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Code section */
+        .code-section {
+            background: var(--color-surface-panel);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+
+        .code-section h2 {
+            margin-bottom: 16px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Documentation link */
+        .doc-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-brand-highlighterteal);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .doc-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Button Component</h1>
+            <div class="mode-toggle">
+                <button class="active" onclick="setTheme('light')">☀️ Light</button>
+                <button onclick="setTheme('dark')">🌙 Dark</button>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>Type</label>
+                <div class="button-group">
+                    <button class="control-btn active" onclick="setType('primary')">Primary</button>
+                    <button class="control-btn" onclick="setType('secondary')">Secondary</button>
+                    <button class="control-btn" onclick="setType('tertiary')">Tertiary</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Size</label>
+                <div class="button-group">
+                    <button class="control-btn" onclick="setSize('large')">Large (48px)</button>
+                    <button class="control-btn active" onclick="setSize('medium')">Medium (40px)</button>
+                    <button class="control-btn" onclick="setSize('small')">Small (32px)</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Icon</label>
+                <div class="button-group">
+                    <button class="control-btn active" onclick="setIcon('none')">None</button>
+                    <button class="control-btn" onclick="setIcon('left')">Icon Left</button>
+                    <button class="control-btn" onclick="setIcon('right')">Icon Right</button>
+                    <button class="control-btn" onclick="setIcon('only')">Icon Only</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>State</label>
+                <div class="button-group">
+                    <button class="control-btn active" onclick="setState('default')">Default</button>
+                    <button class="control-btn" onclick="setState('hover')">Hover</button>
+                    <button class="control-btn" onclick="setState('disabled')">Disabled</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-area">
+            <button id="demoButton" class="button button--primary button--medium">
+                Button Text
+            </button>
+        </div>
+
+        <div class="code-section">
+            <h2>HTML</h2>
+            <pre id="htmlCode"></pre>
+        </div>
+
+        <div class="code-section">
+            <h2>CSS Tokens Used</h2>
+            <pre id="cssTokens"></pre>
+        </div>
+
+        <a href="README.md" class="doc-link">
+            📄 View Full Documentation →
+        </a>
+    </div>
+
+    <script>
+        let config = {
+            type: 'primary',
+            size: 'medium',
+            icon: 'none',
+            state: 'default',
+            theme: 'light'
+        };
+
+        // SVG icons
+        const iconSVG = `<svg class="button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="m9 12 2 2 4-4"/>
+        </svg>`;
+
+        function setTheme(theme) {
+            config.theme = theme;
+            document.documentElement.setAttribute('data-theme', theme);
+            
+            document.querySelectorAll('.mode-toggle button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            updateButton();
+        }
+
+        function setType(type) {
+            config.type = type;
+            updateControlButtons(event.target);
+            updateButton();
+        }
+
+        function setSize(size) {
+            config.size = size;
+            updateControlButtons(event.target);
+            updateButton();
+        }
+
+        function setIcon(icon) {
+            config.icon = icon;
+            updateControlButtons(event.target);
+            updateButton();
+        }
+
+        function setState(state) {
+            config.state = state;
+            updateControlButtons(event.target);
+            updateButton();
+        }
+
+        function updateControlButtons(target) {
+            const group = target.parentElement;
+            group.querySelectorAll('.control-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            target.classList.add('active');
+        }
+
+        function updateButton() {
+            const button = document.getElementById('demoButton');
+            
+            // Reset classes
+            button.className = 'button';
+            button.className += ` button--${config.type}`;
+            button.className += ` button--${config.size}`;
+            
+            // Handle icon configurations
+            if (config.icon === 'only') {
+                button.className += ' button--iconOnly';
+                button.innerHTML = iconSVG;
+                button.setAttribute('aria-label', 'Button action');
+            } else if (config.icon === 'left') {
+                button.innerHTML = iconSVG + ' Button Text';
+            } else if (config.icon === 'right') {
+                button.innerHTML = 'Button Text ' + iconSVG;
+            } else {
+                button.innerHTML = 'Button Text';
+            }
+            
+            // Handle states
+            button.disabled = config.state === 'disabled';
+            
+            if (config.state === 'hover') {
+                button.style.cssText = getHoverStyles();
+            } else {
+                button.style.cssText = '';
+            }
+            
+            updateCode();
+        }
+
+        function getHoverStyles() {
+            const styles = {
+                primary: 'background: var(--button-primary-surface-hover);',
+                secondary: 'background: var(--button-secondary-surface-hover);',
+                tertiary: 'background: var(--button-tertiary-surface-hover);'
+            };
+            return styles[config.type];
+        }
+
+        function updateCode() {
+            // HTML code
+            let htmlCode = `<button class="button button--${config.type} button--${config.size}`;
+            if (config.icon === 'only') {
+                htmlCode += ' button--iconOnly"';
+            } else {
+                htmlCode += '"';
+            }
+            
+            if (config.state === 'disabled') {
+                htmlCode += ' disabled';
+            }
+            
+            if (config.icon === 'only') {
+                htmlCode += ' aria-label="Button action"';
+            }
+            
+            htmlCode += '>\n';
+            
+            if (config.icon === 'left') {
+                htmlCode += '  <svg class="button-icon">...</svg>\n  Button Text\n';
+            } else if (config.icon === 'right') {
+                htmlCode += '  Button Text\n  <svg class="button-icon">...</svg>\n';
+            } else if (config.icon === 'only') {
+                htmlCode += '  <svg class="button-icon">...</svg>\n';
+            } else {
+                htmlCode += '  Button Text\n';
+            }
+            
+            htmlCode += '</button>';
+            
+            document.getElementById('htmlCode').textContent = htmlCode;
+            
+            // CSS tokens
+            const tokens = getCSSTokens();
+            document.getElementById('cssTokens').textContent = tokens;
+        }
+
+        function getCSSTokens() {
+            const stateMap = {
+                default: 'active',
+                hover: 'hover',
+                disabled: 'disabled'
+            };
+            
+            const state = stateMap[config.state];
+            
+            return `.button--${config.type} {
+  background: var(--button-${config.type}-surface-${state});
+  color: var(--button-${config.type}-content-${state === 'disabled' ? 'disabled' : 'content'});
+  border-color: var(--button-${config.type}-border-${state});
+}
+
+/* Size: ${config.size} */
+.button--${config.size} {
+  height: ${config.size === 'large' ? '48px' : config.size === 'medium' ? '40px' : '32px'};
+  padding: 8px;
+  font-size: ${config.size === 'small' ? '16px' : '18px'};
+  border-radius: ${config.size === 'large' ? '8px' : config.size === 'medium' ? '6px' : '4px'};
+}`;
+        }
+
+        // Initialize
+        updateButton();
+    </script>
+</body>
+</html>
