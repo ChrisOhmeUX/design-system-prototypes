@@ -27,7 +27,6 @@
             text-align: center;
         } 
         
-        
         h1 {
             font-size: 48px;
             font-weight: 600;
@@ -155,11 +154,9 @@
             background: rgba(26, 26, 26, 0.8);
             border: 1px solid #333;
             border-radius: 12px;
-            padding: 32px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
-            gap: 20px;
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
@@ -177,14 +174,66 @@
             transition: opacity 0.3s;
         }
         
-        .prototype-card:hover {
+        .prototype-card:hover::before {
+            opacity: 1;
+        }
+        
+        .prototype-card.has-demo:hover {
             border-color: #00ff88;
             transform: translateY(-4px);
             box-shadow: 0 20px 40px rgba(0, 255, 136, 0.15);
         }
         
-        .prototype-card:hover::before {
-            opacity: 1;
+        .prototype-card.coming-soon {
+            opacity: 0.6;
+        }
+        
+        /* Thumbnail Preview */
+        .card-thumbnail {
+            height: 200px;
+            background: rgba(16, 16, 16, 0.6);
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-thumbnail.has-demo {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, rgba(0, 204, 255, 0.05) 100%);
+        }
+        
+        .thumbnail-icon {
+            font-size: 64px;
+            opacity: 0.3;
+        }
+        
+        .thumbnail-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0, 255, 136, 0.9);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .thumbnail-badge.coming-soon {
+            background: rgba(128, 128, 128, 0.5);
+            color: #999;
+        }
+        
+        .card-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
         }
         
         .card-header {
@@ -238,6 +287,11 @@
             letter-spacing: 0.5px;
         }
         
+        .tag.complete {
+            background: rgba(0, 255, 136, 0.2);
+            border-color: rgba(0, 255, 136, 0.4);
+        }
+        
         .last-updated {
             font-size: 12px;
             color: #666;
@@ -271,6 +325,14 @@
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 16px rgba(0, 255, 136, 0.3);
+        }
+        
+        .btn-primary:disabled,
+        .btn-primary.disabled {
+            background: rgba(128, 128, 128, 0.3);
+            color: #666;
+            cursor: not-allowed;
+            pointer-events: none;
         }
         
         .btn-secondary {
@@ -366,49 +428,60 @@
         <div class="prototype-grid">
             
             <!-- hub-tc-management -->
-            <div class="prototype-card" data-folder="hub-tc-management">
-                <div class="card-header">
-                    <h2>Terms and conditions management</h2>
-                    <p>Ohme agent terms management area</p>
+            <div class="prototype-card has-demo" data-folder="hub-tc-management">
+                <div class="card-thumbnail has-demo">
+                    <div class="thumbnail-icon">📋</div>
+                    <div class="thumbnail-badge">Live</div>
                 </div>
-                <div class="card-footer">
-                    <div class="card-meta">
-                        <div class="tags">
-                            <span class="tag">Table</span>
-                            <span class="tag">Filter</span>
-                            <span class="tag">Users</span>
-                        </div>
-                        <span class="last-updated">Loading...</span>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h2>Terms and conditions management</h2>
+                        <p>Ohme agent terms management area</p>
                     </div>
-                    <div class="card-actions">
-                        <a href="Prototypes/hub-tc-management/index.html" class="action-btn btn-primary">View Prototype</a>
-                        <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/hub-tc-management/README.md" 
-                           class="action-btn btn-secondary" 
-                           target="_blank">Documentation</a>
+                    <div class="card-footer">
+                        <div class="card-meta">
+                            <div class="tags">
+                                <span class="tag">Table</span>
+                                <span class="tag">Admin</span>
+                            </div>
+                            <span class="last-updated">Loading...</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="Prototypes/hub-tc-management/index.html" class="action-btn btn-primary">View Prototype</a>
+                            <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/hub-tc-management/README.md" 
+                               class="action-btn btn-secondary" 
+                               target="_blank">Documentation</a>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <!-- Hub users table filter -->
-            <div class="prototype-card" data-folder="hub-users-filter">
-                <div class="card-header">
-                    <h2>Users Table Filter</h2>
-                    <p>Filter for sorting results on users table</p>
+            <div class="prototype-card has-demo" data-folder="hub-users-filter">
+                <div class="card-thumbnail has-demo">
+                    <div class="thumbnail-icon">🔍</div>
+                    <div class="thumbnail-badge">Live</div>
                 </div>
-                <div class="card-footer">
-                    <div class="card-meta">
-                        <div class="tags">
-                            <span class="tag">Table</span>
-                            <span class="tag">Filter</span>
-                            <span class="tag">Users</span>
-                        </div>
-                        <span class="last-updated">Loading...</span>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h2>Users Table Filter</h2>
+                        <p>Filter for sorting results on users table</p>
                     </div>
-                    <div class="card-actions">
-                        <a href="Prototypes/hub-users-filter/index.html" class="action-btn btn-primary">View Prototype</a>
-                        <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/hub-users-filter/README.md" 
-                           class="action-btn btn-secondary" 
-                           target="_blank">Documentation</a>
+                    <div class="card-footer">
+                        <div class="card-meta">
+                            <div class="tags">
+                                <span class="tag">Table</span>
+                                <span class="tag">Filter</span>
+                                <span class="tag">Users</span>
+                            </div>
+                            <span class="last-updated">Loading...</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="Prototypes/hub-users-filter/index.html" class="action-btn btn-primary">View Prototype</a>
+                            <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/hub-users-filter/README.md" 
+                               class="action-btn btn-secondary" 
+                               target="_blank">Documentation</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -421,49 +494,61 @@
         <div class="prototype-grid">
             
             <!-- PC Self Billing Prototype -->
-            <div class="prototype-card" data-folder="pc-self-billing">
-                <div class="card-header">
-                    <h2>Self Billing Dashboard</h2>
-                    <p>Billing dashboard interface supporting self-billing finance model with quarterly payment cycles</p>
+            <div class="prototype-card has-demo" data-folder="pc-self-billing">
+                <div class="card-thumbnail has-demo">
+                    <div class="thumbnail-icon">💰</div>
+                    <div class="thumbnail-badge">Live</div>
                 </div>
-                <div class="card-footer">
-                    <div class="card-meta">
-                        <div class="tags">
-                            <span class="tag">Dashboard</span>
-                            <span class="tag">Billing</span>
-                            <span class="tag">Finance</span>
-                        </div>
-                        <span class="last-updated">Loading...</span>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h2>Self Billing Dashboard</h2>
+                        <p>Billing dashboard interface supporting self-billing finance model with quarterly payment cycles</p>
                     </div>
-                    <div class="card-actions">
-                        <a href="Prototypes/pc-self-billing/index.html" class="action-btn btn-primary">View Prototype</a>
-                        <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/pc-self-billing/README.md" 
-                           class="action-btn btn-secondary" 
-                           target="_blank">Documentation</a>
+                    <div class="card-footer">
+                        <div class="card-meta">
+                            <div class="tags">
+                                <span class="tag">Dashboard</span>
+                                <span class="tag">Billing</span>
+                                <span class="tag">Finance</span>
+                            </div>
+                            <span class="last-updated">Loading...</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="Prototypes/pc-self-billing/index.html" class="action-btn btn-primary">View Prototype</a>
+                            <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/pc-self-billing/README.md" 
+                               class="action-btn btn-secondary" 
+                               target="_blank">Documentation</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- PC Self Billing Invoice -->
-            <div class="prototype-card" data-folder="pc-self-billing-invoice">
-                <div class="card-header">
-                    <h2>Self Billing Invoice</h2>
-                    <p>Invoice template for self billing with quarterly payment tracking and financial reconciliation</p>
+            <div class="prototype-card has-demo" data-folder="pc-self-billing-invoice">
+                <div class="card-thumbnail has-demo">
+                    <div class="thumbnail-icon">📄</div>
+                    <div class="thumbnail-badge">Live</div>
                 </div>
-                <div class="card-footer">
-                    <div class="card-meta">
-                        <div class="tags">
-                            <span class="tag">Invoice</span>
-                            <span class="tag">Billing</span>
-                            <span class="tag">Template</span>
-                        </div>
-                        <span class="last-updated">Loading...</span>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h2>Self Billing Invoice</h2>
+                        <p>Invoice template for self billing with quarterly payment tracking and financial reconciliation</p>
                     </div>
-                    <div class="card-actions">
-                        <a href="Prototypes/pc-self-billing-invoice/index.html" class="action-btn btn-primary">View Prototype</a>
-                        <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/pc-self-billing-invoice/README.md" 
-                           class="action-btn btn-secondary" 
-                           target="_blank">Documentation</a>
+                    <div class="card-footer">
+                        <div class="card-meta">
+                            <div class="tags">
+                                <span class="tag">Invoice</span>
+                                <span class="tag">Billing</span>
+                                <span class="tag">Template</span>
+                            </div>
+                            <span class="last-updated">Loading...</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="Prototypes/pc-self-billing-invoice/index.html" class="action-btn btn-primary">View Prototype</a>
+                            <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/pc-self-billing-invoice/README.md" 
+                               class="action-btn btn-secondary" 
+                               target="_blank">Documentation</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -504,67 +589,89 @@
             <div class="prototype-grid">
                 
                 <!-- T1 Tokens -->
-                <div class="prototype-card" data-folder="ds-t1-tokens">
-                    <div class="card-header">
-                        <h2>T1 tokens</h2>
-                        <p>Foundation level components. those should be aliased in component used.</p>
+                <div class="prototype-card has-demo" data-folder="ds-t1-tokens">
+                    <div class="card-thumbnail has-demo">
+                        <div class="thumbnail-icon">🎨</div>
+                        <div class="thumbnail-badge">Complete</div>
                     </div>
-                    <div class="card-footer">
-                        <div class="card-meta">
-                            <div class="tags">
-                                <span class="tag">Token system</span>
-                            </div>
-                            <span class="last-updated">Loading...</span>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Tier 1 - Primitives</h2>
+                            <p>156 foundation tokens: colors, typography, spacing, and values</p>
                         </div>
-                        <div class="card-actions">
-                            <a href="Prototypes/ds-t1-tokens/index.html" class="action-btn btn-primary">View Prototype</a>
-                            <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-t1-tokens/README.md" 
-                               class="action-btn btn-secondary" 
-                               target="_blank">Documentation</a>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag complete">✓ Complete</span>
+                                    <span class="tag">156 Tokens</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="Prototypes/ds-t1-tokens/index.html" class="action-btn btn-primary">View Demo</a>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-t1-tokens/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Documentation</a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- T2 Tokens -->
-                <div class="prototype-card" data-folder="ds-t2-tokens">
-                    <div class="card-header">
-                        <h2>T2 tokens</h2>
-                        <p>Semantic level components. Light and dark modes are controled from this level.</p>
+                <div class="prototype-card has-demo" data-folder="ds-t2-tokens">
+                    <div class="card-thumbnail has-demo">
+                        <div class="thumbnail-icon">🌓</div>
+                        <div class="thumbnail-badge">Complete</div>
                     </div>
-                    <div class="card-footer">
-                        <div class="card-meta">
-                            <div class="tags">
-                                <span class="tag">Token system</span>
-                            </div>
-                            <span class="last-updated">Loading...</span>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Tier 2 - Semantic</h2>
+                            <p>452 semantic tokens with light/dark mode switching</p>
                         </div>
-                        <div class="card-actions">
-                            <a href="Prototypes/ds-t2-tokens/index.html" class="action-btn btn-primary">View Prototype</a>
-                            <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-t2-tokens/README.md" 
-                               class="action-btn btn-secondary" 
-                               target="_blank">Documentation</a>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag complete">✓ Complete</span>
+                                    <span class="tag">452 Tokens</span>
+                                    <span class="tag">Mode-Aware</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="Prototypes/ds-t2-tokens/index.html" class="action-btn btn-primary">View Demo</a>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-t2-tokens/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Documentation</a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- T3 Tokens -->
-                <div class="prototype-card" data-folder="ds-t3-tokens">
-                    <div class="card-header">
-                        <h2>T3 tokens</h2>
-                        <p>Component-specific design decisions, always referencing Tier 2 semantic tokens.</p>
+                <div class="prototype-card has-demo" data-folder="ds-t3-tokens">
+                    <div class="card-thumbnail has-demo">
+                        <div class="thumbnail-icon">🧩</div>
+                        <div class="thumbnail-badge">Complete</div>
                     </div>
-                    <div class="card-footer">
-                        <div class="card-meta">
-                            <div class="tags">
-                                <span class="tag">Token system</span>
-                            </div>
-                            <span class="last-updated">Loading...</span>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Tier 3 - Components</h2>
+                            <p>311 component-specific tokens referencing Tier 2 semantic layer</p>
                         </div>
-                        <div class="card-actions">
-                            <a href="Prototypes/ds-t3-tokens/index.html" class="action-btn btn-primary">View Prototype</a>
-                            <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-t3-tokens/README.md" 
-                               class="action-btn btn-secondary" 
-                               target="_blank">Documentation</a>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag complete">✓ Complete</span>
+                                    <span class="tag">311 Tokens</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="Prototypes/ds-t3-tokens/index.html" class="action-btn btn-primary">View Demo</a>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-t3-tokens/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Documentation</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -574,19 +681,1204 @@
 
         <!-- Components Sub-tab -->
         <div id="ds-components" class="sub-tab-content">
-            <div class="empty-state">
-                <div class="empty-state-icon">🧩</div>
-                <h3>No component prototypes yet</h3>
-                <p>Design system component showcases will appear here</p>
+            <div class="prototype-grid">
+                
+                <!-- Alert Count -->
+                <div class="prototype-card coming-soon" data-folder="ds-alert-count-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">🔔</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Alert Count</h2>
+                            <p>Notification counter badge component</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">Badge</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-alert-count-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Avatar -->
+                <div class="prototype-card coming-soon" data-folder="ds-avatar-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">👤</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Avatar</h2>
+                            <p>User profile image and initials component</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">User</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-avatar-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="prototype-card has-demo" data-folder="ds-button-component">
+                    <div class="card-thumbnail has-demo">
+                        <div class="thumbnail-icon">🔘</div>
+                        <div class="thumbnail-badge">Complete</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Button</h2>
+                            <p>Primary, secondary, tertiary button variants with states</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag complete">✓ Complete</span>
+                                    <span class="tag">108 Variants</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="Prototypes/ds-button-component/index.html" class="action-btn btn-primary">View Demo</a>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-button-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Checkbox -->
+                <div class="prototype-card coming-soon" data-folder="ds-checkbox-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">☑️</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Checkbox</h2>
+                            <p>Selection control with multiple states</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">Form</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-checkbox-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dropdown -->
+                <div class="prototype-card coming-soon" data-folder="ds-dropdown-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">▼</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Dropdown</h2>
+                            <p>Select menu with searchable options</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">Form</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-dropdown-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flag Icon -->
+                <div class="prototype-card coming-soon" data-folder="ds-flag-icon-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">🚩</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Flag Icon</h2>
+                            <p>Country flag icon component</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Foundation</span>
+                                    <span class="tag">Icon</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-flag-icon-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="prototype-card coming-soon" data-folder="ds-footer-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">⬇️</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Footer</h2>
+                            <p>Page footer with legal and navigation links</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">Layout</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-footer-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Icon System -->
+                <div class="prototype-card coming-soon" data-folder="ds-icon-system--radix-arrows">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">🎯</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Icon System - Radix Arrows</h2>
+                            <p>334 icons across 10 Radix UI sets</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Foundation</span>
+                                    <span class="tag">334 Icons</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-icon-system--radix-arrows/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input -->
+                <div class="prototype-card coming-soon" data-folder="ds-input-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">📝</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Input</h2>
+                            <p>Text input with 500+ variants and states</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">500+ Variants</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-input-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logo -->
+                <div class="prototype-card coming-soon" data-folder="ds-logo-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">⚡</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Logo</h2>
+                            <p>Ohme brand logo in multiple sizes and variants</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Foundation</span>
+                                    <span class="tag">Brand</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-logo-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="prototype-card coming-soon" data-folder="ds-modal-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">🗔</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Modal</h2>
+                            <p>Dialog overlay with header, body, and actions</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">Overlay</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-modal-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Name Group -->
+                <div class="prototype-card coming-soon" data-folder="ds-name-group-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">👥</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Name Group</h2>
+                            <p>User name display with avatar component</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">User</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-name-group-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="prototype-card coming-soon" data-folder="ds-pagination-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">◀️ ▶️</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Pagination</h2>
+                            <p>Page navigation for large datasets</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">Navigation</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-pagination-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pill -->
+                <div class="prototype-card coming-soon" data-folder="ds-pill-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">💊</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Pill</h2>
+                            <p>Tag component with multiple intent types</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">Badge</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-pill-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Radio Button -->
+                <div class="prototype-card coming-soon" data-folder="ds-radio-button-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">◉</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Radio Button</h2>
+                            <p>Single selection control</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">Form</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-radio-button-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab System -->
+                <div class="prototype-card coming-soon" data-folder="ds-tab-system">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">📑</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Tab System</h2>
+                            <p>Navigation tabs with new and old variants</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">Navigation</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-tab-system/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Textarea -->
+                <div class="prototype-card coming-soon" data-folder="ds-textarea-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">📄</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Textarea</h2>
+                            <p>Multi-line text input field</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">Form</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-textarea-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toast Notification -->
+                <div class="prototype-card coming-soon" data-folder="ds-toast-notification-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">🔔</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Toast Notification</h2>
+                            <p>Temporary notification message component</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">Feedback</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-toast-notification-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toggle Switch -->
+                <div class="prototype-card coming-soon" data-folder="ds-toggle-switch-system">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">🎚️</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Toggle Switch</h2>
+                            <p>On/off switch control</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">Form</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-toggle-switch-system/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tooltip -->
+                <div class="prototype-card coming-soon" data-folder="ds-tooltip-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">💬</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Tooltip</h2>
+                            <p>Contextual help and information overlay</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">Overlay</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-tooltip-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Group -->
+                <div class="prototype-card coming-soon" data-folder="ds-user-group-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">👨‍👩‍👧‍👦</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>User Group</h2>
+                            <p>User information display with name and metadata</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Core UI</span>
+                                    <span class="tag">User</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-user-group-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Config Panel -->
+                <div class="prototype-card coming-soon" data-folder="ds-config-panel-system">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">⚙️</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Config Panel</h2>
+                            <p>Settings and configuration interface</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Functional</span>
+                                    <span class="tag">Settings</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-config-panel-system/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contacts -->
+                <div class="prototype-card coming-soon" data-folder="ds-contacts-system">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">📇</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Contacts System</h2>
+                            <p>Contact information display and management</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Functional</span>
+                                    <span class="tag">Data</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-contacts-system/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter System -->
+                <div class="prototype-card coming-soon" data-folder="ds-filter-system">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">🎛️</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Filter System</h2>
+                            <p>Advanced filtering with hierarchical structure</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Functional</span>
+                                    <span class="tag">Table</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-filter-system/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Type Pill -->
+                <div class="prototype-card coming-soon" data-folder="ds-job-type-pill-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">🏷️</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Job Type Pill</h2>
+                            <p>Specialized pill for job categorization</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Functional</span>
+                                    <span class="tag">Badge</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-job-type-pill-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu System -->
+                <div class="prototype-card coming-soon" data-folder="ds-menu-system">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">☰</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Menu System</h2>
+                            <p>Navigation menu with collapsible sections</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Functional</span>
+                                    <span class="tag">Navigation</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-menu-system/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- No Results -->
+                <div class="prototype-card coming-soon" data-folder="ds-no-results-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">🔍</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>No Results</h2>
+                            <p>Empty state for search and filter results</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Functional</span>
+                                    <span class="tag">Empty State</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-no-results-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notes -->
+                <div class="prototype-card coming-soon" data-folder="ds-notes-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">📝</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Notes</h2>
+                            <p>Text note display component</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Functional</span>
+                                    <span class="tag">Content</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-notes-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Bar -->
+                <div class="prototype-card coming-soon" data-folder="ds-status-bar-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">📊</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Status Bar</h2>
+                            <p>Progress and status indicator</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Functional</span>
+                                    <span class="tag">Status</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-status-bar-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Pill -->
+                <div class="prototype-card coming-soon" data-folder="ds-status-pill-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">🏷️</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Status Pill</h2>
+                            <p>Status badge with semantic colors</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Functional</span>
+                                    <span class="tag">Badge</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-status-pill-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Title Group -->
+                <div class="prototype-card coming-soon" data-folder="ds-title-group-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">📌</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Title Group</h2>
+                            <p>Page title with optional subtitle and actions</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Functional</span>
+                                    <span class="tag">Layout</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-title-group-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Panel -->
+                <div class="prototype-card coming-soon" data-folder="ds-top-panel-component">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">⬆️</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Top Panel</h2>
+                            <p>Page header panel component</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Functional</span>
+                                    <span class="tag">Layout</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-top-panel-component/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Validation List -->
+                <div class="prototype-card coming-soon" data-folder="ds-validation-list-system">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">✅</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Validation List</h2>
+                            <p>Form validation feedback system</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Functional</span>
+                                    <span class="tag">Form</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-validation-list-system/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table Cell System -->
+                <div class="prototype-card coming-soon" data-folder="ds-table-cell-system">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">📊</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Table Cell System</h2>
+                            <p>24 specialized cell types for data tables</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Table</span>
+                                    <span class="tag">24 Cell Types</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-table-cell-system/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table Column Sort -->
+                <div class="prototype-card coming-soon" data-folder="ds-table-column-sort">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">↕️</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Table Column Sort</h2>
+                            <p>Sortable column headers with indicators</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Table</span>
+                                    <span class="tag">Sorting</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-table-column-sort/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table Controls -->
+                <div class="prototype-card coming-soon" data-folder="ds-table-controls">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">🎛️</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Table Controls</h2>
+                            <p>Search, filter, and action controls for tables</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Table</span>
+                                    <span class="tag">Controls</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-table-controls/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table Structure -->
+                <div class="prototype-card coming-soon" data-folder="ds-table-structure">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">📐</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Table Structure</h2>
+                            <p>Base table layout and anatomy</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Table</span>
+                                    <span class="tag">Layout</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-table-structure/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table System Overview -->
+                <div class="prototype-card coming-soon" data-folder="ds-table-system-overview">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">📋</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Table System Overview</h2>
+                            <p>Complete table system documentation</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Table</span>
+                                    <span class="tag">System</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-table-system-overview/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table Tracker Analytics -->
+                <div class="prototype-card coming-soon" data-folder="ds-table-tracker-analytics">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">📈</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Table Tracker Analytics</h2>
+                            <p>Analytics and metrics for table interactions</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Table</span>
+                                    <span class="tag">Analytics</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-table-tracker-analytics/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
         <!-- Templates Sub-tab -->
         <div id="ds-templates" class="sub-tab-content">
-            <div class="empty-state">
-                <div class="empty-state-icon">📋</div>
-                <h3>No template prototypes yet</h3>
-                <p>Design system template examples will appear here</p>
+            <div class="prototype-grid">
+                
+                <!-- Authentication Page -->
+                <div class="prototype-card coming-soon" data-folder="ds-authentication-page-template">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">🔐</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>Authentication Page</h2>
+                            <p>Login and authentication page template</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Template</span>
+                                    <span class="tag">Auth</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-authentication-page-template/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- My Preferences Template -->
+                <div class="prototype-card coming-soon" data-folder="ds-my-preferences-template">
+                    <div class="card-thumbnail">
+                        <div class="thumbnail-icon">⚙️</div>
+                        <div class="thumbnail-badge coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2>My Preferences</h2>
+                            <p>User settings and preferences page template</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="tags">
+                                    <span class="tag">Template</span>
+                                    <span class="tag">Settings</span>
+                                </div>
+                                <span class="last-updated">Loading...</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-primary disabled">Coming Soon</button>
+                                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-my-preferences-template/README.md" 
+                                   class="action-btn btn-secondary" 
+                                   target="_blank">Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -594,42 +1886,24 @@
 
     <script>
         function switchTab(event, tabId) {
-            // Hide all tab contents
             const allContents = document.querySelectorAll('.tab-content');
-            allContents.forEach(content => {
-                content.classList.remove('active');
-            });
+            allContents.forEach(content => content.classList.remove('active'));
             
-            // Remove active class from all buttons
             const allButtons = document.querySelectorAll('.tab-btn');
-            allButtons.forEach(button => {
-                button.classList.remove('active');
-            });
+            allButtons.forEach(button => button.classList.remove('active'));
             
-            // Show selected tab content
             document.getElementById(tabId).classList.add('active');
-            
-            // Add active class to clicked button
             event.currentTarget.classList.add('active');
         }
 
         function switchSubTab(event, subTabId) {
-            // Hide all sub-tab contents within design-system
             const allSubContents = document.querySelectorAll('.sub-tab-content');
-            allSubContents.forEach(content => {
-                content.classList.remove('active');
-            });
+            allSubContents.forEach(content => content.classList.remove('active'));
             
-            // Remove active class from all sub-tab buttons
             const allSubButtons = document.querySelectorAll('.sub-tab-btn');
-            allSubButtons.forEach(button => {
-                button.classList.remove('active');
-            });
+            allSubButtons.forEach(button => button.classList.remove('active'));
             
-            // Show selected sub-tab content
             document.getElementById(subTabId).classList.add('active');
-            
-            // Add active class to clicked button
             event.currentTarget.classList.add('active');
         }
         
@@ -667,7 +1941,6 @@
             }
         }
         
-        // Load dates when page loads
         window.addEventListener('load', fetchLastUpdated);
     </script>
 </body>
