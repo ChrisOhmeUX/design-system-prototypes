@@ -79,6 +79,41 @@
             color: #000;
             background: linear-gradient(135deg, #00ff88 0%, #00ccff 100%);
         }
+
+        /* Sub-tab Navigation */
+        .sub-tab-navigation {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            padding: 6px;
+            background: rgba(16, 16, 16, 0.6);
+            border-radius: 10px;
+            border: 1px solid #2a2a2a;
+            overflow-x: auto;
+        }
+        
+        .sub-tab-btn {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            color: #777;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 7px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        
+        .sub-tab-btn:hover {
+            color: #ccc;
+            background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .sub-tab-btn.active {
+            color: #000;
+            background: linear-gradient(135deg, #00ff88 0%, #00ccff 100%);
+        }
         
         /* Tab Content */
         .tab-content {
@@ -86,6 +121,15 @@
         }
         
         .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .sub-tab-content {
+            display: none;
+        }
+        
+        .sub-tab-content.active {
             display: block;
             animation: fadeIn 0.3s ease;
         }
@@ -279,6 +323,11 @@
                 flex-wrap: nowrap;
                 overflow-x: scroll;
             }
+
+            .sub-tab-navigation {
+                flex-wrap: nowrap;
+                overflow-x: scroll;
+            }
             
             .prototype-grid {
                 grid-template-columns: 1fr;
@@ -300,7 +349,7 @@
         <button class="tab-btn" onclick="switchTab(event, 'park-charge')">Park & Charge</button>
         <button class="tab-btn" onclick="switchTab(event, 'dealer')">Dealer Portal</button>
         <button class="tab-btn" onclick="switchTab(event, 'customer')">Customer Portal</button>
-        <button class="tab-btn" onclick="switchTab(event, 'design-system')">Design system</button>
+        <button class="tab-btn" onclick="switchTab(event, 'design-system')">Design System</button>
     </div>
     
     <!-- Connect Tab -->
@@ -311,11 +360,10 @@
             <p>Installation partner portal prototypes will appear here</p>
         </div>
     </div>
-    <!-- chgecktest -->
+    
     <!-- Hub Tab -->
     <div id="hub" class="tab-content">
         <div class="prototype-grid">
-
             
             <!-- hub-tc-management -->
             <div class="prototype-card" data-folder="hub-tc-management">
@@ -441,77 +489,107 @@
         </div>
     </div>
 
-     <!-- Design system -->
+    <!-- Design System Tab with Sub-tabs -->
     <div id="design-system" class="tab-content">
-        <div class="prototype-grid">
-            
-            <!-- T1 Tokens -->
-            <div class="prototype-card" data-folder="ds-t1-tokens">
-                <div class="card-header">
-                    <h2>T1 tokens</h2>
-                    <p>Foundation level components. those should be aliased in component used.</p>
-                </div>
-                <div class="card-footer">
-                    <div class="card-meta">
-                        <div class="tags">
-                            <span class="tag">Token system</span>
-                        </div>
-                        <span class="last-updated">Loading...</span>
-                    </div>
-                    <div class="card-actions">
-                        <a href="Prototypes/ds-t1-tokens/index.html" class="action-btn btn-primary">View Prototype</a>
-                        <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-t1-tokens/README.md" 
-                           class="action-btn btn-secondary" 
-                           target="_blank">Documentation</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- T2 Tokens -->
-            <div class="prototype-card" data-folder="ds-t2-tokens">
-                <div class="card-header">
-                    <h2>T2 tokens</h2>
-                    <p>Semantic level components. Light and dark modes are controled from this level.</p>
-                </div>
-                <div class="card-footer">
-                    <div class="card-meta">
-                        <div class="tags">
-                            <span class="tag">Token system</span>
-                        </div>
-                        <span class="last-updated">Loading...</span>
-                    </div>
-                    <div class="card-actions">
-                        <a href="Prototypes/ds-t2-tokens/index.html" class="action-btn btn-primary">View Prototype</a>
-                        <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-t2-tokens/README.md" 
-                           class="action-btn btn-secondary" 
-                           target="_blank">Documentation</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- T3 Tokens -->
-            <div class="prototype-card" data-folder="ds-t3-tokens">
-                <div class="card-header">
-                    <h2>T3 tokens</h2>
-                    <p>Component-specific design decisions, always referencing Tier 2 semantic tokens.</p>
-                </div>
-                <div class="card-footer">
-                    <div class="card-meta">
-                        <div class="tags">
-                            <span class="tag">Token system</span>
-                        </div>
-                        <span class="last-updated">Loading...</span>
-                    </div>
-                    <div class="card-actions">
-                        <a href="Prototypes/ds-t3-tokens/index.html" class="action-btn btn-primary">View Prototype</a>
-                        <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-t3-tokens/README.md" 
-                           class="action-btn btn-secondary" 
-                           target="_blank">Documentation</a>
-                    </div>
-                </div>
-            </div>
-
+        
+        <!-- Sub-tab Navigation -->
+        <div class="sub-tab-navigation">
+            <button class="sub-tab-btn active" onclick="switchSubTab(event, 'ds-tokens')">Tokens</button>
+            <button class="sub-tab-btn" onclick="switchSubTab(event, 'ds-components')">Components</button>
+            <button class="sub-tab-btn" onclick="switchSubTab(event, 'ds-templates')">Templates</button>
         </div>
+
+        <!-- Tokens Sub-tab -->
+        <div id="ds-tokens" class="sub-tab-content active">
+            <div class="prototype-grid">
+                
+                <!-- T1 Tokens -->
+                <div class="prototype-card" data-folder="ds-t1-tokens">
+                    <div class="card-header">
+                        <h2>T1 tokens</h2>
+                        <p>Foundation level components. those should be aliased in component used.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-meta">
+                            <div class="tags">
+                                <span class="tag">Token system</span>
+                            </div>
+                            <span class="last-updated">Loading...</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="Prototypes/ds-t1-tokens/index.html" class="action-btn btn-primary">View Prototype</a>
+                            <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-t1-tokens/README.md" 
+                               class="action-btn btn-secondary" 
+                               target="_blank">Documentation</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- T2 Tokens -->
+                <div class="prototype-card" data-folder="ds-t2-tokens">
+                    <div class="card-header">
+                        <h2>T2 tokens</h2>
+                        <p>Semantic level components. Light and dark modes are controled from this level.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-meta">
+                            <div class="tags">
+                                <span class="tag">Token system</span>
+                            </div>
+                            <span class="last-updated">Loading...</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="Prototypes/ds-t2-tokens/index.html" class="action-btn btn-primary">View Prototype</a>
+                            <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-t2-tokens/README.md" 
+                               class="action-btn btn-secondary" 
+                               target="_blank">Documentation</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- T3 Tokens -->
+                <div class="prototype-card" data-folder="ds-t3-tokens">
+                    <div class="card-header">
+                        <h2>T3 tokens</h2>
+                        <p>Component-specific design decisions, always referencing Tier 2 semantic tokens.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-meta">
+                            <div class="tags">
+                                <span class="tag">Token system</span>
+                            </div>
+                            <span class="last-updated">Loading...</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="Prototypes/ds-t3-tokens/index.html" class="action-btn btn-primary">View Prototype</a>
+                            <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-t3-tokens/README.md" 
+                               class="action-btn btn-secondary" 
+                               target="_blank">Documentation</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Components Sub-tab -->
+        <div id="ds-components" class="sub-tab-content">
+            <div class="empty-state">
+                <div class="empty-state-icon">🧩</div>
+                <h3>No component prototypes yet</h3>
+                <p>Design system component showcases will appear here</p>
+            </div>
+        </div>
+
+        <!-- Templates Sub-tab -->
+        <div id="ds-templates" class="sub-tab-content">
+            <div class="empty-state">
+                <div class="empty-state-icon">📋</div>
+                <h3>No template prototypes yet</h3>
+                <p>Design system template examples will appear here</p>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -530,6 +608,26 @@
             
             // Show selected tab content
             document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.currentTarget.classList.add('active');
+        }
+
+        function switchSubTab(event, subTabId) {
+            // Hide all sub-tab contents within design-system
+            const allSubContents = document.querySelectorAll('.sub-tab-content');
+            allSubContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all sub-tab buttons
+            const allSubButtons = document.querySelectorAll('.sub-tab-btn');
+            allSubButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected sub-tab content
+            document.getElementById(subTabId).classList.add('active');
             
             // Add active class to clicked button
             event.currentTarget.classList.add('active');
