@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><!-- v2 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ohme Design System Prototypes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fafafa;
+            color: #1a1a1a;
+        }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+        
+        .prototype-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-top: 32px;
+        }
+        
+        .prototype-card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+            display: block;
+        }
+        
+        .prototype-card:hover {
+            border-color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .prototype-card h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+        
+        .prototype-card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        
+        .prototype-card .meta {
+            font-size: 12px;
+            color: #999;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            color: #666;
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ohme Design System Prototypes</h1>
+    <p class="subtitle">Interactive prototypes for design system components and patterns</p>
+    
+    <div class="prototype-grid">
+        
+        <!-- PC Self Billing Prototype -->
+        <a href="Prototypes/pc-self-billing/index.html" class="prototype-card">
+            <h2>Park & Charge Self Billing</h2>
+            <p>Billing dashboard interface supporting self-billing finance model with quarterly payment cycles</p>
+            <div class="meta">
+                <span class="tag">Park & Charge</span>
+                <span class="tag">Dashboard</span>
+                <span class="tag">Billing</span>
+            </div>
+        </a>
+        
+        <!-- Add more prototypes here as you create them -->
+        <!-- Template:
+        <a href="path/to/prototype.html" class="prototype-card">
+            <h2>Prototype Name</h2>
+            <p>Brief description of what this prototype demonstrates</p>
+            <div class="meta">
+                <span class="tag">Tag1</span>
+                <span class="tag">Tag2</span>
+            </div>
+        </a>
+        -->
+        
+    </div>
+</body>
+</html>
