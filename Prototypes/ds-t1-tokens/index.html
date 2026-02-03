@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tier 1 Primitives - Ohme Design System</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Roobert', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FFFFFF;
+            color: #032536;
+            padding: 40px 20px;
+        }
+        
+        .container { max-width: 1600px; margin: 0 auto; }
+        
+        .header {
+            margin-bottom: 48px;
+            border-bottom: 2px solid #00FFD6;
+            padding-bottom: 24px;
+        }
+        
+        .header h1 {
+            font-size: 44px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .header .subtitle {
+            font-size: 18px;
+            color: #647882;
+        }
+        
+        .token-count {
+            font-size: 14px;
+            color: #647882;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+        
+        .section {
+            margin-bottom: 64px;
+        }
+        
+        .section-header {
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #E5E8E8;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .section-description {
+            font-size: 16px;
+            color: #647882;
+        }
+        
+        /* Color Grid */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        
+        .color-card {
+            background: #F5F5F5;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #E5E8E8;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .color-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        
+        .color-swatch {
+            height: 120px;
+            width: 100%;
+            position: relative;
+        }
+        
+        .color-swatch.checkerboard {
+            background-image: 
+                linear-gradient(45deg, #ccc 25%, transparent 25%),
+                linear-gradient(-45deg, #ccc 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #ccc 75%),
+                linear-gradient(-45deg, transparent 75%, #ccc 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+        
+        .color-info {
+            padding: 16px;
+        }
+        
+        .color-name {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: #032536;
+        }
+        
+        .color-token {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #647882;
+            margin-bottom: 4px;
+            word-break: break-all;
+        }
+        
+        .color-value {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #032536;
+            font-weight: 600;
+            background: #FFFFFF;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+        
+        .color-usage {
+            font-size: 12px;
+            color: #647882;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        /* Typography Grid */
+        .type-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .type-row {
+            background: #F5F5F5;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #E5E8E8;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        
+        .type-meta {
+            min-width: 280px;
+            flex-shrink: 0;
+        }
+        
+        .type-token {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #647882;
+            margin-bottom: 4px;
+        }
+        
+        .type-value {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #032536;
+            font-weight: 600;
+        }
+        
+        .type-sample {
+            flex: 1;
+            color: #032536;
+        }
+        
+        /* Spacing Grid */
+        .spacing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+        
+        .spacing-card {
+            background: #F5F5F5;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #E5E8E8;
+        }
+        
+        .spacing-visual {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 12px;
+        }
+        
+        .spacing-bar {
+            background: #00FFD6;
+            height: 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,255,214,0.3);
+        }
+        
+        .spacing-token {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #647882;
+            margin-bottom: 4px;
+        }
+        
+        .spacing-value {
+            font-weight: 600;
+            font-size: 16px;
+            color: #032536;
+        }
+        
+        .spacing-multiplier {
+            font-size: 13px;
+            color: #647882;
+            margin-top: 4px;
+        }
+        
+        /* Gradient Card */
+        .gradient-card {
+            background: #F5F5F5;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #E5E8E8;
+        }
+        
+        .gradient-swatch {
+            height: 100px;
+            width: 100%;
+        }
+        
+        .gradient-info {
+            padding: 16px;
+        }
+        
+        .gradient-name {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        
+        .gradient-stops {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #647882;
+        }
+        
+        /* Elevation Cards */
+        .elevation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 32px;
+        }
+        
+        .elevation-card {
+            background: #FFFFFF;
+            padding: 32px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .elevation-token {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #647882;
+            margin-bottom: 8px;
+        }
+        
+        .elevation-value {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            color: #032536;
+            background: #F5F5F5;
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 16px;
+        }
+        
+        .e100 { box-shadow: 0px 1px 5.3px rgba(72,70,100,0.07); }
+        .e200 { box-shadow: 0px 3px 15px rgba(72,70,100,0.08); }
+        .e300 { box-shadow: 0px 10px 35px rgba(72,70,100,0.05); }
+        
+        /* Breakpoint Table */
+        .breakpoint-table {
+            width: 100%;
+            background: #F5F5F5;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #E5E8E8;
+        }
+        
+        .breakpoint-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .breakpoint-table th,
+        .breakpoint-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #E5E8E8;
+        }
+        
+        .breakpoint-table th {
+            background: #032536;
+            color: #FFFFFF;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .breakpoint-table td {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        
+        .breakpoint-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .breakpoint-name {
+            font-weight: 600;
+            color: #032536;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Tier 1 - Primitive Tokens</h1>
+            <p class="subtitle">Raw values: the foundation of the Ohme design system</p>
+            <p class="token-count">156 Primitive Tokens</p>
+        </div>
+        
+        <!-- BRAND COLORS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Brand Colors (9 tokens)</h2>
+                <p class="section-description">Core brand identity - the foundation of Ohme's visual language</p>
+            </div>
+            <div class="color-grid" id="brandColors"></div>
+        </div>
+        
+        <!-- SECONDARY COLORS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Secondary Palette (24 tokens)</h2>
+                <p class="section-description">Semantic color palette with 100/300/700/900 variations for state indication</p>
+            </div>
+            <div class="color-grid" id="secondaryColors"></div>
+        </div>
+        
+        <!-- TERTIARY COLORS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Tertiary Colors (18 tokens)</h2>
+                <p class="section-description">Extended palette for gradients, illustrations, and special UI elements</p>
+            </div>
+            <div class="color-grid" id="tertiaryColors"></div>
+        </div>
+        
+        <!-- GRADIENTS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Gradient Stops (11 gradients)</h2>
+                <p class="section-description">Decorative gradients for illustrations and branded elements</p>
+            </div>
+            <div class="color-grid" id="gradients"></div>
+        </div>
+        
+        <!-- FONT SIZES -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Font Sizes (13 tokens)</h2>
+                <p class="section-description">Typography scale from 10px to 50px</p>
+            </div>
+            <div class="type-grid" id="fontSizes"></div>
+        </div>
+        
+        <!-- LINE HEIGHTS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Line Heights (11 tokens)</h2>
+                <p class="section-description">Vertical rhythm scale</p>
+            </div>
+            <div class="type-grid" id="lineHeights"></div>
+        </div>
+        
+        <!-- FONT WEIGHTS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Font Weights (4 tokens)</h2>
+                <p class="section-description">Typography weight scale</p>
+            </div>
+            <div class="type-grid" id="fontWeights"></div>
+        </div>
+        
+        <!-- LETTER SPACING -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Letter Spacing (6 tokens)</h2>
+                <p class="section-description">Typography tracking scale</p>
+            </div>
+            <div class="type-grid" id="letterSpacing"></div>
+        </div>
+        
+        <!-- SPACING -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Spacing Scale (14 tokens)</h2>
+                <p class="section-description">4px base unit system (0× to 16×)</p>
+            </div>
+            <div class="spacing-grid" id="spacingScale"></div>
+        </div>
+        
+        <!-- BORDER RADIUS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Corner Radii (7 tokens)</h2>
+                <p class="section-description">Border radius scale</p>
+            </div>
+            <div class="spacing-grid" id="cornerRadii"></div>
+        </div>
+        
+        <!-- ELEVATION -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Elevation (3 tokens)</h2>
+                <p class="section-description">Shadow scale for depth and hierarchy</p>
+            </div>
+            <div class="elevation-grid" id="elevations"></div>
+        </div>
+        
+        <!-- BREAKPOINTS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Responsive Grid System</h2>
+                <p class="section-description">Breakpoints, columns, gutters, and margins</p>
+            </div>
+            <div class="breakpoint-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Breakpoint</th>
+                            <th>Frame Width</th>
+                            <th>Columns</th>
+                            <th>Gutter</th>
+                            <th>Margin</th>
+                        </tr>
+                    </thead>
+                    <tbody id="breakpoints"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Brand colors
+        const brandColors = [
+            {name: 'Highlighter Teal', token: 'color/brand/highlighterteal', value: '#00FFD6', usage: 'Primary brand accent'},
+            {name: 'Ohme Dark Blue', token: 'color/brand/ohmedarkblue', value: '#032536', usage: 'Primary brand color'},
+            {name: 'White', token: 'color/brand/white', value: '#FFFFFF', usage: 'Base white'},
+            {name: 'Smokey Blue', token: 'color/brand/smokeyblue', value: '#366C92', usage: 'Secondary blue'},
+            {name: 'Smokey Green', token: 'color/brand/smokeygreen', value: '#034048', usage: 'Secondary green'},
+            {name: 'Bright Blue', token: 'color/brand/brightblue', value: '#0046AF', usage: 'Links, CTAs'},
+            {name: 'Smokey Grey', token: 'color/brand/smokeygrey', value: '#D1D1D1', usage: 'Neutral grey'},
+            {name: 'Electric Blue', token: 'color/brand/electricblue', value: '#00CBFF', usage: 'Accent blue'},
+            {name: 'Clear', token: 'color/brand/clear', value: 'transparent', usage: 'Transparent'}
+        ];
+        
+        // Secondary colors
+        const secondaryColors = [
+            {name: 'Grey 900', token: 'color/secondary/grey900', value: '#1B1D1D', usage: 'Darkest grey'},
+            {name: 'Grey 700', token: 'color/secondary/grey700', value: '#647882', usage: 'Medium grey'},
+            {name: 'Grey 300', token: 'color/secondary/grey300', value: '#ADB3B1', usage: 'Light grey'},
+            {name: 'Grey 100', token: 'color/secondary/grey100', value: '#E5E8E8', usage: 'Lightest grey'},
+            {name: 'Red 900', token: 'color/secondary/red900', value: '#580202', usage: 'Error dark'},
+            {name: 'Red 300', token: 'color/secondary/red300', value: '#FF9B9B', usage: 'Error light'},
+            {name: 'Red 100', token: 'color/secondary/red100', value: '#FFE1E1', usage: 'Error surface'},
+            {name: 'Yellow 900', token: 'color/secondary/yellow900', value: '#441906', usage: 'Warning dark'},
+            {name: 'Yellow 300', token: 'color/secondary/yellow300', value: '#FFE385', usage: 'Warning light'},
+            {name: 'Yellow 100', token: 'color/secondary/yellow100', value: '#FFF2C6', usage: 'Warning surface'},
+            {name: 'Teal 900', token: 'color/secondary/teal900', value: '#003A37', usage: 'Action dark'},
+            {name: 'Teal 700', token: 'color/secondary/teal700', value: '#0EBA9E', usage: 'Action medium'},
+            {name: 'Teal 500', token: 'color/secondary/teal500', value: '#01E6C1', usage: 'Action hover'},
+            {name: 'Teal 300', token: 'color/secondary/teal300', value: '#00FFD6', usage: 'Action accent'},
+            {name: 'Teal 100', token: 'color/secondary/teal100', value: '#C0FFF6', usage: 'Action surface'},
+            {name: 'Green 900', token: 'color/secondary/green900', value: '#072C14', usage: 'Success dark'},
+            {name: 'Green 300', token: 'color/secondary/green300', value: '#8AEBA8', usage: 'Success light'},
+            {name: 'Green 100', token: 'color/secondary/green100', value: '#DDFBE5', usage: 'Success surface'},
+            {name: 'Blue 900', token: 'color/secondary/blue900', value: '#062965', usage: 'Info dark'},
+            {name: 'Blue 300', token: 'color/secondary/blue300', value: '#76D6FF', usage: 'Info light'},
+            {name: 'Blue 100', token: 'color/secondary/blue100', value: '#D1EFFF', usage: 'Info surface'},
+            {name: 'Violet 900', token: 'color/secondary/violet900', value: '#510076', usage: 'Special dark'},
+            {name: 'Violet 300', token: 'color/secondary/violet300', value: '#E7A6FF', usage: 'Special light'},
+            {name: 'Violet 100', token: 'color/secondary/violet100', value: '#F8E4FF', usage: 'Special surface'}
+        ];
+        
+        // Tertiary colors
+        const tertiaryColors = [
+            {name: 'Lake Blue', token: 'color/tertiary/lakeblue', value: '#0B2539', usage: 'Dark backgrounds'},
+            {name: 'Void Blue', token: 'color/tertiary/voidblue', value: '#1D2A54', usage: 'Deep blue'},
+            {name: 'Catalina Blue', token: 'color/tertiary/catalinablue', value: '#00327C', usage: 'Rich blue'},
+            {name: 'Dark Teal', token: 'color/tertiary/Darkteal', value: '#0AB4A8', usage: 'Teal accent'},
+            {name: 'Happy Green', token: 'color/tertiary/happygreen', value: '#00E45A', usage: 'Bright green'},
+            {name: 'Toxic Green', token: 'color/tertiary/toxicgreen', value: '#00FF75', usage: 'Vibrant green'},
+            {name: 'Pale Teal', token: 'color/tertiary/paleteal', value: '#93BFBC', usage: 'Muted teal'},
+            {name: 'Spicy Red', token: 'color/tertiary/spicyred', value: '#C14051', usage: 'Warm red'},
+            {name: 'Rose Red', token: 'color/tertiary/rosered', value: '#FA1460', usage: 'Danger/error'},
+            {name: 'Vanetian Red', token: 'color/tertiary/vanetianred', value: '#FF387A', usage: 'Vibrant pink'},
+            {name: 'Poison Purple', token: 'color/tertiary/poisonpurple', value: '#B001F9', usage: 'Purple accent'},
+            {name: 'Sandy Orange', token: 'color/tertiary/sandyorange', value: '#F5BD50', usage: 'Avatar accent'},
+            {name: 'Sunny Yellow', token: 'color/tertiary/sunnyyellow', value: '#FBDA2F', usage: 'Bright yellow'},
+            {name: 'Bismarck Grey', token: 'color/tertiary/Bismarckgrey', value: '#8F9DA4', usage: 'Cool grey'},
+            {name: 'Smokey Grey', token: 'color/tertiary/smokeygrey', value: '#D1D1D1', usage: 'Neutral grey'},
+            {name: 'Light Grey', token: 'color/tertiary/lightgrey', value: '#E9E9E9', usage: 'Light neutral'},
+            {name: 'Border White', token: 'color/tertiary/borderwhite', value: '#F1F1F1', usage: 'Border light'},
+            {name: 'Smokey Blue', token: 'color/tertiary/smokeyblue', value: '#F5F8FA', usage: 'Base surface'}
+        ];
+        
+        // Gradients
+        const gradients = [
+            {name: 'Night Dream', dark: '#0B2539', light: '#292C68'},
+            {name: 'Lucent Blue', dark: '#283959', light: '#385080'},
+            {name: 'Tab Bar Blue', dark: '#07345E', light: '#304A69'},
+            {name: 'Shiny Metal', dark: '#FFFFFF', light: '#E9E9E9'},
+            {name: 'Keppel Blue', dark: '#034048', light: '#359DAB'},
+            {name: 'Deep Sea', dark: '#366C92', light: '#479EDB'},
+            {name: 'Purple Haze', dark: '#FA1460', light: '#B001F9'},
+            {name: 'Sunset', dark: '#FF387A', light: '#D980FF'},
+            {name: 'Blue Lagoon', dark: '#00CBFF', light: '#2AFFD7'},
+            {name: 'Green Glade', dark: '#00FF75', light: '#00E45A'}
+        ];
+        
+        // Font sizes
+        const fontSizes = [
+            {size: 10, token: 'typography/font-size/10'},
+            {size: 12, token: 'typography/font-size/12'},
+            {size: 14, token: 'typography/font-size/14'},
+            {size: 16, token: 'typography/font-size/16'},
+            {size: 18, token: 'typography/font-size/18'},
+            {size: 20, token: 'typography/font-size/20'},
+            {size: 22, token: 'typography/font-size/22'},
+            {size: 26, token: 'typography/font-size/26'},
+            {size: 28, token: 'typography/font-size/28'},
+            {size: 32, token: 'typography/font-size/32'},
+            {size: 36, token: 'typography/font-size/36'},
+            {size: 44, token: 'typography/font-size/44'},
+            {size: 50, token: 'typography/font-size/50'}
+        ];
+        
+        // Line heights
+        const lineHeights = [
+            {value: 16, token: 'typography/line-height/16'},
+            {value: 18, token: 'typography/line-height/18'},
+            {value: 24, token: 'typography/line-height/24'},
+            {value: 28, token: 'typography/line-height/28'},
+            {value: 30, token: 'typography/line-height/30'},
+            {value: 32, token: 'typography/line-height/32'},
+            {value: 36, token: 'typography/line-height/36'},
+            {value: 40, token: 'typography/line-height/40'},
+            {value: 44, token: 'typography/line-height/44'},
+            {value: 50, token: 'typography/line-height/50'},
+            {value: 72, token: 'typography/line-height/72'}
+        ];
+        
+        // Font weights
+        const fontWeights = [
+            {name: 'Light', value: 300, token: 'typography/font-weight/light'},
+            {name: 'Regular', value: 400, token: 'typography/font-weight/regular'},
+            {name: 'Medium', value: 500, token: 'typography/font-weight/medium'},
+            {name: 'Semibold', value: 600, token: 'typography/font-weight/semibold'}
+        ];
+        
+        // Letter spacing
+        const letterSpacing = [
+            {name: 'None', value: 0, token: 'typography/letter-spacing/none'},
+            {name: '0.1px', value: 0.1, token: 'typography/letter-spacing/0dot1'},
+            {name: '0.2px', value: 0.2, token: 'typography/letter-spacing/0dot2'},
+            {name: '0.3px', value: 0.3, token: 'typography/letter-spacing/0dot3'},
+            {name: '0.5px', value: 0.5, token: 'typography/letter-spacing/0dot5'},
+            {name: '0.8px', value: 0.8, token: 'typography/letter-spacing/0dot8'}
+        ];
+        
+        // Spacing scale
+        const spacingScale = [
+            {name: '0×', value: 0, token: 'Values/space/space-0x'},
+            {name: '0.5×', value: 2, token: 'Values/space/space-0Halfx'},
+            {name: '1×', value: 4, token: 'Values/space/space-1'},
+            {name: '1.5×', value: 6, token: 'Values/space/space-1Halfx'},
+            {name: '2×', value: 8, token: 'Values/space/space-2x'},
+            {name: '3×', value: 12, token: 'Values/space/space-3x'},
+            {name: '4×', value: 16, token: 'Values/space/space-4x'},
+            {name: '5×', value: 20, token: 'Values/space/space-5x'},
+            {name: '6×', value: 24, token: 'Values/space/space-6x'},
+            {name: '8×', value: 32, token: 'Values/space/space-8x'},
+            {name: '10×', value: 40, token: 'Values/space/space-10x'},
+            {name: '12×', value: 48, token: 'Values/space/space-12x'},
+            {name: '14×', value: 56, token: 'Values/space/space-14x'},
+            {name: '16×', value: 64, token: 'Values/space/space-16x'}
+        ];
+        
+        // Corner radii
+        const cornerRadii = [
+            {name: '0×', value: 0, token: 'Values/corner radii/radius-0x'},
+            {name: '0.5×', value: 2, token: 'Values/corner radii/radius-halfx'},
+            {name: '1×', value: 4, token: 'Values/corner radii/radius-1x'},
+            {name: '1.5×', value: 6, token: 'Values/corner radii/radius-1halfx'},
+            {name: '2×', value: 8, token: 'Values/corner radii/radius-2x'},
+            {name: '2.5×', value: 10, token: 'Values/corner radii/radius-2halfx'},
+            {name: 'Max', value: 100, token: 'Values/corner radii/radius-max'}
+        ];
+        
+        // Elevations
+        const elevations = [
+            {name: 'e100', token: 'Values/elevation/e100', value: '0px 1px 5.3px rgba(72,70,100,0.07)', class: 'e100'},
+            {name: 'e200', token: 'Values/elevation/e200', value: '0px 3px 15px rgba(72,70,100,0.08)', class: 'e200'},
+            {name: 'e300', token: 'Values/elevation/e300', value: '0px 10px 35px rgba(72,70,100,0.05)', class: 'e300'}
+        ];
+        
+        // Breakpoints
+        const breakpoints = [
+            {name: 'xs', frame: '360px', columns: 4, gutter: '16px', margin: '16px'},
+            {name: 'sm', frame: '480px', columns: 4, gutter: '16px', margin: '24px'},
+            {name: 'md', frame: '768px', columns: 8, gutter: '24px', margin: '32px'},
+            {name: 'lg', frame: '1024px', columns: 12, gutter: '24px', margin: '48px'},
+            {name: 'xl', frame: '1280px', columns: 12, gutter: '24px', margin: '64px'},
+            {name: '2xl', frame: '1536px', columns: 12, gutter: '32px', margin: '80px'}
+        ];
+        
+        // Render functions
+        function renderColors(colors, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = colors.map(color => {
+                const isTransparent = color.value === 'transparent';
+                const swatchClass = isTransparent ? 'color-swatch checkerboard' : 'color-swatch';
+                return `
+                    <div class="color-card">
+                        <div class="${swatchClass}" style="background: ${color.value};"></div>
+                        <div class="color-info">
+                            <div class="color-name">${color.name}</div>
+                            <div class="color-token">${color.token}</div>
+                            <div class="color-value">${color.value}</div>
+                            ${color.usage ? `<div class="color-usage">${color.usage}</div>` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function renderGradients() {
+            const container = document.getElementById('gradients');
+            container.innerHTML = gradients.map(grad => `
+                <div class="gradient-card">
+                    <div class="gradient-swatch" style="background: linear-gradient(135deg, ${grad.dark}, ${grad.light});"></div>
+                    <div class="gradient-info">
+                        <div class="gradient-name">${grad.name}</div>
+                        <div class="gradient-stops">
+                            Dark: ${grad.dark}<br>
+                            Light: ${grad.light}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function renderFontSizes() {
+            const container = document.getElementById('fontSizes');
+            container.innerHTML = fontSizes.map(font => `
+                <div class="type-row">
+                    <div class="type-meta">
+                        <div class="type-token">${font.token}</div>
+                        <div class="type-value">${font.size}px</div>
+                    </div>
+                    <div class="type-sample" style="font-size: ${font.size}px;">
+                        The quick brown fox jumps
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function renderLineHeights() {
+            const container = document.getElementById('lineHeights');
+            container.innerHTML = lineHeights.map(lh => `
+                <div class="type-row">
+                    <div class="type-meta">
+                        <div class="type-token">${lh.token}</div>
+                        <div class="type-value">${lh.value}px</div>
+                    </div>
+                    <div class="type-sample" style="font-size: 16px; line-height: ${lh.value}px;">
+                        The quick brown fox jumps over the lazy dog
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function renderFontWeights() {
+            const container = document.getElementById('fontWeights');
+            container.innerHTML = fontWeights.map(fw => `
+                <div class="type-row">
+                    <div class="type-meta">
+                        <div class="type-token">${fw.token}</div>
+                        <div class="type-value">${fw.name} (${fw.value})</div>
+                    </div>
+                    <div class="type-sample" style="font-weight: ${fw.value}; font-size: 20px;">
+                        The quick brown fox jumps over the lazy dog
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function renderLetterSpacing() {
+            const container = document.getElementById('letterSpacing');
+            container.innerHTML = letterSpacing.map(ls => `
+                <div class="type-row">
+                    <div class="type-meta">
+                        <div class="type-token">${ls.token}</div>
+                        <div class="type-value">${ls.name}</div>
+                    </div>
+                    <div class="type-sample" style="letter-spacing: ${ls.value}px; font-size: 18px;">
+                        THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function renderSpacing() {
+            const container = document.getElementById('spacingScale');
+            container.innerHTML = spacingScale.map(space => `
+                <div class="spacing-card">
+                    <div class="spacing-visual">
+                        <div class="spacing-bar" style="width: ${Math.min(space.value * 3, 150)}px;"></div>
+                    </div>
+                    <div class="spacing-token">${space.token}</div>
+                    <div class="spacing-value">${space.value}px</div>
+                    <div class="spacing-multiplier">${space.name}</div>
+                </div>
+            `).join('');
+        }
+        
+        function renderCornerRadii() {
+            const container = document.getElementById('cornerRadii');
+            container.innerHTML = cornerRadii.map(radius => `
+                <div class="spacing-card">
+                    <div class="spacing-visual">
+                        <div style="width: 80px; height: 40px; background: #00FFD6; border-radius: ${radius.value}px;"></div>
+                    </div>
+                    <div class="spacing-token">${radius.token}</div>
+                    <div class="spacing-value">${radius.value}px</div>
+                    <div class="spacing-multiplier">${radius.name}</div>
+                </div>
+            `).join('');
+        }
+        
+        function renderElevations() {
+            const container = document.getElementById('elevations');
+            container.innerHTML = elevations.map(elev => `
+                <div class="elevation-card ${elev.class}">
+                    <div style="font-size: 32px; margin-bottom: 16px;">▢</div>
+                    <div class="elevation-token">${elev.token}</div>
+                    <div style="font-weight: 600; font-size: 18px; margin: 12px 0;">${elev.name.toUpperCase()}</div>
+                    <div class="elevation-value">${elev.value}</div>
+                </div>
+            `).join('');
+        }
+        
+        function renderBreakpoints() {
+            const container = document.getElementById('breakpoints');
+            container.innerHTML = breakpoints.map(bp => `
+                <tr>
+                    <td class="breakpoint-name">${bp.name}</td>
+                    <td>${bp.frame}</td>
+                    <td>${bp.columns}</td>
+                    <td>${bp.gutter}</td>
+                    <td>${bp.margin}</td>
+                </tr>
+            `).join('');
+        }
+        
+        // Initialize
+        renderColors(brandColors, 'brandColors');
+        renderColors(secondaryColors, 'secondaryColors');
+        renderColors(tertiaryColors, 'tertiaryColors');
+        renderGradients();
+        renderFontSizes();
+        renderLineHeights();
+        renderFontWeights();
+        renderLetterSpacing();
+        renderSpacing();
+        renderCornerRadii();
+        renderElevations();
+        renderBreakpoints();
+    </script>
+</body>
+</html>
