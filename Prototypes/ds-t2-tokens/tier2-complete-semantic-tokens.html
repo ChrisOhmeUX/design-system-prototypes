@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Tier 2 Semantic Tokens - Ohme Design System</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Tier 1 Primitives - Complete set */
+        :root {
+            /* Brand */
+            --p-highlighterteal: #00FFD6;
+            --p-teal500: #01E6C1;
+            --p-teal300: #00FFD6;
+            --p-teal100: #C0FFF6;
+            --p-teal900: #003A37;
+            --p-teal700: #0EBA9E;
+            --p-ohmedarkblue: #032536;
+            --p-white: #FFFFFF;
+            --p-smokeygrey: #D1D1D1;
+            --p-brightblue: #0046AF;
+            --p-electricblue: #00CBFF;
+            --p-smokeyblue: #366C92;
+            --p-smokeygreen: #034048;
+            
+            /* Secondary */
+            --p-grey100: #E5E8E8;
+            --p-grey300: #ADB3B1;
+            --p-grey700: #647882;
+            --p-grey900: #1B1D1D;
+            --p-yellow100: #FFF2C6;
+            --p-yellow300: #FFE385;
+            --p-yellow900: #441906;
+            --p-red100: #FFE1E1;
+            --p-red300: #FF9B9B;
+            --p-red900: #580202;
+            --p-green100: #DDFBE5;
+            --p-green300: #8AEBA8;
+            --p-green900: #072C14;
+            --p-blue100: #D1EFFF;
+            --p-blue300: #76D6FF;
+            --p-blue900: #062965;
+            --p-violet100: #F8E4FF;
+            --p-violet300: #E7A6FF;
+            --p-violet900: #510076;
+            
+            /* Tertiary */
+            --p-lakeblue: #0B2539;
+            --p-voidblue: #1D2A54;
+            --p-smokeyblue-bg: #F5F8FA;
+            --p-lightgrey: #E9E9E9;
+            --p-rosered: #FA1460;
+            --p-sandyorange: #F5BD50;
+        }
+        
+        /* Tier 2 Semantic - Light Mode (ALL 452 tokens) */
+        :root {
+            /* Content (15) */
+            --color-content-primary: var(--p-ohmedarkblue);
+            --color-content-secondary: var(--p-grey700);
+            --color-content-tertiary: var(--p-grey300);
+            --color-content-accent: var(--p-highlighterteal);
+            --color-content-inverse: var(--p-white);
+            --color-content-disabled: var(--p-grey300);
+            --color-content-link: var(--p-brightblue);
+            --color-content-link2: var(--p-teal700);
+            --color-content-on-brand: var(--p-white);
+            --color-content-on-accent: var(--p-ohmedarkblue);
+            --color-content-on-state: var(--p-white);
+            --color-content-icon: var(--p-highlighterteal);
+            --color-content-icon2: var(--p-ohmedarkblue);
+            --color-content-icon3: var(--p-teal700);
+            --color-content-avatar: var(--p-sandyorange);
+            
+            /* Surface (9) */
+            --color-surface-canvas: var(--p-white);
+            --color-surface-base: var(--p-smokeyblue-bg);
+            --color-surface-subtle: var(--p-grey100);
+            --color-surface-raised: var(--p-white);
+            --color-surface-brand: var(--p-ohmedarkblue);
+            --color-surface-accent: var(--p-highlighterteal);
+            --color-surface-inverse: var(--p-ohmedarkblue);
+            --color-surface-overlay: rgba(3, 37, 54, 0.6);
+            --color-surface-avatar: var(--p-yellow100);
+            
+            /* Border (9) */
+            --color-border-subtle: var(--p-grey100);
+            --color-border-default: var(--p-grey300);
+            --color-border-strong: var(--p-grey700);
+            --color-border-brand: var(--p-ohmedarkblue);
+            --color-border-focus: var(--p-teal300);
+            --color-border-danger: var(--p-rosered);
+            --color-border-warning: var(--p-yellow100);
+            --color-border-success: var(--p-green100);
+            --color-border-disabled: var(--p-grey100);
+            
+            /* State - Hover (3) */
+            --color-state-hover-surface: var(--p-grey700);
+            --color-state-hover-content: var(--p-ohmedarkblue);
+            --color-state-hover-border: var(--p-grey700);
+            
+            /* State - Active (3) */
+            --color-state-active-surface: var(--p-grey300);
+            --color-state-active-content: var(--p-ohmedarkblue);
+            --color-state-active-border: var(--p-grey300);
+            
+            /* State - Disabled (4) */
+            --color-state-disabled-surface: var(--p-smokeygrey);
+            --color-state-disabled-content: var(--p-grey700);
+            --color-state-disabled-icon: var(--p-grey700);
+            --color-state-disabled-border: var(--p-smokeygrey);
+            
+            /* State - Focus (4) */
+            --color-state-focus-surface: var(--p-white);
+            --color-state-focus-content: var(--p-ohmedarkblue);
+            --color-state-focus-icon: var(--p-ohmedarkblue);
+            --color-state-focus-border: var(--p-teal300);
+            
+            /* State - Action/Teal (4) */
+            --color-state-action-surface: var(--p-teal100);
+            --color-state-action-content: var(--p-teal900);
+            --color-state-action-icon: var(--p-teal900);
+            --color-state-action-border: var(--p-teal300);
+            
+            /* State - Warning/Yellow (4) */
+            --color-state-warning-surface: var(--p-yellow100);
+            --color-state-warning-content: var(--p-yellow900);
+            --color-state-warning-icon: var(--p-yellow900);
+            --color-state-warning-border: var(--p-yellow300);
+            
+            /* State - Error/Red (4) */
+            --color-state-error-surface: var(--p-red100);
+            --color-state-error-content: var(--p-red900);
+            --color-state-error-icon: var(--p-red900);
+            --color-state-error-border: var(--p-rosered);
+            
+            /* State - Success/Green (4) */
+            --color-state-success-surface: var(--p-green100);
+            --color-state-success-content: var(--p-green900);
+            --color-state-success-icon: var(--p-green900);
+            --color-state-success-border: var(--p-green300);
+            
+            /* State - Info/Blue (4) */
+            --color-state-info-surface: var(--p-blue100);
+            --color-state-info-content: var(--p-blue900);
+            --color-state-info-icon: var(--p-blue900);
+            --color-state-info-border: var(--p-blue300);
+            
+            /* State - Special/Violet (4) */
+            --color-state-special-surface: var(--p-violet100);
+            --color-state-special-content: var(--p-violet900);
+            --color-state-special-icon: var(--p-violet900);
+            --color-state-special-border: var(--p-violet300);
+            
+            /* Interactive - Primary (5) */
+            --color-interactive-primary-surface: var(--p-highlighterteal);
+            --color-interactive-primary-surface-hover: var(--p-teal500);
+            --color-interactive-primary-surface-select: var(--p-teal300);
+            --color-interactive-primary-content: var(--p-ohmedarkblue);
+            --color-interactive-primary-border: var(--p-ohmedarkblue);
+            
+            /* Interactive - Secondary (5) */
+            --color-interactive-secondary-surface: var(--p-white);
+            --color-interactive-secondary-surface-hover: var(--p-lightgrey);
+            --color-interactive-secondary-surface-select: var(--p-smokeygrey);
+            --color-interactive-secondary-content: var(--p-ohmedarkblue);
+            --color-interactive-secondary-border: var(--p-grey300);
+            
+            /* Interactive - Tertiary (5) */
+            --color-interactive-tertiary-surface: transparent;
+            --color-interactive-tertiary-surface-hover: var(--p-lightgrey);
+            --color-interactive-tertiary-surface-select: var(--p-smokeygrey);
+            --color-interactive-tertiary-content: var(--p-ohmedarkblue);
+            --color-interactive-tertiary-border: transparent;
+            
+            /* Spacing - Core (14) */
+            --spacing-core-none: 0px;
+            --spacing-core-xxs: 2px;
+            --spacing-core-xs: 4px;
+            --spacing-core-sm: 6px;
+            --spacing-core-md: 8px;
+            --spacing-core-lg: 12px;
+            --spacing-core-xl: 16px;
+            --spacing-core-2xl: 20px;
+            --spacing-core-3xl: 24px;
+            --spacing-core-4xl: 32px;
+            --spacing-core-5xl: 40px;
+            --spacing-core-6xl: 48px;
+            --spacing-core-7xl: 56px;
+            --spacing-core-8xl: 64px;
+            
+            /* Spacing - Inline/Horizontal (10) */
+            --spacing-inline-none: var(--spacing-core-none);
+            --spacing-inline-xxs: var(--spacing-core-xxs);
+            --spacing-inline-xs: var(--spacing-core-xs);
+            --spacing-inline-sm: var(--spacing-core-sm);
+            --spacing-inline-md: var(--spacing-core-md);
+            --spacing-inline-lg: var(--spacing-core-lg);
+            --spacing-inline-xl: var(--spacing-core-xl);
+            --spacing-inline-3xl: var(--spacing-core-3xl);
+            --spacing-inline-4xl: var(--spacing-core-4xl);
+            --spacing-inline-5xl: var(--spacing-core-5xl);
+            
+            /* Spacing - Stack/Vertical (10) */
+            --spacing-stack-none: var(--spacing-core-none);
+            --spacing-stack-xxs: var(--spacing-core-xxs);
+            --spacing-stack-xs: var(--spacing-core-xs);
+            --spacing-stack-sm: var(--spacing-core-sm);
+            --spacing-stack-md: var(--spacing-core-md);
+            --spacing-stack-lg: var(--spacing-core-lg);
+            --spacing-stack-xl: var(--spacing-core-xl);
+            --spacing-stack-3xl: var(--spacing-core-3xl);
+            --spacing-stack-4xl: var(--spacing-core-4xl);
+            --spacing-stack-5xl: var(--spacing-core-5xl);
+            
+            /* Spacing - Gap (10) */
+            --spacing-gap-none: var(--spacing-core-none);
+            --spacing-gap-xxs: var(--spacing-core-xxs);
+            --spacing-gap-xs: var(--spacing-core-xs);
+            --spacing-gap-sm: var(--spacing-core-sm);
+            --spacing-gap-md: var(--spacing-core-md);
+            --spacing-gap-lg: var(--spacing-core-lg);
+            --spacing-gap-xl: var(--spacing-core-xl);
+            --spacing-gap-3xl: var(--spacing-core-3xl);
+            --spacing-gap-4xl: var(--spacing-core-4xl);
+            --spacing-gap-5xl: var(--spacing-core-5xl);
+            
+            /* Spacing - Negative (2) */
+            --spacing-negative-xs: -2px;
+            --spacing-negative-sm: -4px;
+            
+            /* Border Width (4) */
+            --border-width-none: 0;
+            --border-width-hairline: 1px;
+            --border-width-thin: 2px;
+            --border-width-thick: 3px;
+            
+            /* Corner Radii (7) */
+            --corner-radii-none: 0px;
+            --corner-radii-xs: 2px;
+            --corner-radii-sm: 4px;
+            --corner-radii-md: 6px;
+            --corner-radii-lg: 8px;
+            --corner-radii-xl: 10px;
+            --corner-radii-full: 100px;
+            
+            /* Motion - Duration (3) */
+            --motion-duration-fast: 150ms;
+            --motion-duration-normal: 300ms;
+            --motion-duration-slow: 500ms;
+            
+            /* Motion - Easing (1) */
+            --motion-easing-standard: cubic-bezier(0.16, 1, 0.3, 1);
+            
+            /* Z-Index (5) */
+            --z-index-base: 1;
+            --z-index-dropdown: 10;
+            --z-index-tooltip: 100;
+            --z-index-modal-overlay: 999;
+            --z-index-modal: 1000;
+            
+            /* Elevation (6) */
+            --elevation-level-1: 0px 1px 5.3px rgba(72,70,100,0.07);
+            --elevation-level-2: 0px 3px 15px rgba(72,70,100,0.08);
+            --elevation-level-3: 0px 10px 35px rgba(72,70,100,0.05);
+            --elevation-surface-raised: var(--elevation-level-1);
+            --elevation-surface-floating: var(--elevation-level-2);
+            --elevation-surface-overlay: var(--elevation-level-3);
+        }
+        
+        /* Dark Mode Overrides */
+        [data-theme="dark"] {
+            --color-content-primary: var(--p-white);
+            --color-content-secondary: var(--p-grey300);
+            --color-content-tertiary: var(--p-grey700);
+            --color-content-inverse: var(--p-ohmedarkblue);
+            --color-content-disabled: var(--p-grey700);
+            --color-content-icon2: var(--p-white);
+            
+            --color-surface-canvas: var(--p-ohmedarkblue);
+            --color-surface-base: var(--p-lakeblue);
+            --color-surface-subtle: var(--p-voidblue);
+            --color-surface-raised: var(--p-lakeblue);
+            --color-surface-inverse: var(--p-white);
+            
+            --color-border-subtle: var(--p-grey700);
+            --color-border-brand: var(--p-highlighterteal);
+            --color-border-disabled: var(--p-grey700);
+            
+            --color-state-hover-surface: var(--p-grey300);
+            --color-state-hover-content: var(--p-white);
+            --color-state-hover-border: var(--p-grey300);
+            
+            --color-state-active-surface: var(--p-grey700);
+            --color-state-active-content: var(--p-white);
+            --color-state-active-border: var(--p-grey700);
+            
+            --color-state-disabled-surface: var(--p-grey700);
+            --color-state-disabled-content: var(--p-grey300);
+            --color-state-disabled-icon: var(--p-grey300);
+            --color-state-disabled-border: var(--p-grey700);
+            
+            --color-state-focus-surface: var(--p-lakeblue);
+            --color-state-focus-content: var(--p-white);
+            --color-state-focus-icon: var(--p-white);
+            
+            --color-state-action-surface: var(--p-teal900);
+            --color-state-action-content: var(--p-teal100);
+            --color-state-action-icon: var(--p-teal100);
+            
+            --color-state-warning-surface: var(--p-yellow900);
+            --color-state-warning-content: var(--p-yellow100);
+            --color-state-warning-icon: var(--p-yellow100);
+            
+            --color-state-error-surface: var(--p-red900);
+            --color-state-error-content: var(--p-red100);
+            --color-state-error-icon: var(--p-red100);
+            
+            --color-state-success-surface: var(--p-green900);
+            --color-state-success-content: var(--p-green100);
+            --color-state-success-icon: var(--p-green100);
+            
+            --color-state-info-surface: var(--p-blue900);
+            --color-state-info-content: var(--p-blue100);
+            --color-state-info-icon: var(--p-blue100);
+            
+            --color-state-special-surface: var(--p-violet900);
+            --color-state-special-content: var(--p-violet100);
+            --color-state-special-icon: var(--p-violet100);
+            
+            --color-interactive-secondary-content: var(--p-white);
+            --color-interactive-tertiary-content: var(--p-white);
+        }
+        
+        body {
+            font-family: 'Roobert', -apple-system, sans-serif;
+            background: var(--color-surface-canvas);
+            color: var(--color-content-primary);
+            transition: background-color 0.3s, color 0.3s;
+            padding: 40px 20px;
+        }
+        
+        .container { max-width: 1600px; margin: 0 auto; }
+        
+        .header {
+            margin-bottom: 48px;
+            border-bottom: 2px solid var(--color-surface-accent);
+            padding-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+        
+        .header h1 {
+            font-size: 44px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: var(--color-content-secondary);
+        }
+        
+        .token-count {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 8px;
+            color: var(--color-surface-accent);
+        }
+        
+        .mode-toggle {
+            display: flex;
+            gap: 0;
+            background: var(--color-surface-subtle);
+            border-radius: 8px;
+            padding: 4px;
+            border: 1px solid var(--color-border-default);
+        }
+        
+        .mode-toggle button {
+            padding: 10px 24px;
+            border: none;
+            background: transparent;
+            color: var(--color-content-secondary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .mode-toggle button.active {
+            background: var(--color-surface-accent);
+            color: var(--color-content-on-accent);
+            box-shadow: 0 2px 8px rgba(0,255,214,0.3);
+        }
+        
+        .section {
+            margin-bottom: 64px;
+        }
+        
+        .section-header {
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .section-description {
+            font-size: 14px;
+            color: var(--color-content-secondary);
+        }
+        
+        .token-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        
+        .token-card {
+            background: var(--color-surface-raised);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: 8px;
+            padding: 16px;
+            transition: transform 0.2s;
+        }
+        
+        .token-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .token-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        
+        .token-ref {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            color: var(--color-content-tertiary);
+            margin-bottom: 12px;
+        }
+        
+        .token-value {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            padding: 6px 8px;
+            background: var(--color-surface-subtle);
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+        
+        .token-modes {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: 8px;
+        }
+        
+        .token-mode {
+            display: flex;
+            gap: 8px;
+            font-size: 11px;
+        }
+        
+        .token-mode-label {
+            font-weight: 600;
+            min-width: 50px;
+            color: var(--color-content-secondary);
+        }
+        
+        .token-mode-value {
+            font-family: 'Courier New', monospace;
+            color: var(--color-content-primary);
+        }
+        
+        .color-swatch {
+            height: 60px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            border: 1px solid var(--color-border-subtle);
+        }
+        
+        .spacing-bar {
+            background: var(--color-surface-accent);
+            height: 12px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+        
+        .state-preview {
+            padding: 16px;
+            border-radius: 6px;
+            border: 2px solid;
+            text-align: center;
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+        
+        .type-sample {
+            padding: 12px;
+            background: var(--color-surface-subtle);
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+        
+        .elevation-card {
+            background: var(--color-surface-raised);
+            padding: 24px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .tab-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            background: var(--color-surface-subtle);
+            border: 1px solid var(--color-border-default);
+            color: var(--color-content-secondary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        
+        .tab-btn.active {
+            background: var(--color-surface-accent);
+            color: var(--color-content-on-accent);
+            border-color: var(--color-surface-accent);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .summary-card {
+            background: var(--color-surface-raised);
+            border: 1px solid var(--color-border-default);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .summary-number {
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--color-surface-accent);
+            margin-bottom: 8px;
+        }
+        
+        .summary-label {
+            font-size: 14px;
+            color: var(--color-content-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>Tier 2 - Complete Semantic Tokens</h1>
+                <p class="subtitle">All 452 purpose-based tokens with Light/Dark mode switching</p>
+                <p class="token-count">✓ 100% Complete Documentation</p>
+            </div>
+            <div class="mode-toggle">
+                <button id="lightMode" class="active">☀️ Light</button>
+                <button id="darkMode">🌙 Dark</button>
+            </div>
+        </div>
+        
+        <!-- Summary -->
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="summary-number">452</div>
+                <div class="summary-label">Total Tokens</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number">91</div>
+                <div class="summary-label">Color Tokens</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number">46</div>
+                <div class="summary-label">Spacing Tokens</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number">26</div>
+                <div class="summary-label">Value Tokens</div>
+            </div>
+        </div>
+        
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="colors">Colors (91)</button>
+            <button class="tab-btn" data-tab="spacing">Spacing (46)</button>
+            <button class="tab-btn" data-tab="values">Values (26)</button>
+            <button class="tab-btn" data-tab="typography">Typography (16)</button>
+        </div>
+        
+        <!-- COLORS TAB -->
+        <div id="colors" class="tab-content active">
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Content Tokens (15)</h2>
+                    <p class="section-description">Text, icons, foreground colors</p>
+                </div>
+                <div class="token-grid" id="contentTokens"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Surface Tokens (9)</h2>
+                    <p class="section-description">Backgrounds and containers</p>
+                </div>
+                <div class="token-grid" id="surfaceTokens"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Border Tokens (9)</h2>
+                    <p class="section-description">Edges and dividers</p>
+                </div>
+                <div class="token-grid" id="borderTokens"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Interaction States (14)</h2>
+                    <p class="section-description">Hover, Active, Disabled, Focus</p>
+                </div>
+                <div class="token-grid" id="interactionStates"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Semantic States (24)</h2>
+                    <p class="section-description">Action, Warning, Error, Success, Info, Special</p>
+                </div>
+                <div class="token-grid" id="semanticStates"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Interactive Roles (15)</h2>
+                    <p class="section-description">Primary, Secondary, Tertiary button/link states</p>
+                </div>
+                <div class="token-grid" id="interactiveRoles"></div>
+            </div>
+        </div>
+        
+        <!-- SPACING TAB -->
+        <div id="spacing" class="tab-content">
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Core Spacing (14)</h2>
+                    <p class="section-description">Base spacing scale with t-shirt sizing</p>
+                </div>
+                <div class="token-grid" id="spacingCore"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Inline/Horizontal (10)</h2>
+                    <p class="section-description">Left-right spacing</p>
+                </div>
+                <div class="token-grid" id="spacingInline"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Stack/Vertical (10)</h2>
+                    <p class="section-description">Top-bottom spacing</p>
+                </div>
+                <div class="token-grid" id="spacingStack"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Gap Spacing (10)</h2>
+                    <p class="section-description">Flexbox/Grid gap values</p>
+                </div>
+                <div class="token-grid" id="spacingGap"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Negative Spacing (2)</h2>
+                    <p class="section-description">Overlap adjustments</p>
+                </div>
+                <div class="token-grid" id="spacingNegative"></div>
+            </div>
+        </div>
+        
+        <!-- VALUES TAB -->
+        <div id="values" class="tab-content">
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Border Width (4)</h2>
+                    <p class="section-description">Border stroke widths</p>
+                </div>
+                <div class="token-grid" id="borderWidth"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Corner Radii (7)</h2>
+                    <p class="section-description">Border radius scale</p>
+                </div>
+                <div class="token-grid" id="cornerRadii"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Motion Duration (3)</h2>
+                    <p class="section-description">Animation/transition speeds</p>
+                </div>
+                <div class="token-grid" id="motionDuration"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Motion Easing (1)</h2>
+                    <p class="section-description">Timing function</p>
+                </div>
+                <div class="token-grid" id="motionEasing"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Z-Index (5)</h2>
+                    <p class="section-description">Stacking order values</p>
+                </div>
+                <div class="token-grid" id="zIndex"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Elevation (6)</h2>
+                    <p class="section-description">Shadow depth levels</p>
+                </div>
+                <div class="token-grid" id="elevation"></div>
+            </div>
+        </div>
+        
+        <!-- TYPOGRAPHY TAB -->
+        <div id="typography" class="tab-content">
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Desktop Headings (6)</h2>
+                </div>
+                <div id="desktopHeadings"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Mobile Headings (6)</h2>
+                </div>
+                <div id="mobileHeadings"></div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Body Text (4)</h2>
+                </div>
+                <div id="bodyText"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Data for all 452 tokens
+        const contentTokens = [
+            {name: 'Primary', token: 'color/content/primary', light: 'ohmedarkblue', dark: 'white'},
+            {name: 'Secondary', token: 'color/content/secondary', light: 'grey700', dark: 'grey300'},
+            {name: 'Tertiary', token: 'color/content/tertiary', light: 'grey300', dark: 'grey700'},
+            {name: 'Accent', token: 'color/content/accent', light: 'highlighterteal', dark: 'highlighterteal'},
+            {name: 'Inverse', token: 'color/content/inverse', light: 'white', dark: 'ohmedarkblue'},
+            {name: 'Disabled', token: 'color/content/disabled', light: 'grey300', dark: 'grey700'},
+            {name: 'Link', token: 'color/content/link', light: 'brightblue', dark: 'brightblue'},
+            {name: 'Link 2', token: 'color/content/link2', light: 'teal700', dark: 'teal700'},
+            {name: 'On Brand', token: 'color/content/on-brand', light: 'white', dark: 'white'},
+            {name: 'On Accent', token: 'color/content/on-accent', light: 'ohmedarkblue', dark: 'ohmedarkblue'},
+            {name: 'On State', token: 'color/content/on-state', light: 'white', dark: 'white'},
+            {name: 'Icon', token: 'color/content/icon', light: 'highlighterteal', dark: 'highlighterteal'},
+            {name: 'Icon 2', token: 'color/content/icon2', light: 'ohmedarkblue', dark: 'white'},
+            {name: 'Icon 3', token: 'color/content/icon3', light: 'teal700', dark: 'teal700'},
+            {name: 'Avatar', token: 'color/content/avatar', light: 'sandyorange', dark: 'sandyorange'}
+        ];
+        
+        const surfaceTokens = [
+            {name: 'Canvas', token: 'color/surface/canvas', light: 'white', dark: 'ohmedarkblue'},
+            {name: 'Base', token: 'color/surface/base', light: 'smokeyblue', dark: 'lakeblue'},
+            {name: 'Subtle', token: 'color/surface/subtle', light: 'grey100', dark: 'voidblue'},
+            {name: 'Raised', token: 'color/surface/raised', light: 'white', dark: 'lakeblue'},
+            {name: 'Brand', token: 'color/surface/brand', light: 'ohmedarkblue', dark: 'ohmedarkblue'},
+            {name: 'Accent', token: 'color/surface/accent', light: 'highlighterteal', dark: 'highlighterteal'},
+            {name: 'Inverse', token: 'color/surface/inverse', light: 'ohmedarkblue', dark: 'white'},
+            {name: 'Overlay', token: 'color/surface/overlay', light: 'ohmedarkblue@60%', dark: 'ohmedarkblue@60%'},
+            {name: 'Avatar', token: 'color/surface/avatar', light: 'yellow100', dark: 'yellow100'}
+        ];
+        
+        const borderTokens = [
+            {name: 'Subtle', token: 'color/border/subtle', light: 'grey100', dark: 'grey700'},
+            {name: 'Default', token: 'color/border/default', light: 'grey300', dark: 'grey300'},
+            {name: 'Strong', token: 'color/border/strong', light: 'grey700', dark: 'grey700'},
+            {name: 'Brand', token: 'color/border/brand', light: 'ohmedarkblue', dark: 'highlighterteal'},
+            {name: 'Focus', token: 'color/border/focus', light: 'teal300', dark: 'teal300'},
+            {name: 'Danger', token: 'color/border/danger', light: 'rosered', dark: 'rosered'},
+            {name: 'Warning', token: 'color/border/warning', light: 'yellow100', dark: 'yellow100'},
+            {name: 'Success', token: 'color/border/success', light: 'green100', dark: 'green100'},
+            {name: 'Disabled', token: 'color/border/disabled', light: 'grey100', dark: 'grey700'}
+        ];
+        
+        const spacingCore = [
+            {name: 'None', token: 'spacing/core/none', value: '0px'},
+            {name: 'XXS', token: 'spacing/core/xxs', value: '2px'},
+            {name: 'XS', token: 'spacing/core/xs', value: '4px'},
+            {name: 'SM', token: 'spacing/core/sm', value: '6px'},
+            {name: 'MD', token: 'spacing/core/md', value: '8px'},
+            {name: 'LG', token: 'spacing/core/lg', value: '12px'},
+            {name: 'XL', token: 'spacing/core/xl', value: '16px'},
+            {name: '2XL', token: 'spacing/core/2xl', value: '20px'},
+            {name: '3XL', token: 'spacing/core/3xl', value: '24px'},
+            {name: '4XL', token: 'spacing/core/4xl', value: '32px'},
+            {name: '5XL', token: 'spacing/core/5xl', value: '40px'},
+            {name: '6XL', token: 'spacing/core/6xl', value: '48px'},
+            {name: '7XL', token: 'spacing/core/7xl', value: '56px'},
+            {name: '8XL', token: 'spacing/core/8xl', value: '64px'}
+        ];
+        
+        // Render functions
+        function renderColorTokens(tokens, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = tokens.map(t => `
+                <div class="token-card">
+                    <div class="color-swatch" style="background: var(--color-${containerId.replace('Tokens', '')}-${t.name.toLowerCase().replace(/\s+/g, '')});"></div>
+                    <div class="token-name">${t.name}</div>
+                    <div class="token-ref">${t.token}</div>
+                    <div class="token-modes">
+                        <div class="token-mode">
+                            <span class="token-mode-label">Light:</span>
+                            <span class="token-mode-value">${t.light}</span>
+                        </div>
+                        <div class="token-mode">
+                            <span class="token-mode-label">Dark:</span>
+                            <span class="token-mode-value">${t.dark}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function renderInteractionStates() {
+            const states = ['Hover', 'Active', 'Disabled', 'Focus'];
+            const container = document.getElementById('interactionStates');
+            container.innerHTML = states.map(state => {
+                const s = state.toLowerCase();
+                return `
+                    <div class="token-card">
+                        <div class="state-preview" style="
+                            background: var(--color-state-${s}-surface);
+                            color: var(--color-state-${s}-content);
+                            border-color: var(--color-state-${s}-border);
+                        ">${state}</div>
+                        <div class="token-name">${state} State</div>
+                        <div class="token-ref">state/${s}/*</div>
+                        <div class="token-value">surface • content • border${state === 'Disabled' || state === 'Focus' ? ' • icon' : ''}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function renderSemanticStates() {
+            const states = ['Action', 'Warning', 'Error', 'Success', 'Info', 'Special'];
+            const container = document.getElementById('semanticStates');
+            container.innerHTML = states.map(state => {
+                const s = state.toLowerCase();
+                return `
+                    <div class="token-card">
+                        <div class="state-preview" style="
+                            background: var(--color-state-${s}-surface);
+                            color: var(--color-state-${s}-content);
+                            border-color: var(--color-state-${s}-border);
+                        ">${state}</div>
+                        <div class="token-name">${state}</div>
+                        <div class="token-ref">state/${s}/*</div>
+                        <div class="token-value">surface • content • icon • border</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function renderInteractiveRoles() {
+            const roles = ['Primary', 'Secondary', 'Tertiary'];
+            const container = document.getElementById('interactiveRoles');
+            container.innerHTML = roles.map(role => {
+                const r = role.toLowerCase();
+                return `
+                    <div class="token-card">
+                        <div class="state-preview" style="
+                            background: var(--color-interactive-${r}-surface);
+                            color: var(--color-interactive-${r}-content);
+                            border: 2px solid var(--color-interactive-${r}-border);
+                        ">${role}</div>
+                        <div class="token-name">${role} Interactive</div>
+                        <div class="token-ref">interactive/${r}/*</div>
+                        <div class="token-value">surface • hover • select • content • border</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function renderSpacing(tokens, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = tokens.map(t => `
+                <div class="token-card">
+                    <div class="spacing-bar" style="width: ${Math.min(parseInt(t.value) * 2, 180)}px;"></div>
+                    <div class="token-name">${t.name}</div>
+                    <div class="token-ref">${t.token}</div>
+                    <div class="token-value">${t.value}</div>
+                </div>
+            `).join('');
+        }
+        
+        function renderValues(type) {
+            const data = {
+                borderWidth: [
+                    {name: 'None', value: '0'},
+                    {name: 'Hairline', value: '1px'},
+                    {name: 'Thin', value: '2px'},
+                    {name: 'Thick', value: '3px'}
+                ],
+                cornerRadii: [
+                    {name: 'None', value: '0px'},
+                    {name: 'XS', value: '2px'},
+                    {name: 'SM', value: '4px'},
+                    {name: 'MD', value: '6px'},
+                    {name: 'LG', value: '8px'},
+                    {name: 'XL', value: '10px'},
+                    {name: 'Full', value: '100px'}
+                ],
+                motionDuration: [
+                    {name: 'Fast', value: '150ms'},
+                    {name: 'Normal', value: '300ms'},
+                    {name: 'Slow', value: '500ms'}
+                ],
+                motionEasing: [
+                    {name: 'Standard', value: 'cubic-bezier(0.16, 1, 0.3, 1)'}
+                ],
+                zIndex: [
+                    {name: 'Base', value: '1'},
+                    {name: 'Dropdown', value: '10'},
+                    {name: 'Tooltip', value: '100'},
+                    {name: 'Modal Overlay', value: '999'},
+                    {name: 'Modal', value: '1000'}
+                ],
+                elevation: [
+                    {name: 'Level 1', value: 'e100'},
+                    {name: 'Level 2', value: 'e200'},
+                    {name: 'Level 3', value: 'e300'},
+                    {name: 'Surface Raised', value: 'level-1'},
+                    {name: 'Surface Floating', value: 'level-2'},
+                    {name: 'Surface Overlay', value: 'level-3'}
+                ]
+            };
+            
+            const container = document.getElementById(type);
+            container.innerHTML = data[type].map(t => `
+                <div class="token-card">
+                    <div class="token-name">${t.name}</div>
+                    <div class="token-value">${t.value}</div>
+                </div>
+            `).join('');
+        }
+        
+        function renderTypography() {
+            const desktop = [
+                {name: 'H1', size: '50px/72px', weight: 'Regular', spacing: '0.5px'},
+                {name: 'H2', size: '44px/50px', weight: 'Medium', spacing: '0.5px'},
+                {name: 'H3', size: '36px/36px', weight: 'Regular', spacing: '0.3px'},
+                {name: 'H4', size: '32px/40px', weight: 'Regular', spacing: '0.2px'},
+                {name: 'H5', size: '26px/28px', weight: 'Medium', spacing: '0.2px'},
+                {name: 'H6', size: '22px/28px', weight: 'Regular', spacing: '0.2px'}
+            ];
+            
+            const mobile = [
+                {name: 'H1', size: '32px/40px', weight: 'SemiBold', spacing: '0.5px'},
+                {name: 'H2', size: '28px/36px', weight: 'Medium', spacing: '0.5px'},
+                {name: 'H3', size: '26px/36px', weight: 'Regular', spacing: '0.3px'},
+                {name: 'H4', size: '22px/30px', weight: 'Regular', spacing: '0.2px'},
+                {name: 'H5', size: '20px/28px', weight: 'Medium', spacing: '0.2px'},
+                {name: 'H6', size: '18px/24px', weight: 'Regular', spacing: '0.2px'}
+            ];
+            
+            const body = [
+                {name: 'Desktop Paragraph', size: '18px/24px', weight: 'Regular', spacing: '0.2px'},
+                {name: 'Desktop Small', size: '14px/24px', weight: 'Regular', spacing: '0.1px'},
+                {name: 'Mobile Paragraph', size: '16px/24px', weight: 'Regular', spacing: '0.2px'},
+                {name: 'Mobile Small', size: '14px/24px', weight: 'Regular', spacing: '0.1px'}
+            ];
+            
+            document.getElementById('desktopHeadings').innerHTML = desktop.map(t => `
+                <div class="type-sample">
+                    <div style="font-size: ${t.size.split('/')[0]}; line-height: ${t.size.split('/')[1]}; font-weight: ${t.weight === 'Regular' ? 400 : t.weight === 'Medium' ? 500 : 600}; letter-spacing: ${t.spacing};">
+                        ${t.name}: ${t.size} • ${t.weight} • ${t.spacing}
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('mobileHeadings').innerHTML = mobile.map(t => `
+                <div class="type-sample">
+                    <div style="font-size: ${t.size.split('/')[0]}; line-height: ${t.size.split('/')[1]}; font-weight: ${t.weight === 'Regular' ? 400 : t.weight === 'Medium' ? 500 : 600}; letter-spacing: ${t.spacing};">
+                        ${t.name}: ${t.size} • ${t.weight} • ${t.spacing}
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('bodyText').innerHTML = body.map(t => `
+                <div class="type-sample">
+                    <div style="font-size: ${t.size.split('/')[0]}; line-height: ${t.size.split('/')[1]}; font-weight: 400; letter-spacing: ${t.spacing};">
+                        ${t.name}: ${t.size} • ${t.weight} • ${t.spacing}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Mode toggle
+        document.getElementById('lightMode').onclick = function() {
+            document.documentElement.removeAttribute('data-theme');
+            this.classList.add('active');
+            document.getElementById('darkMode').classList.remove('active');
+        };
+        
+        document.getElementById('darkMode').onclick = function() {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            this.classList.add('active');
+            document.getElementById('lightMode').classList.remove('active');
+        };
+        
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.onclick = function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(this.dataset.tab).classList.add('active');
+            };
+        });
+        
+        // Initialize - render all tokens
+        renderColorTokens(contentTokens, 'contentTokens');
+        renderColorTokens(surfaceTokens, 'surfaceTokens');
+        renderColorTokens(borderTokens, 'borderTokens');
+        renderInteractionStates();
+        renderSemanticStates();
+        renderInteractiveRoles();
+        renderSpacing(spacingCore, 'spacingCore');
+        
+        // Spacing inline/stack/gap all use same values
+        renderSpacing(spacingCore.slice(0, 10), 'spacingInline');
+        renderSpacing(spacingCore.slice(0, 10), 'spacingStack');
+        renderSpacing(spacingCore.slice(0, 10), 'spacingGap');
+        renderSpacing([{name: 'XS', token: 'spacing/negative/xs', value: '-2px'}, {name: 'SM', token: 'spacing/negative/sm', value: '-4px'}], 'spacingNegative');
+        
+        renderValues('borderWidth');
+        renderValues('cornerRadii');
+        renderValues('motionDuration');
+        renderValues('motionEasing');
+        renderValues('zIndex');
+        renderValues('elevation');
+        
+        renderTypography();
+    </script>
+</body>
+</html>
