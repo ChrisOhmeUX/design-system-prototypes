@@ -283,11 +283,11 @@
     
     <!-- Tab Navigation -->
     <div class="tab-navigation">
-        <button class="tab-btn active" onclick="switchTab('connect')">Connect</button>
-        <button class="tab-btn" onclick="switchTab('hub')">Hub</button>
-        <button class="tab-btn" onclick="switchTab('park-charge')">Park & Charge</button>
-        <button class="tab-btn" onclick="switchTab('dealer')">Dealer Portal</button>
-        <button class="tab-btn" onclick="switchTab('customer')">Customer Portal</button>
+        <button class="tab-btn active" onclick="switchTab(event, 'connect')">Connect</button>
+        <button class="tab-btn" onclick="switchTab(event, 'hub')">Hub</button>
+        <button class="tab-btn" onclick="switchTab(event, 'park-charge')">Park & Charge</button>
+        <button class="tab-btn" onclick="switchTab(event, 'dealer')">Dealer Portal</button>
+        <button class="tab-btn" onclick="switchTab(event, 'customer')">Customer Portal</button>
     </div>
     
     <!-- Connect Tab -->
@@ -395,7 +395,7 @@
     </div>
 
     <script>
-        function switchTab(tabId) {
+        function switchTab(event, tabId) {
             // Hide all tab contents
             const allContents = document.querySelectorAll('.tab-content');
             allContents.forEach(content => {
@@ -412,7 +412,7 @@
             document.getElementById(tabId).classList.add('active');
             
             // Add active class to clicked button
-            event.target.classList.add('active');
+            event.currentTarget.classList.add('active');
         }
     </script>
 </body>
