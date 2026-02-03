@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="T&Cs Resource Management - Ohme Hub Admin Feature Prototype">
+  <title>T&Cs Resource Management | Ohme Hub</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23032536' width='100' height='100' rx='12'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='%2300FFD6'%3ET%3C/text%3E%3C/svg%3E">
+  
+  <!-- React CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <style>
+    /* =========================================================================
+       OHME DESIGN SYSTEM TOKENS - Three-Tier Architecture
+       Reference: Token_System_Documentation.md
+       ========================================================================= */
+    :root {
+      /* ===== TIER 1: PRIMITIVES ===== */
+      --t1-brand-highlighterteal: #00FFD6;
+      --t1-brand-ohmedarkblue: #032536;
+      --t1-brand-white: #FFFFFF;
+      --t1-brand-smokeygrey: #D1D1D1;
+      --t1-secondary-grey900: #1B1D1D;
+      --t1-secondary-grey700: #647882;
+      --t1-secondary-grey300: #ADB3B1;
+      --t1-secondary-grey100: #E5E8E8;
+      --t1-secondary-green900: #072C14;
+      --t1-secondary-green100: #DDFBE5;
+      --t1-secondary-blue900: #062965;
+      --t1-secondary-blue100: #D1EFFF;
+      --t1-secondary-red900: #580202;
+      --t1-secondary-red100: #FFE1E1;
+      --t1-tertiary-smokeyblue: #F5F8FA;
+      --t1-tertiary-rosered: #FA1460;
+      --t1-tertiary-lakeblue: #0B2539;
+      --t1-font-family: 'Roobert', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --t1-font-size-14: 14px;
+      --t1-font-size-16: 16px;
+      --t1-font-size-18: 18px;
+      --t1-font-size-24: 24px;
+      --t1-font-size-32: 32px;
+      --t1-line-height-18: 18px;
+      --t1-line-height-24: 24px;
+      --t1-line-height-32: 32px;
+      --t1-line-height-40: 40px;
+      --t1-font-weight-regular: 400;
+      --t1-font-weight-semibold: 600;
+      --t1-letter-spacing: 0.2px;
+      --t1-space-1: 4px;
+      --t1-space-2x: 8px;
+      --t1-space-3x: 12px;
+      --t1-space-4x: 16px;
+      --t1-space-5x: 20px;
+      --t1-space-6x: 24px;
+      --t1-space-8x: 32px;
+      --t1-space-10x: 40px;
+      --t1-space-12x: 48px;
+      --t1-radius-1x: 4px;
+      --t1-radius-1halfx: 6px;
+      --t1-radius-2x: 8px;
+      --t1-radius-max: 100px;
+      --t1-elevation-e100: 0px 1px 5.3px rgba(72, 70, 100, 0.07);
+      --t1-elevation-e200: 0px 3px 15px rgba(72, 70, 100, 0.08);
+      --t1-elevation-e300: 0px 10px 35px rgba(72, 70, 100, 0.05);
+
+      /* ===== TIER 2: SEMANTIC TOKENS ===== */
+      --t2-surface-canvas: var(--t1-brand-white);
+      --t2-surface-raised: var(--t1-brand-white);
+      --t2-surface-base: var(--t1-tertiary-smokeyblue);
+      --t2-surface-accent: var(--t1-brand-highlighterteal);
+      --t2-surface-overlay: rgba(3, 37, 54, 0.6);
+      --t2-surface-brand: var(--t1-brand-ohmedarkblue);
+      --t2-content-primary: var(--t1-brand-ohmedarkblue);
+      --t2-content-secondary: var(--t1-secondary-grey700);
+      --t2-content-tertiary: var(--t1-secondary-grey300);
+      --t2-content-inverse: var(--t1-brand-white);
+      --t2-content-on-accent: var(--t1-brand-ohmedarkblue);
+      --t2-border-default: var(--t1-secondary-grey300);
+      --t2-border-subtle: var(--t1-secondary-grey100);
+      --t2-border-focus: var(--t1-brand-highlighterteal);
+      --t2-interactive-primary-surface: var(--t1-brand-highlighterteal);
+      --t2-interactive-secondary-surface: var(--t1-brand-white);
+      --t2-state-success-surface: var(--t1-secondary-green100);
+      --t2-state-success-content: var(--t1-secondary-green900);
+      --t2-state-info-surface: var(--t1-secondary-blue100);
+      --t2-state-info-content: var(--t1-secondary-blue900);
+      --t2-state-error-surface: var(--t1-secondary-red100);
+      --t2-state-error-content: var(--t1-secondary-red900);
+      --t2-state-error-border: var(--t1-tertiary-rosered);
+      --t2-state-disabled-surface: var(--t1-brand-smokeygrey);
+      --t2-state-disabled-content: var(--t1-secondary-grey700);
+      --t2-spacing-xs: var(--t1-space-1);
+      --t2-spacing-sm: var(--t1-space-2x);
+      --t2-spacing-md: var(--t1-space-3x);
+      --t2-spacing-lg: var(--t1-space-4x);
+      --t2-spacing-xl: var(--t1-space-6x);
+      --t2-spacing-2xl: var(--t1-space-8x);
+      --t2-radius-sm: var(--t1-radius-1x);
+      --t2-radius-md: var(--t1-radius-1halfx);
+      --t2-radius-lg: var(--t1-radius-2x);
+      --t2-elevation-low: var(--t1-elevation-e100);
+      --t2-elevation-medium: var(--t1-elevation-e200);
+      --t2-elevation-high: var(--t1-elevation-e300);
+
+      /* ===== TIER 3: COMPONENT TOKENS ===== */
+      --t3-button-primary-surface: var(--t2-interactive-primary-surface);
+      --t3-button-primary-content: var(--t2-content-on-accent);
+      --t3-button-primary-border: var(--t2-interactive-primary-surface);
+      --t3-button-secondary-surface: var(--t2-surface-canvas);
+      --t3-button-secondary-content: var(--t2-content-primary);
+      --t3-button-secondary-border: var(--t2-content-primary);
+      --t3-button-tertiary-surface: transparent;
+      --t3-button-tertiary-content: var(--t2-content-primary);
+      --t3-button-tertiary-border: transparent;
+      --t3-input-surface: var(--t2-surface-canvas);
+      --t3-input-border: var(--t2-border-default);
+      --t3-input-border-focus: var(--t2-border-focus);
+      --t3-input-border-error: var(--t2-state-error-border);
+      --t3-input-content: var(--t2-content-primary);
+      --t3-input-placeholder: var(--t2-content-secondary);
+      --t3-input-label: var(--t2-content-secondary);
+      --t3-input-error: var(--t2-state-error-border);
+      --t3-modal-surface: var(--t2-surface-raised);
+      --t3-modal-border: var(--t2-border-subtle);
+      --t3-modal-overlay: var(--t2-surface-overlay);
+      --t3-modal-title: var(--t2-content-primary);
+      --t3-modal-subtitle: var(--t2-content-secondary);
+      --t3-table-surface: var(--t2-surface-raised);
+      --t3-table-header-surface: var(--t2-surface-base);
+      --t3-table-header-content: var(--t2-content-secondary);
+      --t3-table-row-border: var(--t2-border-subtle);
+      --t3-table-cell-content: var(--t2-content-primary);
+      --t3-table-row-height: 72px;
+      --t3-table-header-height: 32px;
+      --t3-pill-success-surface: var(--t2-state-success-surface);
+      --t3-pill-success-content: var(--t2-state-success-content);
+      --t3-pill-info-surface: var(--t2-state-info-surface);
+      --t3-pill-info-content: var(--t2-state-info-content);
+      --t3-toast-success-surface: var(--t2-state-success-surface);
+      --t3-toast-success-content: var(--t2-state-success-content);
+      --t3-toast-error-surface: var(--t2-state-error-surface);
+      --t3-toast-error-content: var(--t2-state-error-content);
+      --t3-checkbox-surface: var(--t2-surface-canvas);
+      --t3-checkbox-surface-checked: var(--t2-surface-accent);
+      --t3-checkbox-border: var(--t2-border-default);
+      --t3-checkbox-content: var(--t2-content-primary);
+      --t3-fileupload-surface: var(--t2-surface-canvas);
+      --t3-fileupload-surface-dragover: rgba(0, 255, 214, 0.05);
+      --t3-fileupload-border: var(--t2-border-default);
+      --t3-fileupload-border-dragover: var(--t2-surface-accent);
+      --t3-fileupload-border-error: var(--t2-state-error-border);
+      --t3-fileupload-content: var(--t2-content-secondary);
+      --t3-fileupload-hint: var(--t2-content-tertiary);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body { font-family: var(--t1-font-family); background-color: var(--t2-surface-base); color: var(--t2-content-primary); min-height: 100vh; }
+    #root { min-height: 100vh; }
+    *:focus-visible { outline: 2px solid var(--t2-border-focus); outline-offset: 2px; }
+    button:focus { outline: none; }
+    button:focus-visible { outline: 2px solid var(--t2-border-focus); outline-offset: 2px; }
+    @keyframes toastSlideIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--t2-surface-base); }
+    ::-webkit-scrollbar-thumb { background: var(--t2-border-default); border-radius: var(--t1-radius-max); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--t2-content-secondary); }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useCallback, useRef, useEffect } = React;
+
+    // SVG ICONS
+    const Icons = {
+      ChevronRight: (props) => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>),
+      ChevronLeft: (props) => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>),
+      ChevronDown: (props) => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>),
+      Plus: (props) => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>),
+      Close: (props) => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>),
+      Upload: (props) => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M17 8L12 3L7 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 3V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>),
+      File: (props) => (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 2V8H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M16 13H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M16 17H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>),
+      Trash: (props) => (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M3 6H5H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>),
+      ExternalLink: (props) => (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M15 3H21V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>),
+      Check: (props) => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>),
+      CheckCircle: (props) => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M22 4L12 14.01L9 11.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>),
+      AlertCircle: (props) => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/><path d="M12 8V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M12 16H12.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>),
+      FileText: (props) => (<svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 2V8H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M16 13H8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M16 17H8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>),
+    };
+
+    // MOCK DATA
+    const MOCK_RESOURCES = [
+      { id: 'connect', name: 'Connect', countryCount: 4 },
+      { id: 'fleet', name: 'Fleet Portal', countryCount: 2 },
+      { id: 'volt', name: 'Volt', countryCount: 3 },
+      { id: 'dealer', name: 'Dealer Portal', countryCount: 2 },
+      { id: 'pulse', name: 'Pulse', countryCount: 1 },
+    ];
+
+    const MOCK_COUNTRIES = {
+      connect: [
+        { code: 'GB', name: 'United Kingdom', tcsCount: 4 },
+        { code: 'DE', name: 'Germany', tcsCount: 2 },
+        { code: 'FR', name: 'France', tcsCount: 3 },
+        { code: 'NL', name: 'Netherlands', tcsCount: 1 },
+      ],
+      fleet: [
+        { code: 'GB', name: 'United Kingdom', tcsCount: 2 },
+        { code: 'DE', name: 'Germany', tcsCount: 1 },
+      ],
+      volt: [
+        { code: 'GB', name: 'United Kingdom', tcsCount: 2 },
+        { code: 'FR', name: 'France', tcsCount: 1 },
+        { code: 'ES', name: 'Spain', tcsCount: 1 },
+      ],
+      dealer: [
+        { code: 'GB', name: 'United Kingdom', tcsCount: 3 },
+        { code: 'DE', name: 'Germany', tcsCount: 2 },
+      ],
+      pulse: [{ code: 'GB', name: 'United Kingdom', tcsCount: 1 }],
+    };
+
+    const MOCK_TCS = {
+      'connect-GB': [
+        { id: 'tc-1', name: 'General Terms', status: 'active', currentVersion: 'v2.3', dateUploaded: '24/01/2025' },
+        { id: 'tc-2', name: 'Motability Terms', status: 'active', currentVersion: 'v1.1', dateUploaded: '18/01/2025' },
+        { id: 'tc-3', name: 'VW Terms', status: 'active', currentVersion: 'v3.0', dateUploaded: '10/01/2025' },
+        { id: 'tc-4', name: 'Fleet Terms', status: 'inactive', currentVersion: 'v1.0', dateUploaded: '05/12/2024' },
+      ],
+      'connect-DE': [
+        { id: 'tc-5', name: 'Allgemeine Geschäftsbedingungen', status: 'active', currentVersion: 'v1.2', dateUploaded: '15/01/2025' },
+        { id: 'tc-6', name: 'BMW Bedingungen', status: 'active', currentVersion: 'v1.0', dateUploaded: '08/01/2025' },
+      ],
+      'connect-FR': [
+        { id: 'tc-7', name: 'Conditions générales', status: 'active', currentVersion: 'v2.0', dateUploaded: '20/01/2025' },
+        { id: 'tc-8', name: 'Renault Conditions', status: 'active', currentVersion: 'v1.5', dateUploaded: '12/01/2025' },
+        { id: 'tc-9', name: 'PSA Conditions', status: 'inactive', currentVersion: 'v1.0', dateUploaded: '01/12/2024' },
+      ],
+      'connect-NL': [{ id: 'tc-10', name: 'Algemene Voorwaarden', status: 'active', currentVersion: 'v1.1', dateUploaded: '05/01/2025' }],
+    };
+
+    const MOCK_VERSIONS = {
+      'tc-1': [
+        { id: 'v-1', version: 'v2.3', status: 'active', uploadedAt: '24/01/2025', uploadedBy: 'J. Smith', pdfUrl: '#' },
+        { id: 'v-2', version: 'v2.2', status: 'inactive', uploadedAt: '18/12/2024', uploadedBy: 'J. Smith', pdfUrl: '#' },
+        { id: 'v-3', version: 'v2.1', status: 'inactive', uploadedAt: '01/11/2024', uploadedBy: 'A. Jones', pdfUrl: '#' },
+        { id: 'v-4', version: 'v2.0', status: 'inactive', uploadedAt: '15/08/2024', uploadedBy: 'A. Jones', pdfUrl: '#' },
+        { id: 'v-5', version: 'v1.0', status: 'inactive', uploadedAt: '15/06/2023', uploadedBy: 'M. Brown', pdfUrl: '#' },
+      ],
+      'tc-2': [
+        { id: 'v-6', version: 'v1.1', status: 'active', uploadedAt: '18/01/2025', uploadedBy: 'K. Williams', pdfUrl: '#' },
+        { id: 'v-7', version: 'v1.0', status: 'inactive', uploadedAt: '10/10/2024', uploadedBy: 'K. Williams', pdfUrl: '#' },
+      ],
+    };
+
+    const getCountryFlag = (code) => {
+      const flags = { GB: '🇬🇧', DE: '🇩🇪', FR: '🇫🇷', NL: '🇳🇱', ES: '🇪🇸', IT: '🇮🇹', BE: '🇧🇪' };
+      return flags[code] || '🏳️';
+    };
+
+    // CORE UI COMPONENTS
+    const Button = ({ children, variant = 'primary', size = 'medium', icon, iconOnly = false, disabled = false, loading = false, onClick, ...props }) => {
+      const baseStyles = { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--t2-spacing-sm)', fontFamily: 'var(--t1-font-family)', fontWeight: 'var(--t1-font-weight-semibold)', fontSize: 'var(--t1-font-size-18)', lineHeight: 'var(--t1-line-height-24)', letterSpacing: 'var(--t1-letter-spacing)', border: '1px solid transparent', cursor: disabled ? 'not-allowed' : 'pointer', transition: 'all 200ms ease', whiteSpace: 'nowrap', opacity: disabled ? 0.5 : 1 };
+      const sizeStyles = { large: { height: '48px', padding: '8px 16px', borderRadius: 'var(--t2-radius-lg)' }, medium: { height: '40px', padding: '8px 16px', borderRadius: 'var(--t2-radius-md)' }, small: { height: '32px', padding: '4px 12px', borderRadius: 'var(--t2-radius-sm)', fontSize: 'var(--t1-font-size-16)' } };
+      const variantStyles = { primary: { backgroundColor: 'var(--t3-button-primary-surface)', color: 'var(--t3-button-primary-content)', borderColor: 'var(--t3-button-primary-border)' }, secondary: { backgroundColor: 'var(--t3-button-secondary-surface)', color: 'var(--t3-button-secondary-content)', borderColor: 'var(--t3-button-secondary-border)' }, tertiary: { backgroundColor: 'var(--t3-button-tertiary-surface)', color: 'var(--t3-button-tertiary-content)', borderColor: 'var(--t3-button-tertiary-border)' } };
+      const buttonStyle = { ...baseStyles, ...sizeStyles[size], ...variantStyles[variant], ...(iconOnly && { padding: '8px', aspectRatio: '1' }) };
+      return (<button style={buttonStyle} disabled={disabled || loading} onClick={onClick} {...props}>{loading ? <span>Loading...</span> : (<>{icon && !iconOnly && icon}{!iconOnly && children}{iconOnly && icon}</>)}</button>);
+    };
+
+    const StatusPill = ({ status }) => {
+      const isActive = status === 'active';
+      const pillStyle = { display: 'inline-flex', alignItems: 'center', gap: 'var(--t2-spacing-xs)', padding: '4px 12px', borderRadius: 'var(--t2-radius-md)', fontSize: 'var(--t1-font-size-14)', fontWeight: 'var(--t1-font-weight-semibold)', lineHeight: 'var(--t1-line-height-18)', backgroundColor: isActive ? 'var(--t3-pill-success-surface)' : 'var(--t3-pill-info-surface)', color: isActive ? 'var(--t3-pill-success-content)' : 'var(--t3-pill-info-content)' };
+      return (<span style={pillStyle} role="status" aria-label={`Status: ${status}`}>{isActive ? 'Active' : 'Inactive'}</span>);
+    };
+
+    const Input = ({ label, required, value, onChange, placeholder, error, type = 'text', id, ...props }) => {
+      const [focused, setFocused] = useState(false);
+      const labelStyle = { fontSize: 'var(--t1-font-size-14)', lineHeight: 'var(--t1-line-height-18)', color: 'var(--t3-input-label)' };
+      const fieldStyle = { width: '100%', height: '48px', padding: '12px 16px', fontFamily: 'var(--t1-font-family)', fontSize: 'var(--t1-font-size-16)', lineHeight: 'var(--t1-line-height-24)', color: 'var(--t3-input-content)', backgroundColor: 'var(--t3-input-surface)', border: `1px solid ${error ? 'var(--t3-input-border-error)' : focused ? 'var(--t3-input-border-focus)' : 'var(--t3-input-border)'}`, borderRadius: 'var(--t2-radius-md)', outline: 'none', transition: 'border-color 200ms ease', boxSizing: 'border-box' };
+      return (<div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--t2-spacing-xs)' }}>{label && (<label htmlFor={id} style={labelStyle}>{label}{required && <span style={{ color: 'var(--t3-input-error)' }}> *</span>}</label>)}<input id={id} type={type} style={fieldStyle} value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} aria-invalid={!!error} aria-describedby={error ? `${id}-error` : undefined} {...props} />{error && (<span id={`${id}-error`} style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t3-input-error)' }} role="alert">{error}</span>)}</div>);
+    };
+
+    const Dropdown = ({ label, required, value, onChange, options, placeholder = 'Select...', error, showFlag = false, id }) => {
+      const [isOpen, setIsOpen] = useState(false);
+      const [hoveredIndex, setHoveredIndex] = useState(-1);
+      const dropdownRef = useRef(null);
+      useEffect(() => { const handleClickOutside = (event) => { if (dropdownRef.current && !dropdownRef.current.contains(event.target)) { setIsOpen(false); } }; document.addEventListener('mousedown', handleClickOutside); return () => document.removeEventListener('mousedown', handleClickOutside); }, []);
+      const selectedOption = options.find(opt => opt.value === value);
+      const triggerStyle = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--t2-spacing-sm)', width: '100%', height: '48px', padding: '12px 16px', fontFamily: 'var(--t1-font-family)', fontSize: 'var(--t1-font-size-16)', lineHeight: 'var(--t1-line-height-24)', color: selectedOption ? 'var(--t2-content-primary)' : 'var(--t2-content-secondary)', backgroundColor: 'var(--t2-surface-canvas)', border: `1px solid ${error ? 'var(--t2-state-error-border)' : isOpen ? 'var(--t2-border-focus)' : 'var(--t2-border-default)'}`, borderRadius: 'var(--t2-radius-md)', cursor: 'pointer', textAlign: 'left', transition: 'border-color 200ms ease' };
+      const menuStyle = { position: 'absolute', top: '100%', left: 0, right: 0, marginTop: 'var(--t2-spacing-xs)', backgroundColor: 'var(--t2-surface-raised)', border: '1px solid var(--t2-border-subtle)', borderRadius: 'var(--t2-radius-sm)', boxShadow: 'var(--t2-elevation-medium)', zIndex: 100, maxHeight: '300px', overflowY: 'auto', padding: 'var(--t2-spacing-lg) 2px' };
+      return (<div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--t2-spacing-xs)' }}>{label && (<label htmlFor={id} style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)' }}>{label}{required && <span style={{ color: 'var(--t2-state-error-border)' }}> *</span>}</label>)}<div ref={dropdownRef} style={{ position: 'relative' }}><button type="button" id={id} style={triggerStyle} onClick={() => setIsOpen(!isOpen)} aria-haspopup="listbox" aria-expanded={isOpen}><span>{selectedOption ? (<span style={{ display: 'flex', alignItems: 'center', gap: 'var(--t2-spacing-sm)' }}>{showFlag && selectedOption.flag && <span>{selectedOption.flag}</span>}{selectedOption.label}</span>) : placeholder}</span><Icons.ChevronDown style={{ width: '24px', height: '24px', color: 'var(--t2-content-secondary)', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 200ms ease' }} /></button>{isOpen && (<div style={menuStyle} role="listbox">{options.map((option, index) => (<div key={option.value} role="option" aria-selected={value === option.value} style={{ display: 'flex', alignItems: 'center', gap: 'var(--t2-spacing-sm)', padding: '8px 24px', fontSize: 'var(--t1-font-size-14)', fontWeight: 'var(--t1-font-weight-semibold)', lineHeight: 'var(--t1-line-height-18)', color: 'var(--t2-content-primary)', cursor: 'pointer', backgroundColor: value === option.value ? 'var(--t2-surface-accent)' : hoveredIndex === index ? 'var(--t2-surface-base)' : 'transparent', transition: 'background-color 150ms ease' }} onClick={() => { onChange(option.value); setIsOpen(false); }} onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(-1)}>{showFlag && option.flag && <span>{option.flag}</span>}{option.label}</div>))}</div>)}</div>{error && (<span style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-state-error-border)' }} role="alert">{error}</span>)}</div>);
+    };
+
+    const Checkbox = ({ label, checked, onChange, disabled }) => {
+      const controlStyle = { width: '24px', height: '24px', borderRadius: 'var(--t2-radius-md)', border: `1px solid ${checked ? 'transparent' : 'var(--t3-checkbox-border)'}`, backgroundColor: checked ? 'var(--t3-checkbox-surface-checked)' : 'var(--t3-checkbox-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all 150ms ease' };
+      return (<label style={{ display: 'flex', alignItems: 'center', gap: 'var(--t2-spacing-md)', cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? 0.5 : 1 }}><div style={controlStyle} role="checkbox" aria-checked={checked} tabIndex={0} onKeyDown={(e) => { if ((e.key === ' ' || e.key === 'Enter') && !disabled) { e.preventDefault(); onChange(!checked); } }}>{checked && <Icons.Check style={{ color: 'var(--t3-checkbox-content)' }} />}</div><input type="checkbox" checked={checked} onChange={(e) => !disabled && onChange(e.target.checked)} disabled={disabled} style={{ position: 'absolute', opacity: 0, pointerEvents: 'none' }} /><span style={{ fontSize: 'var(--t1-font-size-16)', lineHeight: 1.6, color: 'var(--t2-content-primary)', letterSpacing: 'var(--t1-letter-spacing)' }}>{label}</span></label>);
+    };
+
+    const FileUploadZone = ({ file, onFileSelect, onFileRemove, error, accept = '.pdf' }) => {
+      const [isDragOver, setIsDragOver] = useState(false);
+      const inputRef = useRef(null);
+      const handleDragOver = useCallback((e) => { e.preventDefault(); setIsDragOver(true); }, []);
+      const handleDragLeave = useCallback((e) => { e.preventDefault(); setIsDragOver(false); }, []);
+      const handleDrop = useCallback((e) => { e.preventDefault(); setIsDragOver(false); const droppedFile = e.dataTransfer.files[0]; if (droppedFile) onFileSelect(droppedFile); }, [onFileSelect]);
+      const handleClick = () => inputRef.current?.click();
+      const handleChange = (e) => { const f = e.target.files[0]; if (f) onFileSelect(f); };
+      const zoneStyle = { display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 'var(--t2-spacing-sm)', padding: 'var(--t2-spacing-xl)', border: `2px dashed ${error ? 'var(--t3-fileupload-border-error)' : isDragOver ? 'var(--t3-fileupload-border-dragover)' : 'var(--t3-fileupload-border)'}`, borderRadius: 'var(--t2-radius-md)', backgroundColor: isDragOver ? 'var(--t3-fileupload-surface-dragover)' : 'var(--t3-fileupload-surface)', cursor: 'pointer', transition: 'all 150ms ease', minHeight: '120px' };
+      if (file) {
+        return (<div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--t2-spacing-xs)' }}><label style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)' }}>Upload PDF <span style={{ color: 'var(--t2-state-error-border)' }}>*</span></label><div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--t2-spacing-md)', padding: 'var(--t2-spacing-md) var(--t2-spacing-lg)', backgroundColor: 'var(--t2-surface-base)', borderRadius: 'var(--t2-radius-md)', border: '1px solid var(--t2-border-subtle)' }}><div style={{ display: 'flex', alignItems: 'center', gap: 'var(--t2-spacing-sm)', overflow: 'hidden' }}><Icons.File style={{ flexShrink: 0, color: 'var(--t2-content-secondary)' }} /><span style={{ fontSize: 'var(--t1-font-size-16)', color: 'var(--t2-content-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{file.name}</span><span style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)', flexShrink: 0 }}>({(file.size / 1024 / 1024).toFixed(2)} MB)</span></div><button type="button" onClick={onFileRemove} style={{ background: 'none', border: 'none', padding: '4px', cursor: 'pointer', color: 'var(--t2-content-secondary)' }} aria-label="Remove file"><Icons.Trash /></button></div>{error && <span style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-state-error-border)' }} role="alert">{error}</span>}</div>);
+      }
+      return (<div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--t2-spacing-xs)' }}><label style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)' }}>Upload PDF <span style={{ color: 'var(--t2-state-error-border)' }}>*</span></label><div style={zoneStyle} onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} onClick={handleClick} role="button" tabIndex={0} aria-label="Upload PDF file. Drag and drop or click to select." onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(); } }}><input ref={inputRef} type="file" accept={accept} onChange={handleChange} style={{ display: 'none' }} aria-hidden="true" /><Icons.Upload style={{ width: '32px', height: '32px', color: 'var(--t3-fileupload-content)' }} /><span style={{ fontSize: 'var(--t1-font-size-16)', color: 'var(--t2-content-primary)', textAlign: 'center' }}>Drag and drop or <span style={{ color: 'var(--t2-surface-accent)', textDecoration: 'underline' }}>click to upload</span></span><span style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t3-fileupload-hint)', textAlign: 'center' }}>PDF files only, max 10MB</span></div>{error && <span style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-state-error-border)' }} role="alert">{error}</span>}</div>);
+    };
+
+    const Modal = ({ isOpen, onClose, title, subtitle, children, footer, width = '570px' }) => {
+      const modalRef = useRef(null);
+      useEffect(() => { if (isOpen) { const handleEscape = (e) => { if (e.key === 'Escape') onClose(); }; document.addEventListener('keydown', handleEscape); document.body.style.overflow = 'hidden'; const focusable = modalRef.current?.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'); if (focusable?.length) focusable[0].focus(); return () => { document.removeEventListener('keydown', handleEscape); document.body.style.overflow = ''; }; } }, [isOpen, onClose]);
+      if (!isOpen) return null;
+      return (<div style={{ position: 'fixed', inset: 0, backgroundColor: 'var(--t3-modal-overlay)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200, padding: 'var(--t2-spacing-lg)', animation: 'fadeIn 200ms ease' }} onClick={(e) => { if (e.target === e.currentTarget) onClose(); }} role="dialog" aria-modal="true" aria-labelledby="modal-title"><div ref={modalRef} style={{ backgroundColor: 'var(--t3-modal-surface)', borderRadius: 'var(--t2-radius-lg)', boxShadow: 'var(--t2-elevation-high)', width: '100%', maxWidth: width, maxHeight: '90vh', overflow: 'auto', border: '1px solid var(--t3-modal-border)' }} onClick={(e) => e.stopPropagation()}><div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: 'var(--t2-spacing-xl)', paddingBottom: 'var(--t2-spacing-lg)', gap: 'var(--t2-spacing-lg)' }}><div><h2 id="modal-title" style={{ fontSize: 'var(--t1-font-size-24)', lineHeight: 'var(--t1-line-height-32)', fontWeight: 'var(--t1-font-weight-regular)', color: 'var(--t3-modal-title)', margin: 0 }}>{title}</h2>{subtitle && <p style={{ fontSize: 'var(--t1-font-size-16)', lineHeight: 'var(--t1-line-height-24)', color: 'var(--t3-modal-subtitle)', marginTop: '4px', margin: 0 }}>{subtitle}</p>}</div><button style={{ background: 'none', border: 'none', padding: '4px', cursor: 'pointer', color: 'var(--t2-content-primary)', flexShrink: 0 }} onClick={onClose} aria-label="Close modal"><Icons.Close /></button></div><div style={{ padding: '0 var(--t2-spacing-xl)', display: 'flex', flexDirection: 'column', gap: 'var(--t2-spacing-lg)' }}>{children}</div>{footer && (<div style={{ display: 'flex', justifyContent: 'flex-end', gap: 'var(--t2-spacing-md)', padding: 'var(--t2-spacing-xl)', paddingTop: 'var(--t2-spacing-lg)' }}>{footer}</div>)}</div></div>);
+    };
+
+    const Toast = ({ type = 'success', message, onDismiss }) => {
+      useEffect(() => { const timer = setTimeout(onDismiss, 4000); return () => clearTimeout(timer); }, [onDismiss]);
+      const isSuccess = type === 'success';
+      return (<div style={{ display: 'flex', alignItems: 'center', gap: 'var(--t2-spacing-md)', padding: 'var(--t2-spacing-md) var(--t2-spacing-lg)', borderRadius: 'var(--t2-radius-md)', boxShadow: 'var(--t2-elevation-medium)', backgroundColor: isSuccess ? 'var(--t3-toast-success-surface)' : 'var(--t3-toast-error-surface)', color: isSuccess ? 'var(--t3-toast-success-content)' : 'var(--t3-toast-error-content)', animation: 'toastSlideIn 300ms ease-out' }} role={type === 'error' ? 'alert' : 'status'} aria-live={type === 'error' ? 'assertive' : 'polite'}>{isSuccess ? <Icons.CheckCircle style={{ width: '24px', height: '24px', flexShrink: 0 }} /> : <Icons.AlertCircle style={{ width: '24px', height: '24px', flexShrink: 0 }} />}<span style={{ fontSize: 'var(--t1-font-size-18)', lineHeight: 'var(--t1-line-height-24)', letterSpacing: 'var(--t1-letter-spacing)' }}>{message}</span></div>);
+    };
+
+    const ToastContainer = ({ toasts, removeToast }) => (<div style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 300, display: 'flex', flexDirection: 'column', gap: 'var(--t2-spacing-md)' }}>{toasts.map((toast) => (<Toast key={toast.id} type={toast.type} message={toast.message} onDismiss={() => removeToast(toast.id)} />))}</div>);
+
+    const Table = ({ children }) => (<div style={{ backgroundColor: 'var(--t3-table-surface)', borderRadius: 'var(--t2-radius-lg)', boxShadow: 'var(--t2-elevation-low)', overflow: 'hidden' }}><table style={{ width: '100%', borderCollapse: 'collapse' }}>{children}</table></div>);
+
+    const TableHeader = ({ columns }) => (<thead><tr style={{ backgroundColor: 'var(--t3-table-header-surface)', height: 'var(--t3-table-header-height)' }}>{columns.map((col, i) => (<th key={i} style={{ padding: '8px 16px', textAlign: col.align === 'right' ? 'right' : 'left', fontSize: 'var(--t1-font-size-14)', fontWeight: 'var(--t1-font-weight-semibold)', textTransform: 'uppercase', color: 'var(--t3-table-header-content)', letterSpacing: '0.5px', borderBottom: '1px solid var(--t3-table-row-border)', width: col.width }}>{col.label}</th>))}</tr></thead>);
+
+    const TableRow = ({ children, onClick, hoverable = true }) => {
+      const [isHovered, setIsHovered] = useState(false);
+      return (<tr style={{ height: 'var(--t3-table-row-height)', borderBottom: '1px solid var(--t3-table-row-border)', backgroundColor: hoverable && isHovered ? 'var(--t2-surface-base)' : 'transparent', cursor: onClick ? 'pointer' : 'default', transition: 'background-color 150ms ease' }} onClick={onClick} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} tabIndex={onClick ? 0 : undefined} onKeyDown={(e) => { if (onClick && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onClick(); } }}>{children}</tr>);
+    };
+
+    const TableCell = ({ children, align }) => (<td style={{ padding: '16px', fontSize: 'var(--t1-font-size-18)', lineHeight: 'var(--t1-line-height-24)', color: 'var(--t3-table-cell-content)', letterSpacing: 'var(--t1-letter-spacing)', verticalAlign: 'middle', textAlign: align === 'right' ? 'right' : 'left' }}>{children}</td>);
+
+    const EmptyState = ({ icon: Icon, title, description, action }) => (<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 'var(--t1-space-12x)', textAlign: 'center', gap: 'var(--t2-spacing-lg)' }}>{Icon && <Icon style={{ width: '64px', height: '64px', color: 'var(--t2-content-tertiary)' }} />}<h3 style={{ fontSize: 'var(--t1-font-size-18)', fontWeight: 'var(--t1-font-weight-semibold)', color: 'var(--t2-content-primary)', margin: 0 }}>{title}</h3>{description && <p style={{ fontSize: 'var(--t1-font-size-16)', color: 'var(--t2-content-secondary)', maxWidth: '400px', margin: 0 }}>{description}</p>}{action}</div>);
+
+    // VIEW COMPONENTS
+    const ResourcesListView = ({ onSelectResource }) => (<><div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--t2-spacing-xl)', gap: 'var(--t2-spacing-lg)', flexWrap: 'wrap' }}><h1 style={{ fontSize: 'var(--t1-font-size-32)', lineHeight: 'var(--t1-line-height-40)', fontWeight: 'var(--t1-font-weight-regular)', letterSpacing: 'var(--t1-letter-spacing)', color: 'var(--t2-content-primary)', margin: 0 }}>Resources</h1></div><p style={{ fontSize: 'var(--t1-font-size-14)', lineHeight: 'var(--t1-line-height-18)', color: 'var(--t2-content-secondary)', marginBottom: 'var(--t2-spacing-lg)' }}>Showing {MOCK_RESOURCES.length} of {MOCK_RESOURCES.length} resources</p><Table><TableHeader columns={[{ label: 'Resource Name' }, { label: 'Countries', width: '120px', align: 'right' }, { label: '', width: '48px' }]} /><tbody>{MOCK_RESOURCES.map((r) => (<TableRow key={r.id} onClick={() => onSelectResource(r)}><TableCell>{r.name}</TableCell><TableCell align="right">{r.countryCount}</TableCell><TableCell><Icons.ChevronRight style={{ width: '24px', height: '24px', color: 'var(--t2-content-secondary)' }} /></TableCell></TableRow>))}</tbody></Table></>);
+
+    const CountryListView = ({ resource, onBack, onSelectCountry }) => {
+      const countries = MOCK_COUNTRIES[resource.id] || [];
+      return (<><button onClick={onBack} style={{ display: 'inline-flex', alignItems: 'center', gap: 'var(--t2-spacing-sm)', padding: 0, background: 'none', border: 'none', fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)', cursor: 'pointer', marginBottom: 'var(--t2-spacing-lg)' }} aria-label="Back to Resources"><Icons.ChevronLeft style={{ width: '16px', height: '16px' }} />Back to Resources</button><div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--t2-spacing-xl)', gap: 'var(--t2-spacing-lg)', flexWrap: 'wrap' }}><h1 style={{ fontSize: 'var(--t1-font-size-32)', lineHeight: 'var(--t1-line-height-40)', fontWeight: 'var(--t1-font-weight-regular)', color: 'var(--t2-content-primary)', margin: 0 }}>{resource.name}</h1></div><p style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)', marginBottom: 'var(--t2-spacing-lg)' }}>Showing {countries.length} of {countries.length} countries</p>{countries.length === 0 ? (<EmptyState icon={Icons.FileText} title="No countries configured" description="No countries have been set up for this resource yet." />) : (<Table><TableHeader columns={[{ label: 'Country' }, { label: 'T&Cs', width: '100px', align: 'right' }, { label: '', width: '48px' }]} /><tbody>{countries.map((c) => (<TableRow key={c.code} onClick={() => onSelectCountry(c)}><TableCell><div style={{ display: 'flex', alignItems: 'center', gap: 'var(--t2-spacing-md)' }}><span style={{ fontSize: '24px' }}>{getCountryFlag(c.code)}</span><span>{c.name}</span></div></TableCell><TableCell align="right">{c.tcsCount}</TableCell><TableCell><Icons.ChevronRight style={{ width: '24px', height: '24px', color: 'var(--t2-content-secondary)' }} /></TableCell></TableRow>))}</tbody></Table>)}</>);
+    };
+
+    const TcsListView = ({ resource, country, onBack, onSelectTc, showToast }) => {
+      const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+      const tcsList = MOCK_TCS[`${resource.id}-${country.code}`] || [];
+      const handleAddTcs = (data) => { console.log('Adding T&Cs:', data); setIsAddModalOpen(false); showToast('success', 'T&Cs created successfully'); };
+      return (<><nav style={{ display: 'flex', alignItems: 'center', gap: 'var(--t2-spacing-sm)', marginBottom: 'var(--t2-spacing-lg)' }} aria-label="Breadcrumb"><button onClick={() => onBack('resources')} style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>Resources</button><span style={{ color: 'var(--t2-content-tertiary)', fontSize: 'var(--t1-font-size-14)' }}>/</span><button onClick={() => onBack('countries')} style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>{resource.name}</button><span style={{ color: 'var(--t2-content-tertiary)', fontSize: 'var(--t1-font-size-14)' }}>/</span><span style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-primary)' }}>{getCountryFlag(country.code)} {country.name}</span></nav><div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--t2-spacing-xl)', gap: 'var(--t2-spacing-lg)', flexWrap: 'wrap' }}><div style={{ display: 'flex', alignItems: 'center', gap: 'var(--t2-spacing-md)' }}><span style={{ fontSize: '32px' }}>{getCountryFlag(country.code)}</span><h1 style={{ fontSize: 'var(--t1-font-size-32)', lineHeight: 'var(--t1-line-height-40)', fontWeight: 'var(--t1-font-weight-regular)', color: 'var(--t2-content-primary)', margin: 0 }}>{country.name}</h1></div><Button icon={<Icons.Plus style={{ width: '20px', height: '20px' }} />} onClick={() => setIsAddModalOpen(true)}>Add T&Cs</Button></div><p style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)', marginBottom: 'var(--t2-spacing-lg)' }}>Showing {tcsList.length} of {tcsList.length} T&Cs</p>{tcsList.length === 0 ? (<EmptyState icon={Icons.FileText} title="No T&Cs found" description="No Terms & Conditions have been uploaded for this resource and country yet." action={<Button icon={<Icons.Plus style={{ width: '20px', height: '20px' }} />} onClick={() => setIsAddModalOpen(true)}>Add T&Cs</Button>} />) : (<Table><TableHeader columns={[{ label: 'Name' }, { label: 'Status', width: '120px' }, { label: 'Current Version', width: '140px' }, { label: 'Date Uploaded', width: '140px' }, { label: '', width: '48px' }]} /><tbody>{tcsList.map((tc) => (<TableRow key={tc.id} onClick={() => onSelectTc(tc)}><TableCell>{tc.name}</TableCell><TableCell><StatusPill status={tc.status} /></TableCell><TableCell>{tc.currentVersion}</TableCell><TableCell>{tc.dateUploaded}</TableCell><TableCell><Icons.ChevronRight style={{ width: '24px', height: '24px', color: 'var(--t2-content-secondary)' }} /></TableCell></TableRow>))}</tbody></Table>)}<AddTcsModal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)} onSubmit={handleAddTcs} defaultResource={resource} defaultCountry={country} /></>);
+    };
+
+    const TcDetailView = ({ resource, country, tc, onBack, showToast }) => {
+      const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+      const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+      const [selectedVersion, setSelectedVersion] = useState(null);
+      const versions = MOCK_VERSIONS[tc.id] || [];
+      const handleUploadVersion = (data) => { console.log('Uploading version:', data); setIsUploadModalOpen(false); showToast('success', data.makeActive ? `Version ${data.version} is now active` : 'New version uploaded successfully'); };
+      const handleMakeActive = (version) => { setSelectedVersion(version); setIsConfirmModalOpen(true); };
+      const confirmMakeActive = () => { console.log('Making active:', selectedVersion); setIsConfirmModalOpen(false); setSelectedVersion(null); showToast('success', `Version ${selectedVersion.version} is now active`); };
+      return (<><nav style={{ display: 'flex', alignItems: 'center', gap: 'var(--t2-spacing-sm)', marginBottom: 'var(--t2-spacing-lg)', flexWrap: 'wrap' }} aria-label="Breadcrumb"><button onClick={() => onBack('resources')} style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>Resources</button><span style={{ color: 'var(--t2-content-tertiary)', fontSize: 'var(--t1-font-size-14)' }}>/</span><button onClick={() => onBack('countries')} style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>{resource.name}</button><span style={{ color: 'var(--t2-content-tertiary)', fontSize: 'var(--t1-font-size-14)' }}>/</span><button onClick={() => onBack('tcs')} style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>{getCountryFlag(country.code)} {country.name}</button><span style={{ color: 'var(--t2-content-tertiary)', fontSize: 'var(--t1-font-size-14)' }}>/</span><span style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-primary)' }}>{tc.name}</span></nav><div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--t2-spacing-xl)', gap: 'var(--t2-spacing-lg)', flexWrap: 'wrap' }}><h1 style={{ fontSize: 'var(--t1-font-size-32)', lineHeight: 'var(--t1-line-height-40)', fontWeight: 'var(--t1-font-weight-regular)', color: 'var(--t2-content-primary)', margin: 0 }}>{tc.name}</h1><Button icon={<Icons.Upload style={{ width: '20px', height: '20px' }} />} onClick={() => setIsUploadModalOpen(true)}>Upload New Version</Button></div><div style={{ backgroundColor: 'var(--t2-surface-raised)', borderRadius: 'var(--t2-radius-lg)', padding: 'var(--t2-spacing-xl)', marginBottom: 'var(--t2-spacing-xl)', boxShadow: 'var(--t2-elevation-low)' }}><h2 style={{ fontSize: 'var(--t1-font-size-14)', fontWeight: 'var(--t1-font-weight-semibold)', textTransform: 'uppercase', color: 'var(--t2-content-secondary)', letterSpacing: '0.5px', margin: 0, marginBottom: '16px' }}>Details</h2><div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--t2-spacing-lg)' }}><div><span style={{ display: 'block', fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)' }}>Resource</span><span style={{ fontSize: 'var(--t1-font-size-18)', color: 'var(--t2-content-primary)' }}>{resource.name}</span></div><div><span style={{ display: 'block', fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)' }}>Country</span><span style={{ fontSize: 'var(--t1-font-size-18)', color: 'var(--t2-content-primary)' }}>{getCountryFlag(country.code)} {country.name}</span></div><div><span style={{ display: 'block', fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)' }}>Active Version</span><span style={{ fontSize: 'var(--t1-font-size-18)', color: 'var(--t2-content-primary)' }}>{tc.currentVersion}</span></div><div><span style={{ display: 'block', fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)' }}>Last Updated</span><span style={{ fontSize: 'var(--t1-font-size-18)', color: 'var(--t2-content-primary)' }}>{tc.dateUploaded}</span></div></div></div><h2 style={{ fontSize: 'var(--t1-font-size-24)', lineHeight: 'var(--t1-line-height-32)', fontWeight: 'var(--t1-font-weight-regular)', color: 'var(--t2-content-primary)', margin: 0, marginBottom: '16px' }}>Version History</h2><p style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)', marginBottom: 'var(--t2-spacing-lg)' }}>Showing {versions.length} of {versions.length} versions</p>{versions.length === 0 ? (<EmptyState icon={Icons.FileText} title="No version history" description="Upload the first version using the button above." />) : (<Table><TableHeader columns={[{ label: 'Version', width: '100px' }, { label: 'Status', width: '100px' }, { label: 'Uploaded', width: '120px' }, { label: 'Uploaded By', width: '150px' }, { label: 'Actions', width: '200px', align: 'right' }]} /><tbody>{versions.map((v) => (<TableRow key={v.id} hoverable={false}><TableCell>{v.version}</TableCell><TableCell>{v.status === 'active' && <StatusPill status="active" />}</TableCell><TableCell>{v.uploadedAt}</TableCell><TableCell>{v.uploadedBy}</TableCell><TableCell align="right"><div style={{ display: 'flex', gap: 'var(--t2-spacing-sm)', justifyContent: 'flex-end' }}>{v.status !== 'active' && <Button variant="tertiary" size="small" onClick={() => handleMakeActive(v)}>Make Active</Button>}<Button variant="tertiary" size="small" icon={<Icons.ExternalLink style={{ width: '16px', height: '16px' }} />} iconOnly onClick={() => window.open(v.pdfUrl, '_blank', 'noopener,noreferrer')} aria-label={`View PDF for version ${v.version}`} /></div></TableCell></TableRow>))}</tbody></Table>)}<UploadVersionModal isOpen={isUploadModalOpen} onClose={() => setIsUploadModalOpen(false)} onSubmit={handleUploadVersion} tcName={tc.name} resource={resource} country={country} currentVersion={tc.currentVersion} /><Modal isOpen={isConfirmModalOpen} onClose={() => setIsConfirmModalOpen(false)} title="Make Version Active?" subtitle={`This will set ${selectedVersion?.version} as the active version for ${tc.name}.`} footer={<><Button variant="tertiary" onClick={() => setIsConfirmModalOpen(false)}>Cancel</Button><Button onClick={confirmMakeActive}>Confirm</Button></>}><p style={{ fontSize: 'var(--t1-font-size-16)', color: 'var(--t2-content-secondary)', margin: 0 }}>The current active version ({tc.currentVersion}) will be replaced. This change will take effect immediately for all users.</p></Modal></>);
+    };
+
+    // MODAL COMPONENTS
+    const AddTcsModal = ({ isOpen, onClose, onSubmit, defaultResource, defaultCountry }) => {
+      const [formData, setFormData] = useState({ resource: '', country: '', name: '', file: null });
+      const [errors, setErrors] = useState({});
+      const [isSubmitting, setIsSubmitting] = useState(false);
+      useEffect(() => { if (isOpen) { setFormData({ resource: defaultResource?.id || '', country: defaultCountry?.code || '', name: '', file: null }); setErrors({}); } }, [isOpen, defaultResource, defaultCountry]);
+      const resourceOptions = MOCK_RESOURCES.map(r => ({ value: r.id, label: r.name }));
+      const countryOptions = formData.resource ? (MOCK_COUNTRIES[formData.resource] || []).map(c => ({ value: c.code, label: c.name, flag: getCountryFlag(c.code) })) : [];
+      const validate = () => { const newErrors = {}; if (!formData.resource) newErrors.resource = 'Resource is required'; if (!formData.country) newErrors.country = 'Country is required'; if (!formData.name.trim()) newErrors.name = 'T&C name is required'; if (!formData.file) newErrors.file = 'PDF file is required'; if (formData.file) { if (!formData.file.name.toLowerCase().endsWith('.pdf')) newErrors.file = 'Only PDF files are accepted'; else if (formData.file.size > 10 * 1024 * 1024) newErrors.file = 'File must be under 10MB'; } setErrors(newErrors); return Object.keys(newErrors).length === 0; };
+      const handleSubmit = async () => { if (!validate()) return; setIsSubmitting(true); await new Promise(resolve => setTimeout(resolve, 1500)); onSubmit(formData); setIsSubmitting(false); };
+      return (<Modal isOpen={isOpen} onClose={onClose} title="Add New T&Cs" subtitle="Create a new Terms & Conditions record" footer={<><Button variant="tertiary" onClick={onClose} disabled={isSubmitting}>Cancel</Button><Button onClick={handleSubmit} loading={isSubmitting} disabled={isSubmitting}>Upload & Create</Button></>}><Dropdown id="add-resource" label="Resource" required value={formData.resource} onChange={(v) => setFormData({ ...formData, resource: v, country: '' })} options={resourceOptions} placeholder="Select resource" error={errors.resource} /><Dropdown id="add-country" label="Country" required value={formData.country} onChange={(v) => setFormData({ ...formData, country: v })} options={countryOptions} placeholder="Select country" showFlag error={errors.country} /><Input id="add-name" label="T&C Name" required value={formData.name} onChange={(v) => setFormData({ ...formData, name: v })} placeholder="e.g. General Terms, VW Terms" error={errors.name} /><FileUploadZone file={formData.file} onFileSelect={(f) => setFormData({ ...formData, file: f })} onFileRemove={() => setFormData({ ...formData, file: null })} error={errors.file} /></Modal>);
+    };
+
+    const UploadVersionModal = ({ isOpen, onClose, onSubmit, tcName, resource, country, currentVersion }) => {
+      const [file, setFile] = useState(null);
+      const [makeActive, setMakeActive] = useState(true);
+      const [error, setError] = useState('');
+      const [isSubmitting, setIsSubmitting] = useState(false);
+      useEffect(() => { if (isOpen) { setFile(null); setMakeActive(true); setError(''); } }, [isOpen]);
+      const nextVersion = currentVersion ? `v${(parseFloat(currentVersion.replace('v', '')) + 0.1).toFixed(1)}` : 'v1.0';
+      const validate = () => { if (!file) { setError('PDF file is required'); return false; } if (!file.name.toLowerCase().endsWith('.pdf')) { setError('Only PDF files are accepted'); return false; } if (file.size > 10 * 1024 * 1024) { setError('File must be under 10MB'); return false; } setError(''); return true; };
+      const handleSubmit = async () => { if (!validate()) return; setIsSubmitting(true); await new Promise(resolve => setTimeout(resolve, 1500)); onSubmit({ file, makeActive, version: nextVersion }); setIsSubmitting(false); };
+      return (<Modal isOpen={isOpen} onClose={onClose} title="Upload New Version" footer={<><Button variant="tertiary" onClick={onClose} disabled={isSubmitting}>Cancel</Button><Button onClick={handleSubmit} loading={isSubmitting} disabled={isSubmitting}>Upload Version</Button></>}><div style={{ padding: 'var(--t2-spacing-md) var(--t2-spacing-lg)', backgroundColor: 'var(--t2-surface-base)', borderRadius: 'var(--t2-radius-md)', marginBottom: 'var(--t2-spacing-sm)' }}><p style={{ fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)', margin: 0 }}>Uploading new version for:</p><p style={{ fontSize: 'var(--t1-font-size-16)', fontWeight: 'var(--t1-font-weight-semibold)', color: 'var(--t2-content-primary)', margin: 0, marginTop: '4px' }}>{tcName} ({resource.name} › {getCountryFlag(country.code)} {country.name})</p></div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--t1-font-size-14)', color: 'var(--t2-content-secondary)', marginBottom: 'var(--t2-spacing-lg)' }}><span>Current version: <strong style={{ color: 'var(--t2-content-primary)' }}>{currentVersion}</strong></span><span>New version: <strong style={{ color: 'var(--t2-content-primary)' }}>{nextVersion}</strong></span></div><FileUploadZone file={file} onFileSelect={setFile} onFileRemove={() => setFile(null)} error={error} /><Checkbox label="Make this version active immediately" checked={makeActive} onChange={setMakeActive} /></Modal>);
+    };
+
+    // MAIN APPLICATION
+    function TcsResourceManagement() {
+      const [currentView, setCurrentView] = useState('resources');
+      const [selectedResource, setSelectedResource] = useState(null);
+      const [selectedCountry, setSelectedCountry] = useState(null);
+      const [selectedTc, setSelectedTc] = useState(null);
+      const [toasts, setToasts] = useState([]);
+      const showToast = useCallback((type, message) => { const id = Date.now(); setToasts(prev => [...prev, { id, type, message }]); }, []);
+      const removeToast = useCallback((id) => { setToasts(prev => prev.filter(t => t.id !== id)); }, []);
+      const handleSelectResource = (resource) => { setSelectedResource(resource); setCurrentView('countries'); };
+      const handleSelectCountry = (country) => { setSelectedCountry(country); setCurrentView('tcs'); };
+      const handleSelectTc = (tc) => { setSelectedTc(tc); setCurrentView('detail'); };
+      const handleBack = (to) => { if (to === 'resources') { setCurrentView('resources'); setSelectedResource(null); setSelectedCountry(null); setSelectedTc(null); } else if (to === 'countries') { setCurrentView('countries'); setSelectedCountry(null); setSelectedTc(null); } else if (to === 'tcs') { setCurrentView('tcs'); setSelectedTc(null); } };
+      const renderView = () => { switch (currentView) { case 'resources': return <ResourcesListView onSelectResource={handleSelectResource} />; case 'countries': return <CountryListView resource={selectedResource} onBack={() => handleBack('resources')} onSelectCountry={handleSelectCountry} />; case 'tcs': return <TcsListView resource={selectedResource} country={selectedCountry} onBack={handleBack} onSelectTc={handleSelectTc} showToast={showToast} />; case 'detail': return <TcDetailView resource={selectedResource} country={selectedCountry} tc={selectedTc} onBack={handleBack} showToast={showToast} />; default: return null; } };
+      return (<div style={{ fontFamily: 'var(--t1-font-family)', backgroundColor: 'var(--t2-surface-base)', minHeight: '100vh', color: 'var(--t2-content-primary)' }}><div style={{ maxWidth: '1200px', margin: '0 auto', padding: 'var(--t2-spacing-xl)' }}>{renderView()}</div><ToastContainer toasts={toasts} removeToast={removeToast} /></div>);
+    }
+
+    // RENDER
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<TcsResourceManagement />);
+  </script>
+</body>
+</html>
