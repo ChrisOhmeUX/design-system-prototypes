@@ -50,6 +50,7 @@
             color: inherit;
             transition: all 0.2s ease;
             display: block;
+            position: relative;
         }
         
         .prototype-card:hover {
@@ -77,6 +78,15 @@
             margin-top: 12px;
             padding-top: 12px;
             border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
         }
         
         .tag {
@@ -87,7 +97,22 @@
             font-size: 11px;
             font-weight: 500;
             color: #666;
-            margin-right: 6px;
+        }
+        
+        .doc-link {
+            color: #0066cc;
+            font-size: 12px;
+            font-weight: 500;
+            text-decoration: none;
+            white-space: nowrap;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        
+        .doc-link:hover {
+            background: #f0f0f0;
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -102,30 +127,48 @@
             <h2>Park & Charge Self Billing</h2>
             <p>Billing dashboard interface supporting self-billing finance model with quarterly payment cycles</p>
             <div class="meta">
-                <span class="tag">Park & Charge</span>
-                <span class="tag">Dashboard</span>
-                <span class="tag">Billing</span>
+                <div class="tags">
+                    <span class="tag">Park & Charge</span>
+                    <span class="tag">Dashboard</span>
+                    <span class="tag">Billing</span>
+                </div>
+                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/pc-self-billing/README.md" 
+                   class="doc-link" 
+                   onclick="event.stopPropagation();"
+                   target="_blank">View docs →</a>
             </div>
         </a>
 
+        <!-- PC Self Billing Invoice -->
         <a href="Prototypes/pc-self-billing-invoice/index.html" class="prototype-card">
             <h2>Park & Charge Self Billing - Invoice</h2>
             <p>Invoice template for self billing</p>
             <div class="meta">
-                <span class="tag">Park & Charge</span>
-                <span class="tag">Billing</span>
-                <span class="tag">Invoice</span>
+                <div class="tags">
+                    <span class="tag">Park & Charge</span>
+                    <span class="tag">Billing</span>
+                    <span class="tag">Invoice</span>
+                </div>
+                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/pc-self-billing-invoice/README.md" 
+                   class="doc-link" 
+                   onclick="event.stopPropagation();"
+                   target="_blank">View docs →</a>
             </div>
         </a>
         
-        <!-- Add more prototypes here as you create them -->
-        <!-- Template:
-        <a href="path/to/prototype.html" class="prototype-card">
+        <!-- Template for adding new prototypes:
+        <a href="Prototypes/folder-name/index.html" class="prototype-card">
             <h2>Prototype Name</h2>
             <p>Brief description of what this prototype demonstrates</p>
             <div class="meta">
-                <span class="tag">Tag1</span>
-                <span class="tag">Tag2</span>
+                <div class="tags">
+                    <span class="tag">Tag1</span>
+                    <span class="tag">Tag2</span>
+                </div>
+                <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/folder-name/README.md" 
+                   class="doc-link" 
+                   onclick="event.stopPropagation();"
+                   target="_blank">View docs →</a>
             </div>
         </a>
         -->
@@ -133,3 +176,16 @@
     </div>
 </body>
 </html>
+```
+
+## What changed:
+
+1. **Added "View docs →" links** on the right side of each card's footer
+2. **Links go to GitHub** to view the README (formatted nicely by GitHub)
+3. **Prevents card click** when clicking the docs link (using `onclick="event.stopPropagation();"`)
+4. **Opens in new tab** (`target="_blank"`)
+5. **Updated the template** with the new structure
+
+## The README URLs follow this pattern:
+```
+https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/[folder-name]/README.md
