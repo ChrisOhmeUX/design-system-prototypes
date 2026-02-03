@@ -168,6 +168,14 @@
             margin-top: auto;
         }
         
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
         .tags {
             display: flex;
             flex-wrap: wrap;
@@ -185,6 +193,12 @@
             color: #00ff88;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+        
+        .last-updated {
+            font-size: 12px;
+            color: #666;
+            white-space: nowrap;
         }
         
         .card-actions {
@@ -304,16 +318,19 @@
         <div class="prototype-grid">
         
             <!-- Hub users table filter -->
-            <div class="prototype-card">
+            <div class="prototype-card" data-folder="hub-users-filter">
                 <div class="card-header">
                     <h2>Users Table Filter</h2>
                     <p>Filter for sorting results on users table</p>
                 </div>
                 <div class="card-footer">
-                    <div class="tags">
-                        <span class="tag">Table</span>
-                        <span class="tag">Filter</span>
-                        <span class="tag">Users</span>
+                    <div class="card-meta">
+                        <div class="tags">
+                            <span class="tag">Table</span>
+                            <span class="tag">Filter</span>
+                            <span class="tag">Users</span>
+                        </div>
+                        <span class="last-updated">Loading...</span>
                     </div>
                     <div class="card-actions">
                         <a href="Prototypes/hub-users-filter/index.html" class="action-btn btn-primary">View Prototype</a>
@@ -332,16 +349,19 @@
         <div class="prototype-grid">
             
             <!-- PC Self Billing Prototype -->
-            <div class="prototype-card">
+            <div class="prototype-card" data-folder="pc-self-billing">
                 <div class="card-header">
                     <h2>Self Billing Dashboard</h2>
                     <p>Billing dashboard interface supporting self-billing finance model with quarterly payment cycles</p>
                 </div>
                 <div class="card-footer">
-                    <div class="tags">
-                        <span class="tag">Dashboard</span>
-                        <span class="tag">Billing</span>
-                        <span class="tag">Finance</span>
+                    <div class="card-meta">
+                        <div class="tags">
+                            <span class="tag">Dashboard</span>
+                            <span class="tag">Billing</span>
+                            <span class="tag">Finance</span>
+                        </div>
+                        <span class="last-updated">Loading...</span>
                     </div>
                     <div class="card-actions">
                         <a href="Prototypes/pc-self-billing/index.html" class="action-btn btn-primary">View Prototype</a>
@@ -353,16 +373,19 @@
             </div>
 
             <!-- PC Self Billing Invoice -->
-            <div class="prototype-card">
+            <div class="prototype-card" data-folder="pc-self-billing-invoice">
                 <div class="card-header">
                     <h2>Self Billing Invoice</h2>
                     <p>Invoice template for self billing with quarterly payment tracking and financial reconciliation</p>
                 </div>
                 <div class="card-footer">
-                    <div class="tags">
-                        <span class="tag">Invoice</span>
-                        <span class="tag">Billing</span>
-                        <span class="tag">Template</span>
+                    <div class="card-meta">
+                        <div class="tags">
+                            <span class="tag">Invoice</span>
+                            <span class="tag">Billing</span>
+                            <span class="tag">Template</span>
+                        </div>
+                        <span class="last-updated">Loading...</span>
                     </div>
                     <div class="card-actions">
                         <a href="Prototypes/pc-self-billing-invoice/index.html" class="action-btn btn-primary">View Prototype</a>
@@ -414,6 +437,39 @@
             // Add active class to clicked button
             event.currentTarget.classList.add('active');
         }
+        
+        // Fetch last updated dates from GitHub API
+        async function fetchLastUpdated() {
+            const cards = document.querySelectorAll('.prototype-card[data-folder]');
+            
+            for (const card of cards) {
+                const folder = card.getAttribute('data-folder');
+                const dateElement = card.querySelector('.last-updated');
+                
+                try {
+                    const response = await fetch(`https://api.github.com/repos/ChrisOhmeUX/design-system-prototypes/commits?path=Prototypes/${folder}/index.html&page=1&per_page=1`);
+                    const commits = await response.json();
+                    
+                    if (commits && commits[0]) {
+                        const date = new Date(commits[0].commit.author.date);
+                        const formattedDate = date.toLocaleDateString('en-GB', { 
+                            day: '2-digit', 
+                            month: 'short', 
+                            year: 'numeric' 
+                        });
+                        dateElement.textContent = `Updated ${formattedDate}`;
+                    } else {
+                        dateElement.textContent = '';
+                    }
+                } catch (error) {
+                    console.error('Error fetching date:', error);
+                    dateElement.textContent = '';
+                }
+            }
+        }
+        
+        // Load dates when page loads
+        window.addEventListener('load', fetchLastUpdated);
     </script>
 </body>
 </html>
