@@ -5,49 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkbox Component - Ohme Design System</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --color-brand-ohmedarkblue: #032536;
-            --color-brand-highlighterteal: #00FFD6;
-            --color-surface-canvas: #FFFFFF;
-            --color-content-primary: #032536;
+            --p-highlighterteal: #00FFD6;
+            --p-teal500: #01E6C1;
+            --p-ohmedarkblue: #032536;
+            --p-white: #FFFFFF;
+            --p-smokeygrey: #D1D1D1;
+            --p-grey700: #647882;
+            --p-grey300: #ADB3B1;
+            --p-rosered: #FA1460;
+            
+            --color-content-primary: var(--p-ohmedarkblue);
+            --color-surface-canvas: var(--p-white);
             --color-surface-panel: #F5F5F5;
+            --color-surface-accent: var(--p-highlighterteal);
+            --color-border-active: var(--p-grey300);
+            --color-state-disabled-surface: var(--p-smokeygrey);
+            --color-state-disabled-content: var(--p-grey700);
+            --color-state-error-border: var(--p-rosered);
         }
 
         [data-theme="dark"] {
-            --color-surface-canvas: #032536;
-            --color-content-primary: #FFFFFF;
+            --color-content-primary: var(--p-white);
+            --color-surface-canvas: var(--p-ohmedarkblue);
             --color-surface-panel: #0a3a50;
+            --color-border-active: var(--p-grey700);
+            --color-state-disabled-surface: var(--p-grey700);
+            --color-state-disabled-content: var(--p-grey300);
         }
 
         body {
-            font-family: 'Roobert', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Roobert', -apple-system, sans-serif;
             background: var(--color-surface-canvas);
             color: var(--color-content-primary);
-            transition: background-color 0.3s, color 0.3s;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: all 0.3s;
             padding: 40px 20px;
         }
 
-        .container {
-            max-width: 800px;
-            text-align: center;
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .header-info {
+            color: var(--p-grey700);
+            font-size: 14px;
         }
 
         .mode-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
             display: flex;
-            gap: 8px;
+            gap: 12px;
         }
 
         .mode-toggle button {
@@ -58,6 +78,7 @@
             border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
+            font-weight: 500;
             transition: all 0.2s;
         }
 
@@ -66,81 +87,403 @@
             color: var(--color-surface-canvas);
         }
 
-        .icon {
-            font-size: 80px;
-            margin-bottom: 32px;
-            opacity: 0.3;
+        .controls {
+            background: var(--color-surface-panel);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 40px;
         }
 
-        h1 {
-            font-size: 48px;
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .control-group:last-child { margin-bottom: 0; }
+
+        .control-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            padding: 8px 16px;
+            border: 1px solid #ccc;
+            background: white;
+            color: #333;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .control-btn.active {
+            background: var(--p-highlighterteal);
+            color: var(--p-ohmedarkblue);
+            border-color: var(--p-highlighterteal);
+        }
+
+        .demo-area {
+            background: var(--color-surface-panel);
+            border-radius: 12px;
+            padding: 80px 40px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+
+        /* Checkbox component */
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .checkbox-wrapper.disabled {
+            cursor: not-allowed;
+        }
+
+        .checkbox-control {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            border: 1px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .checkbox-control svg {
+            width: 15px;
+            height: 15px;
+            display: none;
+        }
+
+        .checkbox-label {
+            font-family: 'Roobert', sans-serif;
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 400;
+            user-select: none;
+        }
+
+        /* Unchecked states */
+        .checkbox--default.unchecked .checkbox-control {
+            background: var(--color-surface-canvas);
+            border-color: var(--color-border-active);
+        }
+
+        .checkbox--hover.unchecked .checkbox-control {
+            background: var(--color-surface-accent);
+            border-color: var(--color-surface-accent);
+        }
+
+        .checkbox--pressed.unchecked .checkbox-control {
+            background: var(--color-surface-accent);
+            border-color: var(--color-surface-accent);
+        }
+
+        .checkbox--selected.unchecked .checkbox-control {
+            background: var(--color-surface-accent);
+            border-color: var(--color-surface-accent);
+        }
+
+        .checkbox--disabled.unchecked .checkbox-control {
+            background: var(--color-state-disabled-surface);
+            border-color: var(--color-state-disabled-surface);
+        }
+
+        .checkbox--error.unchecked .checkbox-control {
+            background: var(--color-surface-canvas);
+            border-color: var(--color-state-error-border);
+            border-width: 1.5px;
+        }
+
+        /* Checked states */
+        .checkbox--default.checked .checkbox-control,
+        .checkbox--hover.checked .checkbox-control,
+        .checkbox--pressed.checked .checkbox-control,
+        .checkbox--selected.checked .checkbox-control {
+            background: var(--color-surface-accent);
+            border-color: var(--color-surface-accent);
+        }
+
+        .checkbox--default.checked .checkbox-control svg,
+        .checkbox--hover.checked .checkbox-control svg,
+        .checkbox--pressed.checked .checkbox-control svg,
+        .checkbox--selected.checked .checkbox-control svg {
+            display: block;
+            stroke: var(--color-content-primary);
+        }
+
+        .checkbox--disabled.checked .checkbox-control {
+            background: var(--color-state-disabled-surface);
+            border-color: var(--color-state-disabled-surface);
+        }
+
+        .checkbox--disabled.checked .checkbox-control svg {
+            display: block;
+            stroke: var(--color-state-disabled-content);
+        }
+
+        .checkbox--error.checked .checkbox-control {
+            background: var(--color-surface-accent);
+            border-color: var(--color-state-error-border);
+            border-width: 1.5px;
+        }
+
+        .checkbox--error.checked .checkbox-control svg {
+            display: block;
+            stroke: var(--color-content-primary);
+        }
+
+        /* Indeterminate states */
+        .checkbox--default.indeterminate .checkbox-control,
+        .checkbox--hover.indeterminate .checkbox-control,
+        .checkbox--pressed.indeterminate .checkbox-control,
+        .checkbox--selected.indeterminate .checkbox-control {
+            background: var(--color-surface-accent);
+            border-color: var(--color-surface-accent);
+        }
+
+        .checkbox--disabled.indeterminate .checkbox-control {
+            background: var(--color-state-disabled-surface);
+            border-color: var(--color-state-disabled-surface);
+        }
+
+        .checkbox--error.indeterminate .checkbox-control {
+            background: var(--color-surface-accent);
+            border-color: var(--color-state-error-border);
+            border-width: 1.5px;
+        }
+
+        .indeterminate .checkbox-control::after {
+            content: '';
+            width: 12px;
+            height: 2px;
+            background: var(--color-content-primary);
+            border-radius: 1px;
+        }
+
+        .disabled .indeterminate .checkbox-control::after {
+            background: var(--color-state-disabled-content);
+        }
+
+        .disabled .checkbox-label {
+            color: var(--color-state-disabled-content);
+        }
+
+        .code-section {
+            background: var(--color-surface-panel);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .code-section h2 {
+            font-size: 20px;
             font-weight: 600;
             margin-bottom: 16px;
         }
 
-        p {
-            font-size: 18px;
-            color: #999;
-            margin-bottom: 32px;
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
             line-height: 1.6;
+            white-space: pre;
         }
 
-        .doc-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        .docs-link {
+            display: inline-block;
+            margin-top: 20px;
             padding: 12px 24px;
-            background: var(--color-brand-highlighterteal);
-            color: var(--color-brand-ohmedarkblue);
+            background: var(--p-highlighterteal);
+            color: var(--p-ohmedarkblue);
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: 600;
             transition: all 0.2s;
         }
 
-        .doc-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0, 255, 214, 0.3);
-        }
-
-        .note {
-            margin-top: 40px;
-            padding: 20px;
-            background: var(--color-surface-panel);
-            border-radius: 8px;
-            font-size: 14px;
-            line-height: 1.6;
+        .docs-link:hover {
+            background: var(--p-teal500);
         }
     </style>
 </head>
 <body>
-    <div class="mode-toggle">
-        <button class="active" onclick="setTheme('light')">☀️ Light</button>
-        <button onclick="setTheme('dark')">🌙 Dark</button>
-    </div>
-
     <div class="container">
-        <div class="icon">🎨</div>
-        <h1>Checkbox Component</h1>
-        <p>Interactive demo for this component is under development.<br>View the complete documentation to see specifications, variants, and usage guidelines.</p>
-        
-        <a href="README.md" class="doc-link">
-            📄 View Documentation →
-        </a>
-
-        <div class="note">
-            <strong>Coming Soon:</strong> This page will include an interactive demo with variant switchers, light/dark mode toggle, live code examples, and token visualizations.
+        <div class="header">
+            <div>
+                <h1>Checkbox Component</h1>
+                <p class="header-info">18 Variants • 6 Statuses • 3 Selection States</p>
+            </div>
+            <div class="mode-toggle">
+                <button id="lightMode" class="active">☀️ Light</button>
+                <button id="darkMode">🌙 Dark</button>
+            </div>
         </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>Status</label>
+                <div class="button-group">
+                    <button class="control-btn active" data-control="status" data-value="default">Default</button>
+                    <button class="control-btn" data-control="status" data-value="hover">Hover</button>
+                    <button class="control-btn" data-control="status" data-value="pressed">Pressed</button>
+                    <button class="control-btn" data-control="status" data-value="selected">Selected</button>
+                    <button class="control-btn" data-control="status" data-value="disabled">Disabled</button>
+                    <button class="control-btn" data-control="status" data-value="error">Error</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Selection State</label>
+                <div class="button-group">
+                    <button class="control-btn active" data-control="selectionState" data-value="unchecked">Unchecked</button>
+                    <button class="control-btn" data-control="selectionState" data-value="checked">Checked</button>
+                    <button class="control-btn" data-control="selectionState" data-value="indeterminate">Indeterminate</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-area">
+            <div class="checkbox-wrapper checkbox--default unchecked" id="demoCheckbox">
+                <div class="checkbox-control">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <span class="checkbox-label">Checkbox Label</span>
+            </div>
+        </div>
+
+        <div class="code-section">
+            <h2>HTML</h2>
+            <pre class="code-block"><code id="htmlCode"></code></pre>
+        </div>
+
+        <div class="code-section">
+            <h2>CSS Design Tokens</h2>
+            <pre class="code-block"><code id="cssTokens"></code></pre>
+        </div>
+
+        <a href="README.md" class="docs-link">View Full Documentation →</a>
     </div>
 
     <script>
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            document.querySelectorAll('.mode-toggle button').forEach(btn => {
-                btn.classList.remove('active');
+        const state = {
+            status: 'default',
+            selectionState: 'unchecked'
+        };
+
+        const checkbox = document.getElementById('demoCheckbox');
+        const htmlCode = document.getElementById('htmlCode');
+        const cssTokens = document.getElementById('cssTokens');
+
+        document.getElementById('lightMode').onclick = () => {
+            document.documentElement.removeAttribute('data-theme');
+            document.getElementById('lightMode').classList.add('active');
+            document.getElementById('darkMode').classList.remove('active');
+        };
+
+        document.getElementById('darkMode').onclick = () => {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('darkMode').classList.add('active');
+            document.getElementById('lightMode').classList.remove('active');
+        };
+
+        document.querySelectorAll('.control-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const control = btn.dataset.control;
+                const value = btn.dataset.value;
+                
+                btn.parentElement.querySelectorAll('.control-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                state[control] = value;
+                updateCheckbox();
             });
-            event.target.classList.add('active');
+        });
+
+        function updateCheckbox() {
+            checkbox.className = `checkbox-wrapper checkbox--${state.status} ${state.selectionState}`;
+            
+            if (state.status === 'disabled') {
+                checkbox.classList.add('disabled');
+            }
+            
+            updateCode();
         }
+
+        function updateCode() {
+            const checked = state.selectionState === 'checked';
+            const indeterminate = state.selectionState === 'indeterminate';
+            const disabled = state.status === 'disabled';
+            const error = state.status === 'error';
+            
+            htmlCode.textContent = 
+`<label class="checkbox-wrapper">
+  <input 
+    type="checkbox"
+    ${checked ? 'checked' : ''}
+    ${disabled ? 'disabled' : ''}
+    ${error ? 'aria-invalid="true"' : ''}
+  />
+  <span class="checkbox-control">
+    ${checked || indeterminate ? '<svg>...</svg>' : ''}
+  </span>
+  <span class="checkbox-label">Checkbox Label</span>
+</label>`;
+
+            let tokens = '';
+            if (state.status === 'disabled') {
+                tokens = `/* Disabled State */
+--checkbox-surface → state/disabled/surface → smokeygrey/grey700
+--checkbox-border → state/disabled/surface → smokeygrey/grey700
+--checkbox-icon → state/disabled/content → grey700/grey300
+--checkbox-label → state/disabled/content → grey700/grey300`;
+            } else if (state.status === 'error') {
+                tokens = `/* Error State */
+--checkbox-surface → surface/canvas → white/ohmedarkblue
+--checkbox-border → state/error/border → rosered (1.5px)
+--checkbox-icon → content/primary → ohmedarkblue/white
+--checkbox-label → content/primary → ohmedarkblue/white`;
+            } else if (state.selectionState === 'unchecked') {
+                tokens = `/* Unchecked ${state.status.charAt(0).toUpperCase() + state.status.slice(1)} */
+--checkbox-surface → ${state.status === 'default' ? 'surface/canvas' : 'surface/accent'}
+--checkbox-border → ${state.status === 'default' ? 'state/active/border' : 'surface/accent'}
+--checkbox-label → content/primary`;
+            } else {
+                tokens = `/* ${state.selectionState.charAt(0).toUpperCase() + state.selectionState.slice(1)} ${state.status.charAt(0).toUpperCase() + state.status.slice(1)} */
+--checkbox-surface → surface/accent → highlighterteal
+--checkbox-border → surface/accent → highlighterteal
+--checkbox-icon → content/primary → ohmedarkblue/white
+--checkbox-label → content/primary → ohmedarkblue/white`;
+            }
+            
+            cssTokens.textContent = tokens;
+        }
+
+        updateCheckbox();
     </script>
 </body>
 </html>
