@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Page Template - Ohme Design System</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roobert', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #f5f5f5;
+            padding: 40px 20px;
+        }
+
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .demo-header {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #032536;
+            margin-bottom: 12px;
+        }
+
+        .demo-header p {
+            font-size: 16px;
+            color: #647882;
+            line-height: 1.5;
+        }
+
+        .controls {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .controls h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #032536;
+            margin-bottom: 16px;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            padding: 10px 20px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #647882;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .control-btn:hover {
+            border-color: #00FFD6;
+            color: #032536;
+        }
+
+        .control-btn.active {
+            border-color: #00FFD6;
+            background: #00FFD6;
+            color: #032536;
+        }
+
+        .viewport-wrapper {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .viewport {
+            background: #f0f0f0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .viewport.mobile {
+            width: 360px;
+            height: 800px;
+        }
+
+        .viewport.desktop {
+            width: 1280px;
+            height: 1000px;
+            flex-shrink: 0;
+        }
+
+        .auth-frame {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        /* Authentication Page Styles */
+        .auth-page {
+            width: 100%;
+            height: 100%;
+            min-height: 1000px;
+            position: relative;
+            background: white;
+        }
+
+        .auth-page.mobile {
+            background: #032536;
+        }
+
+        .auth-page.desktop {
+            display: flex;
+        }
+
+        /* Mobile Header */
+        .mobile-header {
+            height: 68px;
+            background: #032536;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 16px;
+        }
+
+        .logo {
+            height: 20px;
+        }
+
+        /* Desktop Sidebar */
+        .desktop-sidebar {
+            width: 530px;
+            background: #032536;
+            height: 100%;
+            min-height: 1000px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-logo {
+            position: absolute;
+            left: 70px;
+            top: 48px;
+            height: 31px;
+        }
+
+        .sidebar-lang {
+            position: absolute;
+            right: 35px;
+            top: 40px;
+        }
+
+        /* Desktop Product Image */
+        .product-area {
+            flex: 1;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image {
+            position: absolute;
+            left: 16.67%;
+            top: -141px;
+            width: 1160px;
+            height: 1121px;
+            transform: translateX(50.67px);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Form Container */
+        .form-container {
+            position: absolute;
+            top: 128px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 381px;
+        }
+
+        .form-container.mobile {
+            position: absolute;
+            top: 83px;
+            width: 320px;
+        }
+
+        /* Content Sections */
+        .auth-heading {
+            color: white;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .auth-heading.mobile {
+            font-size: 22px;
+            line-height: 30px;
+            letter-spacing: 0.2px;
+            margin-bottom: 32px;
+        }
+
+        .auth-heading.desktop {
+            font-size: 32px;
+            line-height: 40px;
+            letter-spacing: 0.2px;
+            margin-bottom: 16px;
+            text-align: left;
+            font-weight: 400;
+        }
+
+        .auth-subheading {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+            line-height: 24px;
+            letter-spacing: 0.2px;
+            width: 100%;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .forgot-link {
+            color: #00FFD6;
+            font-size: 14px;
+            line-height: 24px;
+            letter-spacing: 0;
+            text-align: left;
+            cursor: pointer;
+            text-decoration: none;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .forgot-link-after {
+            margin-top: 24px;
+            margin-bottom: 0;
+            letter-spacing: 0.1px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .input-field {
+            width: 100%;
+            height: 48px;
+            padding: 12px 16px;
+            border: 1px solid #ADB3B1;
+            border-radius: 6px;
+            font-size: 16px;
+            font-family: 'Roobert', sans-serif;
+            background: white;
+            color: #032536;
+        }
+
+        .input-field::placeholder {
+            color: #647882;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #00FFD6;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Validation List */
+        .validation-list {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 24px;
+        }
+
+        .validation-list.mobile {
+            gap: 2px;
+        }
+
+        .validation-list.desktop {
+            gap: 10px;
+        }
+
+        .validation-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .validation-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0;
+        }
+
+        .validation-icon.valid {
+            background: #00FFD6;
+            border-color: #00FFD6;
+        }
+
+        .validation-icon.valid::after {
+            content: '✓';
+            color: #032536;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .validation-text {
+            flex: 1;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+            line-height: 24px;
+            letter-spacing: 0.2px;
+        }
+
+        /* Checkbox */
+        .checkbox-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 1px solid #ADB3B1;
+            border-radius: 6px;
+            background: white;
+            flex-shrink: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkbox.checked {
+            background: #00FFD6;
+            border-color: #00FFD6;
+        }
+
+        .checkbox.checked::after {
+            content: '✓';
+            color: #032536;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .checkbox-label {
+            flex: 1;
+            color: white;
+            font-size: 18px;
+            line-height: 24px;
+            letter-spacing: 0.2px;
+            cursor: pointer;
+        }
+
+        .checkbox-label a {
+            color: #00FFD6;
+            text-decoration: none;
+        }
+
+        .checkbox-label a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button */
+        .primary-button {
+            width: 100%;
+            height: 48px;
+            background: #00FFD6;
+            border: 1px solid #032536;
+            border-radius: 6px;
+            color: #032536;
+            font-size: 18px;
+            font-weight: 600;
+            font-family: 'Roobert', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .primary-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 255, 214, 0.3);
+        }
+
+        .primary-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Footer */
+        .auth-footer {
+            position: absolute;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .auth-footer.mobile {
+            width: 335px;
+        }
+
+        .auth-footer.desktop {
+            width: auto;
+            position: absolute;
+            bottom: 48px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .support-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #00FFD6;
+            font-size: 14px;
+            line-height: 16px;
+            letter-spacing: 0.1px;
+            text-decoration: none;
+            margin-bottom: 4px;
+        }
+
+        .support-link.desktop {
+            font-size: 18px;
+            line-height: 24px;
+            letter-spacing: 0.2px;
+        }
+
+        .support-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .footer-text {
+            color: #ADB3B1;
+            font-size: 14px;
+            line-height: 24px;
+            text-align: center;
+        }
+
+        .footer-text.desktop {
+            font-size: 18px;
+        }
+
+        /* Language Selector */
+        .lang-selector {
+            width: 235px;
+            height: 48px;
+            background: white;
+            border: 1px solid #ADB3B1;
+            border-radius: 6px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .flag-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 2px;
+            background: #032536;
+            flex-shrink: 0;
+        }
+
+        .lang-text {
+            flex: 1;
+            font-size: 16px;
+            color: #032536;
+        }
+
+        .dropdown-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        /* State Indicators */
+        .success-message {
+            background: #00FFD6;
+            color: #032536;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .error-message {
+            background: #ff4444;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .viewport-wrapper {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function AuthenticationDemo() {
+            const [viewport, setViewport] = useState('mobile');
+            const [authType, setAuthType] = useState('signup');
+            
+            // Form state
+            const [email, setEmail] = useState('');
+            const [password, setPassword] = useState('');
+            const [confirmPassword, setConfirmPassword] = useState('');
+            const [agreeToTerms, setAgreeToTerms] = useState(false);
+            const [showPassword, setShowPassword] = useState(false);
+            const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+            
+            // Validation state
+            const [validations, setValidations] = useState({
+                minLength: false,
+                hasLetter: false,
+                hasNumber: false,
+                hasSpecial: false
+            });
+            
+            // UI state
+            const [submitMessage, setSubmitMessage] = useState('');
+            const [messageType, setMessageType] = useState('');
+
+            // Validate password
+            useEffect(() => {
+                setValidations({
+                    minLength: password.length >= 10,
+                    hasLetter: /[a-zA-Z]/.test(password),
+                    hasNumber: /[0-9]/.test(password),
+                    hasSpecial: /[!@#£$%&*_-]/.test(password)
+                });
+            }, [password]);
+
+            // Check if form is valid
+            const isFormValid = () => {
+                if (authType === 'signup') {
+                    return validations.minLength &&
+                           validations.hasLetter &&
+                           validations.hasNumber &&
+                           validations.hasSpecial &&
+                           password === confirmPassword &&
+                           agreeToTerms;
+                } else {
+                    return email.length > 0 && password.length > 0;
+                }
+            };
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                if (isFormValid()) {
+                    setSubmitMessage(`${authType === 'signup' ? 'Account created' : 'Login'} successful! 🎉`);
+                    setMessageType('success');
+                    setTimeout(() => setSubmitMessage(''), 3000);
+                } else {
+                    setSubmitMessage('Please complete all required fields correctly');
+                    setMessageType('error');
+                    setTimeout(() => setSubmitMessage(''), 3000);
+                }
+            };
+
+            const isMobile = viewport === 'mobile';
+            const isDesktop = viewport === 'desktop';
+            const isSignup = authType === 'signup';
+            const isLogin = authType === 'login';
+
+            return (
+                <div className="demo-container">
+                    <div className="demo-header">
+                        <h1>Authentication Page Template</h1>
+                        <p>Interactive demo showing all variants: Mobile/Desktop × Login/Signup. Try different combinations and interact with the form validation.</p>
+                    </div>
+
+                    <div className="controls">
+                        <h2>Controls</h2>
+                        <div className="control-group">
+                            <button 
+                                className={`control-btn ${viewport === 'mobile' ? 'active' : ''}`}
+                                onClick={() => setViewport('mobile')}
+                            >
+                                📱 Mobile (360px)
+                            </button>
+                            <button 
+                                className={`control-btn ${viewport === 'desktop' ? 'active' : ''}`}
+                                onClick={() => setViewport('desktop')}
+                            >
+                                🖥️ Desktop (1280px)
+                            </button>
+                            <button 
+                                className={`control-btn ${authType === 'signup' ? 'active' : ''}`}
+                                onClick={() => {
+                                    setAuthType('signup');
+                                    setSubmitMessage('');
+                                }}
+                            >
+                                ✍️ Signup
+                            </button>
+                            <button 
+                                className={`control-btn ${authType === 'login' ? 'active' : ''}`}
+                                onClick={() => {
+                                    setAuthType('login');
+                                    setSubmitMessage('');
+                                }}
+                            >
+                                🔐 Login
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="viewport-wrapper">
+                        <div className={`viewport ${viewport}`}>
+                            <div className="auth-frame">
+                                <div className={`auth-page ${viewport}`}>
+                                    {isMobile && (
+                                        <div className="mobile-header">
+                                            <svg className="logo" viewBox="0 0 64 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 10C0 4.477 4.477 0 10 0s10 4.477 10 10-4.477 10-10 10S0 15.523 0 10z" fill="white"/>
+                                                <text x="22" y="15" fill="white" fontSize="14" fontWeight="600">Ohme</text>
+                                            </svg>
+                                        </div>
+                                    )}
+
+                                    {isDesktop && (
+                                        <>
+                                            <div className="desktop-sidebar">
+                                                <svg className="sidebar-logo" viewBox="0 0 99 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M0 15.5C0 6.94 6.94 0 15.5 0S31 6.94 31 15.5 24.06 31 15.5 31 0 24.06 0 15.5z" fill="white"/>
+                                                    <text x="35" y="22" fill="white" fontSize="20" fontWeight="600">Ohme</text>
+                                                </svg>
+
+                                                <div className="sidebar-lang">
+                                                    <div className="lang-selector">
+                                                        <div className="flag-icon">🇬🇧</div>
+                                                        <div className="lang-text">English - GB</div>
+                                                        <div className="dropdown-icon">▼</div>
+                                                    </div>
+                                                </div>
+
+                                                <form className="form-container" onSubmit={handleSubmit}>
+                                                    <h1 className="auth-heading desktop">
+                                                        {isSignup ? 'Welcome to the Ohme Connect Portal' : 'Login to the Ohme Connect Portal'}
+                                                    </h1>
+
+                                                    {isSignup && (
+                                                        <p className="auth-subheading">Please set a password to create an account</p>
+                                                    )}
+
+                                                    {isLogin && (
+                                                        <a href="#" className="forgot-link" onClick={(e) => {e.preventDefault(); alert('Password reset flow would go here');}}>
+                                                            Forgot password?
+                                                        </a>
+                                                    )}
+
+                                                    {submitMessage && (
+                                                        <div className={messageType === 'success' ? 'success-message' : 'error-message'}>
+                                                            {submitMessage}
+                                                        </div>
+                                                    )}
+
+                                                    {isLogin && (
+                                                        <div className="form-group">
+                                                            <div className="input-wrapper">
+                                                                <input 
+                                                                    type="email"
+                                                                    className="input-field"
+                                                                    placeholder="Email address"
+                                                                    value={email}
+                                                                    onChange={(e) => setEmail(e.target.value)}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    )}
+
+                                                    <div className="form-group">
+                                                        <div className="input-wrapper">
+                                                            <input 
+                                                                type={showPassword ? "text" : "password"}
+                                                                className="input-field"
+                                                                placeholder={isSignup ? "Enter password" : "Password"}
+                                                                value={password}
+                                                                onChange={(e) => setPassword(e.target.value)}
+                                                            />
+                                                            {isSignup && (
+                                                                <div 
+                                                                    className="input-icon"
+                                                                    onClick={() => setShowPassword(!showPassword)}
+                                                                >
+                                                                    {showPassword ? '👁️' : '👁️‍🗨️'}
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    </div>
+
+                                                    {isSignup && (
+                                                        <>
+                                                            <div className="validation-list desktop">
+                                                                <div className="validation-item">
+                                                                    <div className={`validation-icon ${validations.minLength ? 'valid' : ''}`}></div>
+                                                                    <div className="validation-text">At least 10 characters long</div>
+                                                                </div>
+                                                                <div className="validation-item">
+                                                                    <div className={`validation-icon ${validations.hasLetter ? 'valid' : ''}`}></div>
+                                                                    <div className="validation-text">At least 1 letter (a-z)</div>
+                                                                </div>
+                                                                <div className="validation-item">
+                                                                    <div className={`validation-icon ${validations.hasNumber ? 'valid' : ''}`}></div>
+                                                                    <div className="validation-text">At least 1 number (0-9)</div>
+                                                                </div>
+                                                                <div className="validation-item">
+                                                                    <div className={`validation-icon ${validations.hasSpecial ? 'valid' : ''}`}></div>
+                                                                    <div className="validation-text">At least 1 special character (!,@,#,£,$,%,&,*,_,-)</div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div className="form-group">
+                                                                <div className="input-wrapper">
+                                                                    <input 
+                                                                        type={showConfirmPassword ? "text" : "password"}
+                                                                        className="input-field"
+                                                                        placeholder="Confirm password"
+                                                                        value={confirmPassword}
+                                                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                                                    />
+                                                                </div>
+                                                            </div>
+
+                                                            <div className="checkbox-wrapper">
+                                                                <div 
+                                                                    className={`checkbox ${agreeToTerms ? 'checked' : ''}`}
+                                                                    onClick={() => setAgreeToTerms(!agreeToTerms)}
+                                                                ></div>
+                                                                <label 
+                                                                    className="checkbox-label"
+                                                                    onClick={() => setAgreeToTerms(!agreeToTerms)}
+                                                                >
+                                                                    I agree to Ohme's <a href="#" onClick={(e) => e.preventDefault()}>Terms & Conditions</a> and <a href="#" onClick={(e) => e.preventDefault()}>Privacy Policy</a>.
+                                                                </label>
+                                                            </div>
+                                                        </>
+                                                    )}
+
+                                                    <button 
+                                                        type="submit"
+                                                        className="primary-button"
+                                                        disabled={!isFormValid()}
+                                                    >
+                                                        Let's go
+                                                    </button>
+                                                </form>
+
+                                                <div className="auth-footer desktop">
+                                                    <a href="#" className="support-link desktop" onClick={(e) => {e.preventDefault(); alert('Support contact would open here');}}>
+                                                        <span className="support-icon">💬</span>
+                                                        Support
+                                                    </a>
+                                                    <div className="footer-text desktop">+44 (0) 020 3375 1586</div>
+                                                    <div className="footer-text desktop">Copyright © 2026 Ohme Operation UK Ltd</div>
+                                                </div>
+                                            </div>
+
+                                            <div className="product-area">
+                                                <div className="product-image">
+                                                    <svg width="100%" height="100%" viewBox="0 0 800 800" fill="none">
+                                                        <circle cx="400" cy="400" r="300" fill="#032536" opacity="0.05"/>
+                                                        <rect x="250" y="200" width="300" height="400" rx="40" fill="#032536"/>
+                                                        <rect x="270" y="240" width="260" height="180" rx="8" fill="#1a4d6d"/>
+                                                        <circle cx="400" cy="330" r="40" fill="#00FFD6"/>
+                                                        <text x="400" y="550" textAnchor="middle" fill="white" fontSize="48" fontWeight="bold">Ohme</text>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </>
+                                    )}
+
+                                    {isMobile && (
+                                        <>
+                                            <form className="form-container mobile" onSubmit={handleSubmit}>
+                                                <h1 className="auth-heading mobile">
+                                                    {isSignup ? 'Welcome to the Ohme Connect Portal' : 'Login to the Ohme Connect Portal'}
+                                                </h1>
+
+                                                {submitMessage && (
+                                                    <div className={messageType === 'success' ? 'success-message' : 'error-message'}>
+                                                        {submitMessage}
+                                                    </div>
+                                                )}
+
+                                                {isLogin && (
+                                                    <div className="form-group">
+                                                        <div className="input-wrapper">
+                                                            <input 
+                                                                type="email"
+                                                                className="input-field"
+                                                                placeholder="Email address"
+                                                                value={email}
+                                                                onChange={(e) => setEmail(e.target.value)}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                <div className="form-group">
+                                                    <div className="input-wrapper">
+                                                        <input 
+                                                            type={showPassword ? "text" : "password"}
+                                                            className="input-field"
+                                                            placeholder={isSignup ? "Enter password" : "Password"}
+                                                            value={password}
+                                                            onChange={(e) => setPassword(e.target.value)}
+                                                        />
+                                                        <div 
+                                                            className="input-icon"
+                                                            onClick={() => setShowPassword(!showPassword)}
+                                                        >
+                                                            {showPassword ? '👁️' : '👁️‍🗨️'}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {isSignup && (
+                                                    <>
+                                                        <div className="validation-list mobile">
+                                                            <div className="validation-item">
+                                                                <div className={`validation-icon ${validations.minLength ? 'valid' : ''}`}></div>
+                                                                <div className="validation-text">At least 10 characters long</div>
+                                                            </div>
+                                                            <div className="validation-item">
+                                                                <div className={`validation-icon ${validations.hasLetter ? 'valid' : ''}`}></div>
+                                                                <div className="validation-text">At least 1 letter (a-z)</div>
+                                                            </div>
+                                                            <div className="validation-item">
+                                                                <div className={`validation-icon ${validations.hasNumber ? 'valid' : ''}`}></div>
+                                                                <div className="validation-text">At least 1 number (0-9)</div>
+                                                            </div>
+                                                            <div className="validation-item">
+                                                                <div className={`validation-icon ${validations.hasSpecial ? 'valid' : ''}`}></div>
+                                                                <div className="validation-text">At least 1 special character (!,@,#,£,$,%,&,*,_,-)</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="form-group">
+                                                            <div className="input-wrapper">
+                                                                <input 
+                                                                    type={showConfirmPassword ? "text" : "password"}
+                                                                    className="input-field"
+                                                                    placeholder="Confirm password"
+                                                                    value={confirmPassword}
+                                                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                                                />
+                                                                <div 
+                                                                    className="input-icon"
+                                                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                                                >
+                                                                    {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="checkbox-wrapper">
+                                                            <div 
+                                                                className={`checkbox ${agreeToTerms ? 'checked' : ''}`}
+                                                                onClick={() => setAgreeToTerms(!agreeToTerms)}
+                                                            ></div>
+                                                            <label 
+                                                                className="checkbox-label"
+                                                                onClick={() => setAgreeToTerms(!agreeToTerms)}
+                                                            >
+                                                                I agree to Ohme's <a href="#" onClick={(e) => e.preventDefault()}>Terms & Conditions</a> and <a href="#" onClick={(e) => e.preventDefault()}>Privacy Policy</a>.
+                                                            </label>
+                                                        </div>
+                                                    </>
+                                                )}
+
+                                                <button 
+                                                    type="submit"
+                                                    className="primary-button"
+                                                    disabled={!isFormValid()}
+                                                >
+                                                    Let's go
+                                                </button>
+
+                                                {isLogin && (
+                                                    <a href="#" className="forgot-link forgot-link-after" onClick={(e) => {e.preventDefault(); alert('Password reset flow would go here');}}>
+                                                        Forgot password?
+                                                    </a>
+                                                )}
+                                            </form>
+
+                                            <div className="auth-footer mobile">
+                                                <a href="#" className="support-link" onClick={(e) => {e.preventDefault(); alert('Support contact would open here');}}>
+                                                    <span className="support-icon">💬</span>
+                                                    Support
+                                                </a>
+                                                <div className="footer-text">+44 (0) 020 3375 1586</div>
+                                                <div className="footer-text">Copyright © 2026 Ohme Operation UK Ltd</div>
+                                                <div className="lang-selector">
+                                                    <div className="flag-icon">🇬🇧</div>
+                                                    <div className="lang-text">English - GB</div>
+                                                    <div className="dropdown-icon">▼</div>
+                                                </div>
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<AuthenticationDemo />, document.getElementById('root'));
+    </script>
+</body>
+</html>
