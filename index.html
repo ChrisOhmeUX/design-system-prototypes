@@ -349,6 +349,22 @@
         .btn-secondary:hover {
             background: rgba(0, 255, 136, 0.1);
         }
+
+        .btn-figma {
+            background: transparent;
+            color: #a259ff;
+            border: 1px solid #a259ff;
+        }
+
+        .btn-figma:hover {
+            background: rgba(162, 89, 255, 0.1);
+        }
+
+        .btn-figma.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
         
         /* Empty State */
         .empty-state {
@@ -433,7 +449,7 @@
         <div class="prototype-grid">
             
             <!-- hub-tc-management -->
-            <div class="prototype-card has-demo" data-folder="hub-tc-management">
+            <div class="prototype-card has-demo" data-folder="hub-tc-management" data-figma-url="">
                 <div class="card-thumbnail has-demo">
                     <div class="thumbnail-icon">📋</div>
                     <div class="thumbnail-badge for-review">For Review</div>
@@ -456,13 +472,23 @@
                             <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/hub-tc-management/README.md" 
                                class="action-btn btn-secondary" 
                                target="_blank">Documentation</a>
-                        </div>
+                                <a href="#" class="action-btn btn-figma" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
+                            </div>
                     </div>
                 </div>
             </div>
             
             <!-- Hub users table filter -->
-            <div class="prototype-card has-demo" data-folder="hub-users-filter">
+            <div class="prototype-card has-demo" data-folder="hub-users-filter" data-figma-url="">
                 <div class="card-thumbnail has-demo">
                     <div class="thumbnail-icon">🔍</div>
                     <div class="thumbnail-badge for-review">For Review</div>
@@ -486,7 +512,17 @@
                             <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/hub-users-filter/README.md" 
                                class="action-btn btn-secondary" 
                                target="_blank">Documentation</a>
-                        </div>
+                                <a href="#" class="action-btn btn-figma" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -499,7 +535,7 @@
         <div class="prototype-grid">
             
             <!-- PC Self Billing Prototype -->
-            <div class="prototype-card has-demo" data-folder="pc-self-billing">
+            <div class="prototype-card has-demo" data-folder="pc-self-billing" data-figma-url="">
                 <div class="card-thumbnail has-demo">
                     <div class="thumbnail-icon">💰</div>
                     <div class="thumbnail-badge for-review">For Review</div>
@@ -523,13 +559,23 @@
                             <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/pc-self-billing/README.md" 
                                class="action-btn btn-secondary" 
                                target="_blank">Documentation</a>
-                        </div>
+                                <a href="#" class="action-btn btn-figma" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
+                            </div>
                     </div>
                 </div>
             </div>
 
             <!-- PC Self Billing Invoice -->
-            <div class="prototype-card has-demo" data-folder="pc-self-billing-invoice">
+            <div class="prototype-card has-demo" data-folder="pc-self-billing-invoice" data-figma-url="">
                 <div class="card-thumbnail has-demo">
                     <div class="thumbnail-icon">📄</div>
                     <div class="thumbnail-badge for-review">For Review</div>
@@ -553,7 +599,17 @@
                             <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/pc-self-billing-invoice/README.md" 
                                class="action-btn btn-secondary" 
                                target="_blank">Documentation</a>
-                        </div>
+                                <a href="#" class="action-btn btn-figma" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -594,7 +650,7 @@
             <div class="prototype-grid">
                 
                 <!-- T1 Tokens -->
-                <div class="prototype-card has-demo" data-folder="ds-t1-tokens">
+                <div class="prototype-card has-demo" data-folder="ds-t1-tokens" data-figma-url="">
                     <div class="card-thumbnail has-demo">
                         <div class="thumbnail-icon">🎨</div>
                         <div class="thumbnail-badge">Complete</div>
@@ -617,13 +673,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-t1-tokens/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Documentation</a>
+                                <a href="#" class="action-btn btn-figma" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- T2 Tokens -->
-                <div class="prototype-card has-demo" data-folder="ds-t2-tokens">
+                <div class="prototype-card has-demo" data-folder="ds-t2-tokens" data-figma-url="">
                     <div class="card-thumbnail has-demo">
                         <div class="thumbnail-icon">🌓</div>
                         <div class="thumbnail-badge">Complete</div>
@@ -647,13 +713,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-t2-tokens/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Documentation</a>
+                                <a href="#" class="action-btn btn-figma" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- T3 Tokens -->
-                <div class="prototype-card has-demo" data-folder="ds-t3-tokens">
+                <div class="prototype-card has-demo" data-folder="ds-t3-tokens" data-figma-url="">
                     <div class="card-thumbnail has-demo">
                         <div class="thumbnail-icon">🧩</div>
                         <div class="thumbnail-badge">Complete</div>
@@ -676,6 +752,16 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-t3-tokens/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Documentation</a>
+                                <a href="#" class="action-btn btn-figma" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -689,7 +775,7 @@
             <div class="prototype-grid">
                 
                 <!-- Alert Count -->
-                <div class="prototype-card coming-soon" data-folder="ds-alert-count-component">
+                <div class="prototype-card coming-soon" data-folder="ds-alert-count-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">🔔</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -712,13 +798,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-alert-count-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Avatar -->
-                <div class="prototype-card coming-soon" data-folder="ds-avatar-component">
+                <div class="prototype-card coming-soon" data-folder="ds-avatar-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">👤</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -741,13 +837,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-avatar-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Button -->
-                <div class="prototype-card has-demo" data-folder="ds-button-component">
+                <div class="prototype-card has-demo" data-folder="ds-button-component" data-figma-url="">
                     <div class="card-thumbnail has-demo">
                         <div class="thumbnail-icon">🔘</div>
                         <div class="thumbnail-badge">Complete</div>
@@ -770,13 +876,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-button-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Checkbox -->
-                <div class="prototype-card has-demo" data-folder="ds-checkbox-component">
+                <div class="prototype-card has-demo" data-folder="ds-checkbox-component" data-figma-url="">
                     <div class="card-thumbnail has-demo">
                         <div class="thumbnail-icon">☑️</div>
                         <div class="thumbnail-badge">Complete</div>
@@ -800,13 +916,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-checkbox-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Dropdown -->
-                <div class="prototype-card coming-soon" data-folder="ds-dropdown-component">
+                <div class="prototype-card coming-soon" data-folder="ds-dropdown-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">▼</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -829,13 +955,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-dropdown-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Flag Icon -->
-                <div class="prototype-card coming-soon" data-folder="ds-flag-icon-component">
+                <div class="prototype-card coming-soon" data-folder="ds-flag-icon-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">🚩</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -858,13 +994,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-flag-icon-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Footer -->
-                <div class="prototype-card coming-soon" data-folder="ds-footer-component">
+                <div class="prototype-card coming-soon" data-folder="ds-footer-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">⬇️</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -887,13 +1033,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-footer-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Icon System -->
-                <div class="prototype-card coming-soon" data-folder="ds-icon-system--radix-arrows">
+                <div class="prototype-card coming-soon" data-folder="ds-icon-system--radix-arrows" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">🎯</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -916,13 +1072,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-icon-system--radix-arrows/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Input -->
-                <div class="prototype-card has-demo" data-folder="ds-input-component">
+                <div class="prototype-card has-demo" data-folder="ds-input-component" data-figma-url="">
                     <div class="card-thumbnail has-demo">
                         <div class="thumbnail-icon">📝</div>
                         <div class="thumbnail-badge">Complete</div>
@@ -946,13 +1112,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-input-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Logo -->
-                <div class="prototype-card coming-soon" data-folder="ds-logo-component">
+                <div class="prototype-card coming-soon" data-folder="ds-logo-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">⚡</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -975,13 +1151,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-logo-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Modal -->
-                <div class="prototype-card coming-soon" data-folder="ds-modal-component">
+                <div class="prototype-card coming-soon" data-folder="ds-modal-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">🗔</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1004,13 +1190,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-modal-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Name Group -->
-                <div class="prototype-card coming-soon" data-folder="ds-name-group-component">
+                <div class="prototype-card coming-soon" data-folder="ds-name-group-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">👥</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1033,13 +1229,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-name-group-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Pagination -->
-                <div class="prototype-card coming-soon" data-folder="ds-pagination-component">
+                <div class="prototype-card coming-soon" data-folder="ds-pagination-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">◀️ ▶️</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1062,13 +1268,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-pagination-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Pill -->
-                <div class="prototype-card coming-soon" data-folder="ds-pill-component">
+                <div class="prototype-card coming-soon" data-folder="ds-pill-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">💊</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1091,13 +1307,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-pill-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Radio Button -->
-                <div class="prototype-card coming-soon" data-folder="ds-radio-button-component">
+                <div class="prototype-card coming-soon" data-folder="ds-radio-button-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">◉</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1120,13 +1346,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-radio-button-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Tab System -->
-                <div class="prototype-card coming-soon" data-folder="ds-tab-system">
+                <div class="prototype-card coming-soon" data-folder="ds-tab-system" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">📑</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1149,13 +1385,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-tab-system/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Textarea -->
-                <div class="prototype-card coming-soon" data-folder="ds-textarea-component">
+                <div class="prototype-card coming-soon" data-folder="ds-textarea-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">📄</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1178,13 +1424,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-textarea-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Toast Notification -->
-                <div class="prototype-card coming-soon" data-folder="ds-toast-notification-component">
+                <div class="prototype-card coming-soon" data-folder="ds-toast-notification-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">🔔</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1207,13 +1463,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-toast-notification-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Toggle Switch -->
-                <div class="prototype-card coming-soon" data-folder="ds-toggle-switch-system">
+                <div class="prototype-card coming-soon" data-folder="ds-toggle-switch-system" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">🎚️</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1236,13 +1502,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-toggle-switch-system/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Tooltip -->
-                <div class="prototype-card coming-soon" data-folder="ds-tooltip-component">
+                <div class="prototype-card coming-soon" data-folder="ds-tooltip-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">💬</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1265,13 +1541,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-tooltip-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- User Group -->
-                <div class="prototype-card coming-soon" data-folder="ds-user-group-component">
+                <div class="prototype-card coming-soon" data-folder="ds-user-group-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">👨‍👩‍👧‍👦</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1294,13 +1580,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-user-group-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Config Panel -->
-                <div class="prototype-card coming-soon" data-folder="ds-config-panel-system">
+                <div class="prototype-card coming-soon" data-folder="ds-config-panel-system" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">⚙️</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1323,13 +1619,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-config-panel-system/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Contacts -->
-                <div class="prototype-card coming-soon" data-folder="ds-contacts-system">
+                <div class="prototype-card coming-soon" data-folder="ds-contacts-system" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">📇</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1352,13 +1658,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-contacts-system/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Filter System -->
-                <div class="prototype-card coming-soon" data-folder="ds-filter-system">
+                <div class="prototype-card coming-soon" data-folder="ds-filter-system" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">🎛️</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1381,13 +1697,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-filter-system/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Job Type Pill -->
-                <div class="prototype-card coming-soon" data-folder="ds-job-type-pill-component">
+                <div class="prototype-card coming-soon" data-folder="ds-job-type-pill-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">🏷️</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1410,13 +1736,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-job-type-pill-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Menu System -->
-                <div class="prototype-card coming-soon" data-folder="ds-menu-system">
+                <div class="prototype-card coming-soon" data-folder="ds-menu-system" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">☰</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1439,13 +1775,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-menu-system/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- No Results -->
-                <div class="prototype-card coming-soon" data-folder="ds-no-results-component">
+                <div class="prototype-card coming-soon" data-folder="ds-no-results-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">🔍</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1468,13 +1814,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-no-results-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Notes -->
-                <div class="prototype-card coming-soon" data-folder="ds-notes-component">
+                <div class="prototype-card coming-soon" data-folder="ds-notes-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">📝</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1497,13 +1853,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-notes-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Status Bar -->
-                <div class="prototype-card coming-soon" data-folder="ds-status-bar-component">
+                <div class="prototype-card coming-soon" data-folder="ds-status-bar-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">📊</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1526,13 +1892,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-status-bar-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Status Pill -->
-                <div class="prototype-card coming-soon" data-folder="ds-status-pill-component">
+                <div class="prototype-card coming-soon" data-folder="ds-status-pill-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">🏷️</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1555,13 +1931,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-status-pill-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Title Group -->
-                <div class="prototype-card coming-soon" data-folder="ds-title-group-component">
+                <div class="prototype-card coming-soon" data-folder="ds-title-group-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">📌</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1584,13 +1970,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-title-group-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Top Panel -->
-                <div class="prototype-card coming-soon" data-folder="ds-top-panel-component">
+                <div class="prototype-card coming-soon" data-folder="ds-top-panel-component" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">⬆️</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1613,13 +2009,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-top-panel-component/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Validation List -->
-                <div class="prototype-card coming-soon" data-folder="ds-validation-list-system">
+                <div class="prototype-card coming-soon" data-folder="ds-validation-list-system" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">✅</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1642,13 +2048,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-validation-list-system/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Table Cell System -->
-                <div class="prototype-card coming-soon" data-folder="ds-table-cell-system">
+                <div class="prototype-card coming-soon" data-folder="ds-table-cell-system" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">📊</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1671,13 +2087,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-table-cell-system/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Table Column Sort -->
-                <div class="prototype-card coming-soon" data-folder="ds-table-column-sort">
+                <div class="prototype-card coming-soon" data-folder="ds-table-column-sort" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">↕️</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1700,13 +2126,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-table-column-sort/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Table Controls -->
-                <div class="prototype-card coming-soon" data-folder="ds-table-controls">
+                <div class="prototype-card coming-soon" data-folder="ds-table-controls" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">🎛️</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1729,13 +2165,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-table-controls/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Table Structure -->
-                <div class="prototype-card coming-soon" data-folder="ds-table-structure">
+                <div class="prototype-card coming-soon" data-folder="ds-table-structure" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">📐</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1758,13 +2204,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-table-structure/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Table System Overview -->
-                <div class="prototype-card coming-soon" data-folder="ds-table-system-overview">
+                <div class="prototype-card coming-soon" data-folder="ds-table-system-overview" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">📋</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1787,13 +2243,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-table-system-overview/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Table Tracker Analytics -->
-                <div class="prototype-card coming-soon" data-folder="ds-table-tracker-analytics">
+                <div class="prototype-card coming-soon" data-folder="ds-table-tracker-analytics" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">📈</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1816,6 +2282,16 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-table-tracker-analytics/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -1829,7 +2305,7 @@
             <div class="prototype-grid">
                 
                 <!-- Authentication Page -->
-                <div class="prototype-card has-demo" data-folder="ds-authentication-page-template">
+                <div class="prototype-card has-demo" data-folder="ds-authentication-page-template" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">🔐</div>
                         <div class="thumbnail-badge">Complete</div>
@@ -1853,13 +2329,23 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/dst-authentication/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- My Preferences Template -->
-                <div class="prototype-card coming-soon" data-folder="ds-my-preferences-template">
+                <div class="prototype-card coming-soon" data-folder="ds-my-preferences-template" data-figma-url="">
                     <div class="card-thumbnail">
                         <div class="thumbnail-icon">⚙️</div>
                         <div class="thumbnail-badge coming-soon">Coming Soon</div>
@@ -1882,6 +2368,16 @@
                                 <a href="https://github.com/ChrisOhmeUX/design-system-prototypes/blob/main/Prototypes/ds-my-preferences-template/README.md" 
                                    class="action-btn btn-secondary" 
                                    target="_blank">Docs</a>
+                                <a href="#" class="action-btn btn-figma disabled" target="_blank" onclick="openFigmaLink(event, this)">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.3">
+                                        <path d="M3.5 14C5.433 14 7 12.433 7 10.5V7H3.5C1.567 7 0 8.567 0 10.5S1.567 14 3.5 14z" fill="#0ACF83"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M0 3.5C0 1.567 1.567 0 3.5 0H7v7H3.5C1.567 7 0 5.433 0 3.5z" fill="#A259FF"/>
+                                        <path d="M7 0h3.5C12.433 0 14 1.567 14 3.5S12.433 7 10.5 7H7V0z" fill="#F24E1E"/>
+                                        <path d="M14 10.5c0 1.933-1.567 3.5-3.5 3.5S7 12.433 7 10.5 8.567 7 10.5 7s3.5 1.567 3.5 3.5z" fill="#1ABCFE"/>
+                                    </svg>
+                                    Figma
+                                </a>
                             </div>
                         </div>
                     </div>
