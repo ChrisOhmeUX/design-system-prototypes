@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Component - Ohme Design System</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --p-highlighterteal: #00FFD6;
+            --p-teal500: #01E6C1;
+            --p-ohmedarkblue: #032536;
+            --p-white: #FFFFFF;
+            --p-smokeygrey: #D1D1D1;
+            --p-grey700: #647882;
+            --p-grey300: #ADB3B1;
+            --p-rosered: #FA1460;
+            
+            --color-content-primary: var(--p-ohmedarkblue);
+            --color-content-secondary: var(--p-grey700);
+            --color-surface-canvas: var(--p-white);
+            --color-surface-panel: #F5F5F5;
+            --color-border-default: var(--p-grey300);
+            --color-surface-accent: var(--p-highlighterteal);
+            --color-state-disabled-surface: var(--p-smokeygrey);
+            --color-state-disabled-content: var(--p-grey700);
+            --color-state-disabled-border: var(--p-smokeygrey);
+            --color-state-error-border: var(--p-rosered);
+            
+            --input-field-surface-active: var(--color-surface-canvas);
+            --input-field-surface-filled: var(--color-surface-canvas);
+            --input-field-surface-focus: var(--color-surface-canvas);
+            --input-field-surface-error: var(--color-surface-canvas);
+            --input-field-surface-disabled: var(--color-state-disabled-surface);
+            
+            --input-field-border-active: var(--color-border-default);
+            --input-field-border-filled: var(--color-border-default);
+            --input-field-border-focus: var(--color-surface-accent);
+            --input-field-border-error: var(--color-state-error-border);
+            --input-field-border-disabled: var(--color-state-disabled-border);
+            
+            --input-field-content-placeholder: var(--color-content-secondary);
+            --input-field-content-filled: var(--color-content-primary);
+            --input-field-content-disabled: var(--color-state-disabled-content);
+            
+            --input-label-content: var(--color-content-secondary);
+            --input-error-message-content: var(--color-state-error-border);
+        }
+
+        [data-theme="dark"] {
+            --color-content-primary: var(--p-white);
+            --color-content-secondary: var(--p-grey300);
+            --color-surface-canvas: var(--p-ohmedarkblue);
+            --color-surface-panel: #0a3a50;
+            --color-state-disabled-surface: var(--p-grey700);
+            --color-state-disabled-content: var(--p-grey300);
+            --color-state-disabled-border: var(--p-grey700);
+        }
+
+        body {
+            font-family: 'Roobert', -apple-system, sans-serif;
+            background: var(--color-surface-canvas);
+            color: var(--color-content-primary);
+            transition: all 0.3s;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header h1 { font-size: 32px; font-weight: 600; }
+        .header-info { color: var(--color-content-secondary); font-size: 14px; }
+
+        .mode-toggle { display: flex; gap: 12px; }
+
+        .mode-toggle button {
+            padding: 8px 16px;
+            border: 1px solid var(--color-content-primary);
+            background: var(--color-surface-canvas);
+            color: var(--color-content-primary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .mode-toggle button.active {
+            background: var(--color-content-primary);
+            color: var(--color-surface-canvas);
+        }
+
+        .controls {
+            background: var(--color-surface-panel);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+
+        .control-group { margin-bottom: 20px; }
+        .control-group:last-child { margin-bottom: 0; }
+
+        .control-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .button-group { display: flex; gap: 8px; flex-wrap: wrap; }
+
+        .control-btn {
+            padding: 8px 16px;
+            border: 1px solid #ccc;
+            background: white;
+            color: #333;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .control-btn.active {
+            background: var(--p-highlighterteal);
+            color: var(--p-ohmedarkblue);
+            border-color: var(--p-highlighterteal);
+        }
+
+        .demo-area {
+            background: var(--color-surface-panel);
+            border-radius: 12px;
+            padding: 80px 40px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+
+        /* Input wrapper */
+        .input-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Standard label (above field - Large/Small) */
+        .input-label-external {
+            font-family: 'Roobert', sans-serif;
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 400;
+            color: var(--input-label-content);
+        }
+
+        /* Input field container */
+        .input-field-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Mobile stacked label (inside field) */
+        .input-container-mobile {
+            position: relative;
+            border: 1px solid;
+            border-radius: 6px;
+            padding: 10px 16px;
+            background: var(--input-field-surface-active);
+            transition: all 0.2s;
+            min-height: 56px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        /* When no icon, use single column */
+        .input-container-mobile.no-icon {
+            grid-template-columns: 1fr;
+        }
+        
+        /* Icon wrapper for mobile - vertically centered */
+        .mobile-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-self: center;
+        }
+        
+        /* Label and input wrapper - stacked on right */
+        .mobile-field-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .input-container-mobile.state-focus {
+            border-color: var(--input-field-border-focus);
+        }
+
+        .input-container-mobile.state-error {
+            border-color: var(--input-field-border-error);
+            border-width: 1.5px;
+        }
+
+        .input-container-mobile.state-disabled {
+            background: var(--input-field-surface-disabled);
+            border-color: var(--input-field-border-disabled);
+        }
+
+        .input-label-mobile {
+            font-family: 'Roobert', sans-serif;
+            font-size: 12px;
+            line-height: 16px;
+            font-weight: 400;
+            color: var(--input-label-content);
+            margin-bottom: 4px;
+        }
+
+        .input-mobile-field {
+            font-family: 'Roobert', sans-serif;
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 400;
+            color: var(--input-field-content-filled);
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 0;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .input-mobile-field::placeholder {
+            color: var(--input-field-content-placeholder);
+        }
+
+        .input-mobile-field:disabled {
+            color: var(--input-field-content-disabled);
+        }
+
+        /* Standard input (Large/Small) */
+        .input {
+            font-family: 'Roobert', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            border-style: solid;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        /* Icon containers */
+        .input-icon {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-content-primary);
+        }
+
+        .input-icon-left {
+            left: 12px;
+        }
+
+        .input-icon-right {
+            right: 12px;
+        }
+
+        /* Mobile icon positioning - in grid, no absolute positioning needed */
+        .input-container-mobile .input-icon-left,
+        .input-container-mobile .input-icon-right {
+            position: static;
+            left: auto;
+            right: auto;
+            top: auto;
+            bottom: auto;
+            transform: none;
+        }
+
+        .input-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Custom text prefix */
+        .input-custom-text {
+            position: absolute;
+            left: 16px;
+            font-family: 'Roobert', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--color-content-secondary);
+            pointer-events: none;
+        }
+
+        .input.has-custom-left {
+            padding-left: 80px;
+        }
+
+        .input.has-icon-left {
+            padding-left: 44px;
+        }
+
+        .input.has-icon-right {
+            padding-right: 44px;
+        }
+
+        /* Sizes */
+        .input--large {
+            height: 48px;
+            padding: 12px 16px;
+            border-radius: 6px;
+        }
+
+        .input--small {
+            height: 40px;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        /* Alignment */
+        .input--left { text-align: left; }
+        .input--right { text-align: right; }
+
+        /* States */
+        .input--default {
+            background: var(--input-field-surface-active);
+            border-color: var(--input-field-border-active);
+            border-width: 1px;
+            color: var(--input-field-content-filled);
+        }
+
+        .input--default::placeholder {
+            color: var(--input-field-content-placeholder);
+        }
+
+        .input--filled {
+            background: var(--input-field-surface-filled);
+            border-color: var(--input-field-border-filled);
+            border-width: 1px;
+            color: var(--input-field-content-filled);
+        }
+
+        .input--focused {
+            background: var(--input-field-surface-focus);
+            border-color: var(--input-field-border-focus);
+            border-width: 1px;
+            color: var(--input-field-content-filled);
+            outline: none;
+        }
+
+        .input--error {
+            background: var(--input-field-surface-error);
+            border-color: var(--input-field-border-error);
+            border-width: 1.5px;
+            color: var(--input-field-content-filled);
+        }
+
+        .input--disabled {
+            background: var(--input-field-surface-disabled);
+            border-color: var(--input-field-border-disabled);
+            border-width: 1px;
+            color: var(--input-field-content-disabled);
+            cursor: not-allowed;
+        }
+
+        .error-message {
+            font-family: 'Roobert', sans-serif;
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 400;
+            color: var(--input-error-message-content);
+        }
+
+        /* Tag styles */
+        .tag-container {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .tag-pill {
+            background: #00FFD6;
+            color: #032536;
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            line-height: 16px;
+        }
+
+        .tag-pill.purple {
+            background: #E7A6FF;
+            color: #510076;
+        }
+
+        .tag-remove {
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1;
+            font-weight: 700;
+        }
+
+        /* Tag input container for Large/Small */
+        .input-tag-container {
+            position: relative;
+            border: 1px solid;
+            border-radius: 6px;
+            padding: 8px 12px;
+            background: var(--input-field-surface-active);
+            transition: all 0.2s;
+            min-height: 48px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .input-tag-container.input--small {
+            min-height: 40px;
+            padding: 6px 12px;
+        }
+
+        .input-tag-container .tag-container {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .input-tag-container .input-tag-field {
+            flex: 1;
+            min-width: 80px;
+            max-width: 100%;
+        }
+        
+        /* When tags are present, make placeholder more subtle */
+        .input-tag-container.has-tags .input-tag-field::placeholder {
+            color: transparent;
+        }
+
+        .input-tag-container.state-default {
+            border-color: var(--input-field-border-active);
+        }
+
+        .input-tag-container.state-filled {
+            border-color: var(--input-field-border-filled);
+        }
+
+        .input-tag-container.state-focus {
+            border-color: var(--input-field-border-focus);
+        }
+
+        .input-tag-container.state-error {
+            border-color: var(--input-field-border-error);
+            border-width: 1.5px;
+        }
+
+        .input-tag-container.state-disabled {
+            background: var(--input-field-surface-disabled);
+            border-color: var(--input-field-border-disabled);
+        }
+
+        .input-tag-field {
+            font-family: 'Roobert', sans-serif;
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 400;
+            color: var(--input-field-content-filled);
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        .input-tag-field::placeholder {
+            color: var(--input-field-content-placeholder);
+        }
+
+        .input-tag-field:disabled {
+            color: var(--input-field-content-disabled);
+        }
+
+        .code-section {
+            background: var(--color-surface-panel);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .code-section h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre;
+        }
+
+        .docs-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: var(--p-highlighterteal);
+            color: var(--p-ohmedarkblue);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .docs-link:hover { background: var(--p-teal500); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>Input Component</h1>
+                <p class="header-info">500+ Variants • 8 Types • 3 Sizes • 5 States • 2 Alignments</p>
+            </div>
+            <div class="mode-toggle">
+                <button id="lightMode" class="active">☀️ Light</button>
+                <button id="darkMode">🌙 Dark</button>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>Type</label>
+                <div class="button-group">
+                    <button class="control-btn active" data-control="type" data-value="primary">Primary</button>
+                    <button class="control-btn" data-control="type" data-value="search">Search</button>
+                    <button class="control-btn" data-control="type" data-value="currency">Currency</button>
+                    <button class="control-btn" data-control="type" data-value="percent">Percent</button>
+                    <button class="control-btn" data-control="type" data-value="tag">Tag</button>
+                    <button class="control-btn" data-control="type" data-value="icon-left">Icon Left</button>
+                    <button class="control-btn" data-control="type" data-value="icon-right">Icon Right</button>
+                    <button class="control-btn" data-control="type" data-value="custom-left">Custom Left</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Size</label>
+                <div class="button-group">
+                    <button class="control-btn active" data-control="size" data-value="large">Large (48px)</button>
+                    <button class="control-btn" data-control="size" data-value="small">Small (40px)</button>
+                    <button class="control-btn" data-control="size" data-value="mobile">Mobile (56px - Stacked Label)</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Alignment</label>
+                <div class="button-group">
+                    <button class="control-btn active" data-control="alignment" data-value="left">Left</button>
+                    <button class="control-btn" data-control="alignment" data-value="right">Right</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>State</label>
+                <div class="button-group">
+                    <button class="control-btn active" data-control="state" data-value="default">Default</button>
+                    <button class="control-btn" data-control="state" data-value="filled">Filled</button>
+                    <button class="control-btn" data-control="state" data-value="focused">Focused</button>
+                    <button class="control-btn" data-control="state" data-value="error">Error</button>
+                    <button class="control-btn" data-control="state" data-value="disabled">Disabled</button>
+                </div>
+            </div>
+
+            <div class="control-group" id="labelControl">
+                <label>Label (Large/Small only)</label>
+                <div class="button-group">
+                    <button class="control-btn active" data-control="label" data-value="true">With Label</button>
+                    <button class="control-btn" data-control="label" data-value="false">No Label</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-area" id="demoArea">
+            <!-- Demo will be rendered here by JavaScript -->
+        </div>
+
+        <div class="code-section">
+            <h2>HTML</h2>
+            <pre class="code-block"><code id="htmlCode"></code></pre>
+        </div>
+
+        <div class="code-section">
+            <h2>CSS Design Tokens</h2>
+            <pre class="code-block"><code id="cssTokens"></code></pre>
+        </div>
+
+        <a href="README.md" class="docs-link">View Full Documentation →</a>
+    </div>
+
+    <script>
+        const state = {
+            type: 'primary',
+            size: 'large',
+            alignment: 'left',
+            state: 'default',
+            label: true
+        };
+
+        const demoArea = document.getElementById('demoArea');
+        const labelControl = document.getElementById('labelControl');
+        const htmlCode = document.getElementById('htmlCode');
+        const cssTokens = document.getElementById('cssTokens');
+
+        // Icons
+        const searchIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>';
+
+        document.getElementById('lightMode').onclick = () => {
+            document.documentElement.removeAttribute('data-theme');
+            document.getElementById('lightMode').classList.add('active');
+            document.getElementById('darkMode').classList.remove('active');
+        };
+
+        document.getElementById('darkMode').onclick = () => {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('darkMode').classList.add('active');
+            document.getElementById('lightMode').classList.remove('active');
+        };
+
+        document.querySelectorAll('.control-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const control = btn.dataset.control;
+                const value = btn.dataset.value;
+                
+                btn.parentElement.querySelectorAll('.control-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                if (control === 'label') {
+                    state[control] = value === 'true';
+                } else {
+                    state[control] = value;
+                }
+                
+                renderInput();
+            });
+        });
+
+        function renderInput() {
+            let html = '';
+            let placeholder = 'Placeholder text';
+            let inputType = 'text';
+            let value = '';
+            let disabled = '';
+            let iconLeft = '';
+            let iconRight = '';
+            let customText = '';
+            let inputClass = '';
+            
+            // Determine state-specific values
+            switch(state.state) {
+                case 'default':
+                    value = '';
+                    break;
+                case 'filled':
+                case 'focused':
+                    value = 'Sample text content';
+                    break;
+                case 'error':
+                    value = 'Invalid input';
+                    break;
+                case 'disabled':
+                    value = 'Disabled content';
+                    disabled = ' disabled';
+                    break;
+            }
+            
+            // Determine type-specific properties
+            switch(state.type) {
+                case 'search':
+                    placeholder = 'Search...';
+                    inputType = 'search';
+                    iconLeft = `<div class="input-icon input-icon-left">${searchIcon}</div>`;
+                    inputClass = ' has-icon-left';
+                    break;
+                case 'percent':
+                    placeholder = '0';
+                    iconRight = '<div class="input-icon input-icon-right" style="font-size: 16px;">%</div>';
+                    inputClass = ' has-icon-right';
+                    break;
+                case 'currency':
+                    placeholder = '0.00';
+                    iconLeft = '<div class="input-icon input-icon-left" style="font-size: 16px;">£</div>';
+                    inputClass = ' has-icon-left';
+                    break;
+                case 'tag':
+                    placeholder = 'Add tag...';
+                    // Tag type shows pills/tags INSIDE the field
+                    if (state.state === 'filled' || state.state === 'focused' || state.state === 'error') {
+                        value = ''; // Input is empty, tags shown inside container
+                    }
+                    break;
+                case 'icon-left':
+                    placeholder = 'Enter value...';
+                    iconLeft = `<div class="input-icon input-icon-left">${searchIcon}</div>`;
+                    inputClass = ' has-icon-left';
+                    break;
+                case 'icon-right':
+                    placeholder = 'Enter value...';
+                    iconRight = `<div class="input-icon input-icon-right">${searchIcon}</div>`;
+                    inputClass = ' has-icon-right';
+                    break;
+                case 'custom-left':
+                    placeholder = 'example.com';
+                    customText = '<div class="input-custom-text">https://</div>';
+                    inputClass = ' has-custom-left';
+                    break;
+                default:
+                    placeholder = 'Placeholder text';
+            }
+            
+            // Render based on size
+            if (state.size === 'mobile') {
+                // Mobile: Icon on left, label + input stacked on right (grid layout)
+                labelControl.style.display = 'none';
+                
+                const containerClass = `input-container-mobile${state.type === 'primary' || state.type === 'tag' ? ' no-icon' : ''} state-${state.state}`;
+                
+                // Icon column (left)
+                let iconHTML = '';
+                if (state.type === 'search' || state.type === 'icon-left') {
+                    iconHTML = `<div class="mobile-icon-wrapper"><div class="input-icon input-icon-left">${searchIcon}</div></div>`;
+                } else if (state.type === 'icon-right') {
+                    iconHTML = `<div class="mobile-icon-wrapper"><div class="input-icon input-icon-right">${searchIcon}</div></div>`;
+                } else if (state.type === 'currency') {
+                    iconHTML = '<div class="mobile-icon-wrapper"><div class="input-icon input-icon-left" style="font-size: 20px; font-weight: 400;">£</div></div>';
+                } else if (state.type === 'percent') {
+                    iconHTML = '<div class="mobile-icon-wrapper"><div class="input-icon input-icon-right" style="font-size: 20px; font-weight: 400;">%</div></div>';
+                } else if (state.type === 'custom-left') {
+                    iconHTML = '<div class="mobile-icon-wrapper"><span style="font-size: 16px; color: var(--color-content-secondary);">https://</span></div>';
+                }
+                
+                // Tags HTML (for tag type - goes in field wrapper)
+                let tagsHTML = '';
+                if (state.type === 'tag' && (state.state === 'filled' || state.state === 'focused' || state.state === 'error')) {
+                    tagsHTML = `
+                        <div class="tag-container" style="margin-bottom: 4px;">
+                            <span class="tag-pill">
+                                Jessica Williams
+                                <button class="tag-remove">×</button>
+                            </span>
+                            <span class="tag-pill purple">
+                                Bill Stone
+                                <button class="tag-remove">×</button>
+                            </span>
+                        </div>
+                    `;
+                }
+                
+                // Text alignment style
+                const inputTextAlign = state.alignment === 'right' ? ' style="text-align: right;"' : '';
+                
+                // Field wrapper (right column) - label + input stacked
+                const fieldWrapperHTML = `
+                    <div class="mobile-field-wrapper">
+                        ${tagsHTML}
+                        <label class="input-label-mobile">Label</label>
+                        <input 
+                            type="${inputType}" 
+                            class="input-mobile-field"${inputTextAlign}
+                            placeholder="${placeholder}"
+                            value="${state.type === 'tag' && (state.state === 'filled' || state.state === 'focused' || state.state === 'error') ? '' : value}"${disabled}
+                        />
+                    </div>
+                `;
+                
+                html = `
+                    <div class="input-wrapper">
+                        <div class="${containerClass}">
+                            ${iconHTML}
+                            ${fieldWrapperHTML}
+                        </div>
+                        ${state.state === 'error' ? '<span class="error-message">This field has an error</span>' : ''}
+                    </div>
+                `;
+            } else {
+                // Large/Small: Label above field
+                labelControl.style.display = 'block';
+                
+                const labelHTML = state.label ? `<label class="input-label-external">Label Text</label>` : '';
+                
+                // For tag type, use special container
+                if (state.type === 'tag') {
+                    let tagsHTML = '';
+                    let hasTagsClass = '';
+                    if (state.state === 'filled' || state.state === 'focused' || state.state === 'error') {
+                        hasTagsClass = ' has-tags';
+                        tagsHTML = `
+                            <div class="tag-container">
+                                <span class="tag-pill">
+                                    Jessica Williams
+                                    <button class="tag-remove">×</button>
+                                </span>
+                                <span class="tag-pill purple">
+                                    Bill Stone
+                                    <button class="tag-remove">×</button>
+                                </span>
+                            </div>
+                        `;
+                    }
+                    
+                    const sizeClass = state.size === 'small' ? ' input--small' : '';
+                    const inputAlignStyle = state.alignment === 'right' ? ' style="text-align: right;"' : '';
+                    
+                    html = `
+                        <div class="input-wrapper">
+                            ${labelHTML}
+                            <div class="input-tag-container${sizeClass}${hasTagsClass} state-${state.state}">
+                                ${tagsHTML}
+                                <input 
+                                    type="text" 
+                                    class="input-tag-field"${inputAlignStyle}
+                                    placeholder="${placeholder}"
+                                    value="${(state.state === 'filled' || state.state === 'focused' || state.state === 'error') ? '' : value}"${disabled}
+                                />
+                            </div>
+                            ${state.state === 'error' ? '<span class="error-message">Error Message</span>' : ''}
+                        </div>
+                    `;
+                } else {
+                    // Standard input
+                    const containerHTML = iconLeft || iconRight || customText ? 
+                        `<div class="input-field-container">${iconLeft}${customText}<input type="${inputType}" class="input input--${state.size} input--${state.alignment} input--${state.state}${inputClass}" placeholder="${placeholder}" value="${value}"${disabled} />${iconRight}</div>` :
+                        `<input type="${inputType}" class="input input--${state.size} input--${state.alignment} input--${state.state}" placeholder="${placeholder}" value="${value}"${disabled} />`;
+                    
+                    html = `
+                        <div class="input-wrapper">
+                            ${labelHTML}
+                            ${containerHTML}
+                            ${state.state === 'error' ? '<span class="error-message">This field has an error</span>' : ''}
+                        </div>
+                    `;
+                }
+            }
+            
+            demoArea.innerHTML = html;
+            
+            // Focus the input if in focused state
+            if (state.state === 'focused') {
+                setTimeout(() => {
+                    const input = demoArea.querySelector('input');
+                    if (input) input.focus();
+                }, 0);
+            }
+            
+            updateCode();
+        }
+
+        function updateCode() {
+            // Build HTML code display
+            let codeHTML = '';
+            
+            if (state.size === 'mobile') {
+                const iconDisplay = state.type === 'search' ? '\n  <svg class="input-icon-left">...</svg>' :
+                                   state.type === 'currency' ? '\n  <span class="input-icon-left">£</span>' :
+                                   state.type === 'percent' ? '\n  <span class="input-icon-right">%</span>' :
+                                   state.type === 'custom-left' ? '\n  <span class="input-custom-text">https://</span>' : '';
+                
+                const tagDisplay = state.type === 'tag' && (state.state === 'filled' || state.state === 'focused' || state.state === 'error') ? 
+                    '\n  <div class="tag-container">\n    <span class="tag-pill">Jessica Williams <button>×</button></span>\n    <span class="tag-pill purple">Bill Stone <button>×</button></span>\n  </div>' : '';
+                
+                codeHTML = `<div class="input-container-mobile">${tagDisplay}
+  <label class="input-label-mobile">Label</label>${iconDisplay}
+  <input 
+    type="text"
+    class="input-mobile-field"
+    placeholder="Placeholder"
+    ${state.state !== 'default' ? `value="Sample text"` : ''}
+    ${state.state === 'disabled' ? 'disabled' : ''}
+  />
+</div>`;
+            } else {
+                const label = state.label ? '<label class="input-label-external">Label Text</label>\n' : '';
+                
+                if (state.type === 'tag') {
+                    const tagDisplay = (state.state === 'filled' || state.state === 'focused' || state.state === 'error') ? 
+                        '\n  <div class="tag-container">\n    <span class="tag-pill">Jessica Williams <button>×</button></span>\n    <span class="tag-pill purple">Bill Stone <button>×</button></span>\n  </div>' : '';
+                    
+                    codeHTML = `${label}<div class="input-tag-container">${tagDisplay}
+  <input 
+    type="text"
+    class="input-tag-field"
+    placeholder="Add tag..."
+    ${state.state === 'disabled' ? 'disabled' : ''}
+  />
+</div>`;
+                } else {
+                    const iconDisplay = state.type === 'search' ? '\n  <svg class="input-icon-left">...</svg>' :
+                                       state.type === 'currency' ? '\n  <span class="input-icon-left">£</span>' :
+                                       state.type === 'percent' ? '\n  <span class="input-icon-right">%</span>' :
+                                       state.type === 'custom-left' ? '\n  <span class="input-custom-text">https://</span>' : '';
+                    
+                    codeHTML = `${label}<input 
+  type="text"
+  class="input input--${state.size} input--${state.alignment} input--${state.state}"
+  placeholder="Placeholder"
+  ${state.state !== 'default' ? `value="Sample text"` : ''}
+  ${state.state === 'disabled' ? 'disabled' : ''}
+/>${iconDisplay}`;
+                }
+            }
+            
+            htmlCode.textContent = codeHTML;
+
+            // Build token display
+            let tokens = '';
+            switch(state.state) {
+                case 'default':
+                    tokens = `/* Default State */
+Input/field/surface/active → surface/canvas → white/#032536
+Input/field/border/active → border/default → grey300
+Input/field/content/placeholder → content/secondary → grey700/grey300`;
+                    break;
+                case 'filled':
+                    tokens = `/* Filled State */
+Input/field/surface/filled → surface/canvas → white/#032536
+Input/field/border/filled → border/default → grey300
+Input/field/content/filled → content/primary → ohmedarkblue/white`;
+                    break;
+                case 'focused':
+                    tokens = `/* Focus State */
+Input/field/surface/focus → surface/canvas → white/#032536
+Input/field/border/focus → surface/accent → highlighterteal #00FFD6
+Input/field/content/filled → content/primary → ohmedarkblue/white`;
+                    break;
+                case 'error':
+                    tokens = `/* Error State */
+Input/field/surface/error → surface/canvas → white/#032536
+Input/field/border/error → state/error/border → rosered #FA1460
+Input/field/content/filled → content/primary → ohmedarkblue/white
+Input/error-message/Content → state/error/border → rosered #FA1460
+
+Border width: 1.5px`;
+                    break;
+                case 'disabled':
+                    tokens = `/* Disabled State */
+Input/field/surface/disabled → state/disabled/surface → smokeygrey/grey700
+Input/field/border/disabled → state/disabled/border → smokeygrey/grey700
+Input/field/content/disabled → state/disabled/content → grey700/grey300`;
+                    break;
+            }
+            
+            if (state.type === 'tag') {
+                tokens += `\n\n/* Tag Pills (inside field) */
+Teal pill: #00FFD6 background, #032536 text
+Purple pill: #E7A6FF background, #510076 text
+Font size: 12px, border-radius: 100px
+Remove button: × character, inherits pill text color`;
+            }
+            
+            if (state.size === 'mobile') {
+                tokens += `\n\n/* Mobile Stacked Label */
+Input/Label/Content → content/secondary → grey700/grey300
+Font size: 12px, positioned inside field above value`;
+            } else if (state.label) {
+                tokens += `\n\n/* External Label */
+Input/Label/Content → content/secondary → grey700/grey300
+Font size: 14px/18px line-height, 4px gap to field`;
+            }
+            
+            cssTokens.textContent = tokens;
+        }
+
+        renderInput();
+    </script>
+</body>
+</html>
